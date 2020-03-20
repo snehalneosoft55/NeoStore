@@ -1,0 +1,78 @@
+.homeNav{
+    background-color:black !important ;
+
+}
+/* .neo{
+    color:white
+} */
+.navbarBrand{
+    color:white !important;
+    /* display: none; */
+    font-size: 40px !important;
+
+}
+
+.navbarBrand_home , .navbarBrand_product, .navbarBrand_order{
+margin-left:7% !important; 
+margin-top:1%;
+color:white !important;
+font-size: 17px;
+padding:0px  !important;
+}
+.homeNav_items{
+   
+    margin-top: 20px;
+}
+.input{
+    /* margin-right: 3%; */
+    widows: 40px !important; 
+    margin-left: 5%;
+    /* height: */
+}
+
+.input_formcontrol{
+    width:80px !important;
+    height:46px !important;
+    margin-right:10PX !important;
+}
+.navbarBrandStore{
+    color:red !important;
+}
+.navbarBrandNeo{
+    color:white;
+}
+
+.cartButton{
+    background-color: white !important;
+    width:350px !important;
+    height:46px;
+    margin-right: 10px;
+}
+.userDropdown{
+    background-color: white !important; 
+    height:46px;
+    width:400px;
+    border:1px solid white;
+    border-radius: 5% !important;
+}
+.userDropdown_items{
+    background-color: black !important; 
+
+}
+.userDropdown_toggle{
+    color:black;
+    background-color:white !important;
+    border:none;
+    border-style: none;
+    margin-left: 10%;
+}
+.userDropdown_toggle_icon{
+    color:white;
+    background-color:black!important;
+    width:80%;
+    height: 100%;
+    margin-top: 8px;
+    margin-left: 100%;
+}
+
+

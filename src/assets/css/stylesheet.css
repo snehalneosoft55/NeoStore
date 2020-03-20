@@ -1,0 +1,72 @@
+.sideImage{
+    height:100vh;
+    width: 100%
+}
+.inputs{
+    width:750px
+}
+.s{
+    margin-top:30px !important;
+    width:860px;
+    height:50px
+}
+.forInputs{
+    margin-top:20px;
+}
+.signupInfo_card{
+    width:900px;
+    margin-left: 260px;
+    margin-bottom: 5%;
+    box-shadow: rgb(97, 68, 68);
+}
+.registrationLabel{
+    font-size: 1.75rem;
+}
+.signupInfo_card h1{
+    font-size: 1.75rem;
+}
+.line{
+    width:1100px
+}
+/* .Signup-wrapper{
+    background-image: url('../images/Shopping.jpeg');
+    opacity:0.4
+} */
+.signUpInfo{
+    padding-top:2%;
+    margin-left:20px;
+    justify-content: left;
+}
+
+.signInInfo{
+    padding-top:130px;
+    justify-content: center;
+}
+#error{
+    color:red;
+}
+.facebook, .google{
+    height:70px;
+    width:240px;
+    border-radius: 3%;
+    border:none;
+    
+}
+.SocialButton{
+    margin-top:6%;
+    margin-bottom:1%;
+    margin-left:33%
+}
+.facebook{
+    margin-right:5%;
+    background-color: #3b5998;
+}
+.google{
+    background-color: #db4437;
+}
+.errorShow{
+    color:red
+}
+.formGridCheckbox{
+    padding-top:20px
+}

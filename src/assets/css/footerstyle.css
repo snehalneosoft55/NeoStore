@@ -1,0 +1,38 @@
+.footerContent p,.footer_endTag{
+    text-align: center;
+    font-size: 12px;
+}
+.footerContent h4{
+    text-align: center;
+    padding-bottom: 6%;
+
+}
+#footer_input{
+    width:20px !important;
+}
+.footerContent ,.footer_endTag{
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: black;
+    color:white;
+    padding-top: 3%;
+    /* padding-bottom: 4%; */
+}
+.footer_endTag{
+    padding-top: 3%;
+    padding-left: 33%;
+}
+#footer_input{
+    width:1px !important;
+    /* height:4px */
+}
+.footerContent BUTTON{
+    margin-top: 15px;
+    margin-left: 120px;
+    padding-bottom: 30px;
+    font-size: smaller;
+    background-color: white !important;
+    color:black;
+    height:25px;
+}
+

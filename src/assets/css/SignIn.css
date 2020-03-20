@@ -1,0 +1,12 @@
+.signInWrapper{
+    width:80%;
+    height:80%;
+    margin: 10%
+    /* padding-left:45% */
+}
+.signInWrapper_header{
+    margin-left:45%
+}
+.emailInput{
+    margin-left:90px;
+}
