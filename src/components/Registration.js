@@ -8,11 +8,17 @@ import {RegEx} from './RegEx';
 import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
-const validateForm = (errors) => {
+
+let valid = true;
+let forbutton;
+const validateForm = (users) => {
     console.log("in validateForm");
-    let valid = true;
-    Object.values(errors).forEach(
-        (val) => val.length > 0  && (valid = false)
+    
+    Object.values(users).forEach(
+        (val) => {
+            if(val==''){valid = false;}
+            else{valid=true;}
+        }  
     
     );
     return valid;
@@ -42,7 +48,8 @@ export default class Registration extends React.Component{
                     confirmPassword:"",
                     mobileNo:"" ,
                     gender:""
-                }
+                },
+                submitError:''
             }
         }
 
@@ -57,96 +64,102 @@ export default class Registration extends React.Component{
 
         switch(name){
             case 'FirstName':
-                if(!((RegEx.FirstName).test(value))){
-                        // console.log("in regex",value);
+                if(value==''){
+                    errors.firstName="Required";
+                }
+               
+                else if(!((RegEx.FirstName).test(value))){
+                        console.log("in alphabates validation",value);
                         errors.firstName='Only alphabates are allowed';
                     }
-                else if(value.length<3){
-                    errors.firstName='First Name must be at least 3 charecters';
-                    
-                }
-                
                 else{
                     errors.firstName='';
                     users.firstName=value;
                 }
                 break; 
             case 'LastName':
-                    if(!((RegEx.LastName).test(value))){
-                        // console.log("in regex",value);
-                        errors.lastName='Only alphabates are allowed';
-                    }
-                else if(value.length<3){
-                    errors.lastName='Last Name must be at least 3 charecters';
-                    
+                     if(value==''){
+                    errors.lastName="Required";
                 }
-                
+                else if(!((RegEx.LastName).test(value))){
+                        console.log("in alphabates validation",value);
+                        errors.lastName="Only alphabates are allowed";
+                    }
                 else{
                     errors.lastName='';
                     users.lastName=value;
                 }
-                break; 
+                break;  
             case 'Email':
-                // console.log(value,RegEx.Email);
-                // errors.email = value.length < 4 ? 'invalid email id' : '';
-                if(((RegEx.Email).test(value))){
+                if(value==''){
+                    errors.email="Required";  
+                }
+                else if(!((RegEx.Email).test(value))){
                     console.log('no error in email');
-                    errors.email = '' ;
-                    users.email=value;
-                    break;
+                    errors.email = 'Enter valid email' ;
                 }
-                
                 else{
-                    errors.email ='Invalid Email';
-                    break;
+                    errors.email ='';
+                    users.email=value;
                 }
-               
+               break;
             case 'Username' :
                 console.log("in username");
-                if(value.length>3){
+                if(value==''){
+                    errors.username='Required';
+                }
+                else if(value.length<3){
+                    errors.username='Username must be at least 3 charecters';
+                    
+                }
+                else{
                     errors.username='';
                     users.username=value;
                 }
-                else{
-                    errors.username='Username must be at least 3 charecters';
-                }
-                // console.log('in usename switch');
-                // errors.username = value.length < 4 ? 'Username must be at least 4 charecter' : '';
                 break;
             case 'Password' :
-                if(value.length > 8){
+                if(value==''){
+                    errors.password = 'Required';  
+                }
+                else if(value.length<7 || value.length>15){
+                    errors.password = 'Password length must between 7 to 15';
+                    
+                }
+                
+                else{
                     errors.password = '';
                     users.password=value;
                 }
-                else{
-                    errors.password = 'password length must between 8 to 9';
-                }
                 break;
             case 'ConfirmPassword' :
-                // console.log( "in confirm pass"+ users.password);
+                
                 users.confirmPassword=value;
-                if(users.password  === users.confirmPassword){
+                if(value==""){
+                    errors.confirmPassword='Required';
+                }
+                else if(users.password  != users.confirmPassword){
                    // console.log("in c pass true", users.confirmPassword);
-                    errors.confirmPassword='';
+                    errors.confirmPassword='Password not matched';
                 }
                 else{
                     //console.log("in false",users.password,users.confirmPassword);
-                    errors.confirmPassword='password not matched';
+                    errors.confirmPassword='';
                 }
                 break;
             case 'mobileNo' :
-            if(!((RegEx.MobileNo).test(value))){
-                console.log("else if")
-                errors.mobileNo='Mobile No. should contain only numeric values';
-            }    
-            else if(value.length === 10){
-                    console.log("in true");
-                    errors.mobileNo = '';
-                    users.mobileNo=value;
+                if(value==''){
+                    errors.mobileNo = 'Required';
+                }
+              
+            else if(value.length != 10){
+                    console.log("");
+                    errors.mobileNo = 'Mobile No should be of 10 Digit';
+                    
                 }
                
                 else{
-                    errors.mobileNo = 'Enetr 10 digits';
+                    errors.mobileNo = '';
+                    users.mobileNo=value;
                 }
                 break;
                 // errors.confirmPassword = this.
@@ -170,21 +183,31 @@ export default class Registration extends React.Component{
             default:
                 break;
             }
-        this.setState({errors,users})
+        this.setState({errors,users});
         
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        if(validateForm(this.state.errors)){
-            
-            console.log("valid form", this.state.errors);
+        
+        if(validateForm(this.state.users)){
+            forbutton=true;
+            this.setState({submitError:''});
+            console.log("valid form","forbutton:",forbutton, this.state.users);
         }
         else{
-            console.log("Invalid form");
+            forbutton=false;
+            this.setState({submitError:"enetr values"});
+            console.log("Invalid form","forbutton:",forbutton);
+            // alert("enter all fields");
         }
     }
-
+    // componentDidMount(){
+    //     const userData = {
+    //         email : this.state.users.email,
+    //         password : this.state.users
+    //     };
+    // }
     render(){
         const {errors} = this.state;
         
@@ -194,11 +217,11 @@ export default class Registration extends React.Component{
             <HomeNavBar></HomeNavBar>
             <Container fluid={true} >
             
-            <Row className="SocialButton">
+            {/* <Row className="SocialButton">
                 <Button className="facebook"><span><i src="fa fa-facebook"></i></span>Login With Facebook</Button>
                 <Button className="google"><span><i src="fa fa-google"></i></span>Login With Google</Button>
 
-            </Row>
+            </Row> */}
             <hr className="line"></hr>
             <Row className="Signup-wrapper">
                 {/* <Col xs={7}>
@@ -207,7 +230,8 @@ export default class Registration extends React.Component{
                 <Col xs={5}> */}
                 <Card className="signupInfo_card">
                     <Row className="signUpInfo">
-                        <Form.Group>
+                        <form onSubmit={this.handleSubmit} action="./signIn.js">
+                        <Form.Group >
                     {/* <Form> */}
                         <h1 className="registrationLabel">Register To NeoStore</h1>
                         <br/><br/>
@@ -219,7 +243,7 @@ export default class Registration extends React.Component{
                         <span className="errorShow">{errors.email}</span>
                         <Inputs name="Username" type="text" placeholder="Username" value={this.state.value} handleChange={this.handleChange}/>
                         <span className="errorShow">{errors.username}</span>
-                        <Inputs name="Password" type="password" placeholder="Password" value={this.state.value} handleChange={this.handleChange} />
+                        <Inputs name="Password" type="password" maxlength="10" placeholder="Password" value={this.state.value} handleChange={this.handleChange} />
                         <span className="errorShow">{errors.password}</span>
                         <Inputs name="ConfirmPassword" type="password" placeholder="Confirm Password" value={this.state.value} handleChange={this.handleChange}/>
                         <span className="errorShow">{errors.confirmPassword}</span>
@@ -227,8 +251,9 @@ export default class Registration extends React.Component{
                         <span className="errorShow">{errors.mobileNo}</span>
                         {/* <Form.check type="radio">Male</Form.check> */}
                         
-            
+                        
                         <Form.Group className="formGridCheckbox" >
+                        Gender
                                 <Form.Check inline type="radio" label="Female" name="gender" value="Female" onChange={this.handleChange}/>
                                 <Form.Check inline type="radio" label="Male" name="gender" value="Male" onChange={this.handleChange}/>
                         </Form.Group>
@@ -237,7 +262,8 @@ export default class Registration extends React.Component{
 
                         <Row>
                             <Col>
-                                <Button type="submit" className="btn btn-primary btn-block" onClick={this.handleSubmit}>Submit</Button>
+                                <Button type="submit" className="btn btn-primary btn-block">Submit</Button>
+                                <span className="errorShow">{this.state.submitError}</span>
                             </Col>
                             <Col>
                                 <Link to="./signIn">
@@ -246,6 +272,7 @@ export default class Registration extends React.Component{
                              </Col>
                         </Row>
                     </Form.Group>
+                    </form>
                 </Row>
                 </Card>
                 {/* </Col> */}
