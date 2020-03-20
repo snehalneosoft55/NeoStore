@@ -193,7 +193,10 @@ export default class Registration extends React.Component{
         if(validateForm(this.state.users)){
             forbutton=true;
             this.setState({submitError:''});
-            console.log("valid form","forbutton:",forbutton, this.state.users);
+            // let userDate=this.state.users;
+            // let userDataInjson=JSON.stringify();
+            
+            console.log("valid form","forbutton:",forbutton, this.state.users,JSON.stringify(this.state.users));
         }
         else{
             forbutton=false;
