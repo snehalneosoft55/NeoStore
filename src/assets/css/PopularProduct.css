@@ -1,0 +1,15 @@
+.productCart{
+    width:300px !important;
+    display: inline-flex;
+    margin-left:100px
+}
+.addToCart{
+    width:120px !important;
+    margin-left:85px
+}
+.productCartImg{
+    padding:20px
+}
+.header1{
+    margin-left:510px
+}

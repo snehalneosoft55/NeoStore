@@ -1,0 +1,19 @@
+{
+    "Product":[
+        {
+            "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
+            "title":"Sofa",
+            "prise":"25000"
+        },
+        {
+            "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
+            "title":"Chair",
+            "prise":"35000"
+        },
+        {
+            "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
+            "title":"DiningTable",
+            "prise":"35000"
+        }
+    ]
+}
