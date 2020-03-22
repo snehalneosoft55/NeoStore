@@ -33,7 +33,7 @@ export default function Slideimages(){
       
           
         </Carousel.Item>
-        <Carousel.Item>
+        {/* <Carousel.Item>
           <Image className="carouselImage" 
           src={Assets.TEA_POY_IMAGE} 
           alt="Fourth slide"></Image>
@@ -42,7 +42,7 @@ export default function Slideimages(){
           <Image className="carouselImage" 
           src={Assets.SOFASET_TEAPOY_IMAGE} 
           alt="Fifth slide"></Image>
-        </Carousel.Item>
+        </Carousel.Item> */}
 
       </Carousel></div>
         

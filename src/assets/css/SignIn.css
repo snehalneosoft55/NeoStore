@@ -1,25 +1,3 @@
-.signInWrapper{
-    width:80%;
-    height:80%;
-    margin: 10%
-    /* padding-left:45% */
-}
-.signInWrapper_header{
-    margin-left:45%
-}
-.emailInput{
-    margin-left:90px;
-}
-.form{
-    margin-left:75px;
-    margin-bottom: 30px;
-}
-.submit{
-    margin-left:100px;
-}
-.forgotpassword{
-    margin-top: 20px;
-}
 .sideImage{
     height:100vh;
     width: 100%
@@ -86,9 +64,18 @@
 .google{
     background-color: #db4437;
 }
+.submitButton{
+    margin-top: 20px;
+}
+.f{
+    margin-top: 20px !important; 
+}
 .errorShow{
     color:red
 }
 .formGridCheckbox{
     padding-top:20px
+}
+.genderLabel{
+    margin-right:20px
 }

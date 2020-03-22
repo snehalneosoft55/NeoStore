@@ -1,6 +1,6 @@
 import React from 'react'
 import Data from './Data'
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 export default class Popularproduct extends React.Component{
     render(){
@@ -12,12 +12,12 @@ export default class Popularproduct extends React.Component{
                     Data.Product.map((Product,i)=>{
                         return(
                             <Card className="productCart">
-                                <div key={i}>
+                                <div key={i} className="productCart_body">
                                     <Card.Img className="productCartImg" variant="top" src={Product.image} />
-                                    <Card.Body>
-                                    <Card.Title>{Product.title}</Card.Title>
-                                    <Card.Text>{Product.prise}</Card.Text>
-                                    <Button variant="primary">Add To Cart</Button>
+                                    <Card.Body className="productCart_body_display">
+                                    <Card.Title className="productCart_title">{Product.title}</Card.Title>
+                                    <Card.Text className="productCart_price">{Product.prise}</Card.Text>
+                                    <button className="productCart_button">Add To Cart</button>
                                     </Card.Body>
                                 </div>
                             </Card>
@@ -29,23 +29,3 @@ export default class Popularproduct extends React.Component{
     }
 }
 
-// {
-//     render(){
-//         return(
-//             <div>
-//                 {
-//                     data.Product.map((Product, i) =>{
-//                         return(
-//                             <div key={i}>
-//                                 <div>
-//                         <p>{Product.title}</p>
-//                     <p>{Product.prise}</p>
-//                                 </div>
-//                             </div>
-//                         );
-//                     }
-//                 }
-//             </div>
-//         );
-//     }
-// }

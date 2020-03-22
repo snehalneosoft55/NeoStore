@@ -16,7 +16,7 @@ const validateForm = (users) => {
     
     Object.values(users).forEach(
         (val) => {
-            if(val==''){valid = false;}
+            if(val===''){valid = false;}
             else{valid=true;}
         }  
     
@@ -64,7 +64,7 @@ export default class Registration extends React.Component{
 
         switch(name){
             case 'FirstName':
-                if(value==''){
+                if(value===''){
                     errors.firstName="Required";
                 }
                
@@ -78,7 +78,7 @@ export default class Registration extends React.Component{
                 }
                 break; 
             case 'LastName':
-                     if(value==''){
+                     if(value===''){
                     errors.lastName="Required";
                 }
                 else if(!((RegEx.LastName).test(value))){
@@ -91,7 +91,7 @@ export default class Registration extends React.Component{
                 }
                 break;  
             case 'Email':
-                if(value==''){
+                if(value===''){
                     errors.email="Required";  
                 }
                 else if(!((RegEx.Email).test(value))){
@@ -105,7 +105,7 @@ export default class Registration extends React.Component{
                break;
             case 'Username' :
                 console.log("in username");
-                if(value==''){
+                if(value===''){
                     errors.username='Required';
                 }
                 else if(value.length<3){
@@ -118,7 +118,7 @@ export default class Registration extends React.Component{
                 }
                 break;
             case 'Password' :
-                if(value==''){
+                if(value===''){
                     errors.password = 'Required';  
                 }
                 else if(value.length<7 || value.length>15){
@@ -134,10 +134,10 @@ export default class Registration extends React.Component{
             case 'ConfirmPassword' :
                 
                 users.confirmPassword=value;
-                if(value==""){
+                if(value===""){
                     errors.confirmPassword='Required';
                 }
-                else if(users.password  != users.confirmPassword){
+                else if(users.password  !== users.confirmPassword){
                    // console.log("in c pass true", users.confirmPassword);
                     errors.confirmPassword='Password not matched';
                 }
@@ -147,11 +147,11 @@ export default class Registration extends React.Component{
                 }
                 break;
             case 'mobileNo' :
-                if(value==''){
+                if(value===''){
                     errors.mobileNo = 'Required';
                 }
               
-            else if(value.length != 10){
+            else if(value.length !== 10){
                     console.log("");
                     errors.mobileNo = 'Mobile No should be of 10 Digit';
                     
@@ -200,7 +200,7 @@ export default class Registration extends React.Component{
         }
         else{
             forbutton=false;
-            this.setState({submitError:"enetr values"});
+            this.setState({submitError:"Enter values"});
             console.log("Invalid form","forbutton:",forbutton);
             // alert("enter all fields");
         }
@@ -216,7 +216,8 @@ export default class Registration extends React.Component{
         
         // const {password}=this.state;
         // const {formInputs}=this.state;
-        return(<div>
+        return(
+        <div>
             <HomeNavBar></HomeNavBar>
             <Container fluid={true} >
             
@@ -256,7 +257,8 @@ export default class Registration extends React.Component{
                         
                         
                         <Form.Group className="formGridCheckbox" >
-                        Gender
+                            <label className="genderLabel">Gender</label>
+                        
                                 <Form.Check inline type="radio" label="Female" name="gender" value="Female" onChange={this.handleChange}/>
                                 <Form.Check inline type="radio" label="Male" name="gender" value="Male" onChange={this.handleChange}/>
                         </Form.Group>

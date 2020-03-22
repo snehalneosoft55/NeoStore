@@ -1,30 +1,6 @@
-// import React from 'react'
-// import { Card, Button } from 'react-bootstrap'
-// import {FormControl,InputGroup} from 'react-bootstrap';
-// import '../assets/css/ForgotPassword.css'
-
-// export default function ForgotPassword(){
-//     return(
-//         <div  className="forgotPassword_card">
-//             <Card >
-//                 <Card.Body>
-//                     <Card.Title className="forgotPassword_card_title"><h1>Recover Password</h1></Card.Title>
-//                 <hr></hr>
-//                 <InputGroup className="forgotPassword_card_input">
-//                     <FormControl className="forgotPassword_card_input" placeholder="Email">
-//                     </FormControl>
-//                 </InputGroup>
-//                 <Button variant="primary">Submit</Button>
-//                 </Card.Body>
-                
-//             </Card>
-//         </div>
-//     );
-// }
 import React from 'react';
 
 import {Container,Row,Col, Card} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { Form,Button } from 'react-bootstrap';
 
 import {RegEx} from './RegEx';
@@ -39,7 +15,7 @@ const validateForm = (users) => {
     
     Object.values(users).forEach(
         (val) => {
-            if(val==''){valid = false;}
+            if(val===''){valid = false;}
             else{valid=true;}
         }  
     
@@ -53,24 +29,14 @@ export default class Registration extends React.Component{
         super(props);
         this.state={
             users:{ 
-                firstName:'',
-                lastName:'',
+                
                 email:'',
-                username:'',
-                password:'',
-                confirmPassword:'',
-                mobileNo:'',
-                gender:''
+                
             },
                 errors:{
-                    firstName:"",
-                    lastName:"",
+                   
                     email:"",
-                    username:"",
-                    password:"",
-                    confirmPassword:"",
-                    mobileNo:"" ,
-                    gender:""
+                   
                 },
                 submitError:''
             }
@@ -86,35 +52,9 @@ export default class Registration extends React.Component{
         console.log(users);     
 
         switch(name){
-            case 'FirstName':
-                if(value==''){
-                    errors.firstName="Required";
-                }
-               
-                else if(!((RegEx.FirstName).test(value))){
-                        console.log("in alphabates validation",value);
-                        errors.firstName='Only alphabates are allowed';
-                    }
-                else{
-                    errors.firstName='';
-                    users.firstName=value;
-                }
-                break; 
-            case 'LastName':
-                     if(value==''){
-                    errors.lastName="Required";
-                }
-                else if(!((RegEx.LastName).test(value))){
-                        console.log("in alphabates validation",value);
-                        errors.lastName="Only alphabates are allowed";
-                    }
-                else{
-                    errors.lastName='';
-                    users.lastName=value;
-                }
-                break;  
+           
             case 'Email':
-                if(value==''){
+                if(value===''){
                     errors.email="Required";  
                 }
                 else if(!((RegEx.Email).test(value))){
@@ -126,83 +66,7 @@ export default class Registration extends React.Component{
                     users.email=value;
                 }
                break;
-            case 'Username' :
-                console.log("in username");
-                if(value==''){
-                    errors.username='Required';
-                }
-                else if(value.length<3){
-                    errors.username='Username must be at least 3 charecters';
-                    
-                }
-                else{
-                    errors.username='';
-                    users.username=value;
-                }
-                break;
-            case 'Password' :
-                if(value==''){
-                    errors.password = 'Required';  
-                }
-                else if(value.length<7 || value.length>15){
-                    errors.password = 'Password length must between 7 to 15';
-                    
-                }
-                
-                else{
-                    errors.password = '';
-                    users.password=value;
-                }
-                break;
-            case 'ConfirmPassword' :
-                
-                users.confirmPassword=value;
-                if(value==""){
-                    errors.confirmPassword='Required';
-                }
-                else if(users.password  != users.confirmPassword){
-                   // console.log("in c pass true", users.confirmPassword);
-                    errors.confirmPassword='Password not matched';
-                }
-                else{
-                    //console.log("in false",users.password,users.confirmPassword);
-                    errors.confirmPassword='';
-                }
-                break;
-            case 'mobileNo' :
-                if(value==''){
-                    errors.mobileNo = 'Required';
-                }
-              
-            else if(value.length != 10){
-                    console.log("");
-                    errors.mobileNo = 'Mobile No should be of 10 Digit';
-                    
-                }
-               
-                else{
-                    errors.mobileNo = '';
-                    users.mobileNo=value;
-                }
-                break;
-                // errors.confirmPassword = this.
-                case 'gender':
-                    console.log("in radio vallidation");
-                    if(value.length===0){
-                        console.log("gender not selected");
-                       errors.gender="select gender" ;
-
-                    }
-                    else{
-
-                        console.log("gender is selected");
-                        errors.gender="";
-                        users.gender=value;
-                    }
-                    
-                    
-                    console.log("gender", users.gender);
-                    break;
+            
             default:
                 break;
             }
@@ -216,11 +80,11 @@ export default class Registration extends React.Component{
         if(validateForm(this.state.users)){
             forbutton=true;
             this.setState({submitError:''});
-            console.log("valid form","forbutton:",forbutton, this.state.users);
+            console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
         }
         else{
             forbutton=false;
-            this.setState({submitError:"enetr values"});
+            this.setState({submitError:"Enter values"});
             console.log("Invalid form","forbutton:",forbutton);
             // alert("enter all fields");
         }
@@ -264,13 +128,11 @@ export default class Registration extends React.Component{
                         
                         <Row>
                             <Col>
-                                <Button type="submit" className="btn btn-primary btn-block">Submit</Button>
+                                <Button type="submit" className="btn btn-primary btn-block s" >Submit</Button>
                                 <span className="errorShow">{this.state.submitError}</span>
                             </Col>
                             <Col>
-                                <Link to="./signIn">
-                                    <Button  type="submit" className="btn btn-info btn-block">Sign In</Button>
-                                </Link>    
+                                    
                              </Col>
                         </Row>
                     </Form.Group>

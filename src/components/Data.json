@@ -3,17 +3,27 @@
         {
             "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
             "title":"Sofa",
-            "prise":"25000"
+            "prise":"Rs. 20,000"
         },
         {
             "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
             "title":"Chair",
-            "prise":"35000"
+            "prise":"Rs. 25,000"
         },
         {
             "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
             "title":"DiningTable",
-            "prise":"35000"
+            "prise":"Rs. 35,000"
+        },
+        {
+            "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
+            "title":"Chair",
+            "prise":"Rs. 33,000"
+        },
+        {
+            "image":"https://image.shutterstock.com/image-illustration/mock-wall-living-room-sofa-600w-1572821437.jpg",
+            "title":"Sofa Set",
+            "prise":"Rs. 30,000"
         }
     ]
 }
