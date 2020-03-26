@@ -1,4 +1,7 @@
 import React from 'react';
+import { Provider } from 'react-redux'
+import store from './redux/store'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {BrowserRouter as Router,Route} from 'react-router-dom'
@@ -17,6 +20,7 @@ import Products from './components/Products'
 //Router 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <Router>
         <Route path="/" exact component={HomePage} />
@@ -30,6 +34,7 @@ function App() {
         
       </Router>
     </div>
+    </Provider>
   );
 }
 
