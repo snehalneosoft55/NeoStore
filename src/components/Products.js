@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getProduct } from '../redux'
-// import {ProductReducer} from '../redux/Products/ProductReduser'
+import {displayProduct}  from '../actions/displayProductAction'
+import { bindActionCreators } from 'redux'
+
 
 import {Container , Row, Col} from 'react-bootstrap'
 
@@ -11,8 +12,13 @@ import SideMenu from './SideMenu';
 
 
 
-  
-    function Products(props)
+  class Products extends React.Component{
+    
+      constructor(props){
+        super(props);
+      }  
+       
+    render()
     {
         return(
             <div>
@@ -23,8 +29,8 @@ import SideMenu from './SideMenu';
                            <Row>
                                <Col xs={4}><SideMenu/></Col>
                                <Col>
-                                <h2>No of products-{props.NoOfProducts} </h2>
-                                <button onClick={props.getProduct}>get products</button>
+                                <h2>No of products-{this.props.NoOfProducts}</h2>
+                                <button onClick={this.props.displayProduct}>get products</button>
                                </Col>
                            </Row>
                        </Container>
@@ -33,16 +39,30 @@ import SideMenu from './SideMenu';
             </div>
         );
     }
-
-const mapStateToProps = state =>{
+}
+// const mapStateToProps = state =>{
+//     console.log(state,"hello");
+//     return {
+//         NoOfProducts : state.NoOfProducts
+//     }
+// }
+// const mapDispatchToProps = dispatch =>{
+//     return{
+//         getProducts:()=>dispatch(getProduct())
+//     }
+// }
+const mapStateToProps = state => {
+    console.log(state,state.productData.NoOfProducts,"hello");
     return {
-        NoOfProducts : state.NoOfProducts
-    }
-}
-const mapDispatchToProps = dispatch =>{
-    return{
-        getProducts:()=>dispatch(getProduct())
+        NoOfProducts : state.productData.NoOfProducts
     }
 }
 
+    const mapDispatchToProps = dispatch =>{
+        return bindActionCreators({
+
+            displayProduct:()=>dispatch(displayProduct())
+        }
+        )
+    }
 export default connect(mapStateToProps,mapDispatchToProps)(Products)

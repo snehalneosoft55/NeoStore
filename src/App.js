@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux'
-import store from './redux/store'
+// import store from './redux/store'
+import { configureStore } from "./redux/store";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,10 +17,11 @@ import HomePage from './components/homepage'
 import ForgotPassword from './components/forgotPassword'
 import Order from './components/Order'
 import Products from './components/Products'
-
+const store = configureStore();
 //Router 
 function App() {
   return (
+    // <Provider store={store}>
     <Provider store={store}>
     <div className="App">
       <Router>
@@ -35,6 +37,7 @@ function App() {
       </Router>
     </div>
     </Provider>
+    
   );
 }
 
