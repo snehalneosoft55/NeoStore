@@ -39,8 +39,11 @@ export function getProducts() {
     //     })
     return axios.get("http://180.149.241.208:3022/getAllProductsInDescending")
       .then(({ data }) => {
-        // console.log("in axios",data.product_details);
-      dispatch(getProductsSuccess(data));
+        console.log("in axios1",data.product_details);
+        const x=data.product_details;
+        
+        console.log("in axios2",x);
+      dispatch(getProductsSuccess(x));
     });
   };
 }

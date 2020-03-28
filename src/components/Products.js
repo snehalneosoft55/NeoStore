@@ -16,13 +16,17 @@ class Products extends React.Component{
     componentWillMount(){
         this.props.getProducts().then(() => {
             const { productData } = this.props;
-            console.log('in willmount',productData);
+            console.log('in willmount',productData.productData);
+            const y=productData.productData;
+            console.log("y==",y);
       })
     }
     render()
     {
         const { productData } = this.props;
-        console.log('in render',productData);
+        console.log('in render',productData.productData);
+        const y=productData.productData;
+        console.log("y==",y);
         // const x=productData.productData;
         // console.log('next of render',x.product_details);
         return(
@@ -37,22 +41,46 @@ class Products extends React.Component{
                                     <div>
                                          <h2 className="header1">Products</h2>
                 
-                                        {/* {
-                                            productData.product_details.map((productData.product_details,i)=>{
-                                            return(
-                                                <Card className="productCart">
-                                                    <div key={i} className="productCart_body">
-                                                     <Card.Img className="productCartImg" variant="top" src={productData.image} />
-                                                     <Card.Body className="productCart_body_display">
-                                                     <Card.Title className="productCart_title">{productData.title}</Card.Title>
-                                                    <Card.Text className="productCart_price">{productData.prise}</Card.Text>
-                                                    <button className="productCart_button">Add To Cart</button>
-                                                    </Card.Body>
-                                                    </div>
-                                                </Card>
-                                             );
-                                            })
-                                         } */}
+                                        {
+                                            // if()
+                                            // y.map((y,i)=>{
+                                            //     return(
+                                            //         <p>{productData.productData.product_name}</p>
+                                            //     )
+                                            // })
+                                            (y!=undefined)&&( y.map((y,i)=>{
+                                                return(
+                                                    <Card className="productCart">
+                                                        <div key={i} className="productCart_body">
+                                                          <Card.Img className="productCartImg" variant="top" src={'http://180.149.241.208:3022/' + y.product_image} />
+                                                         <Card.Body className="productCart_body_display">
+                                                         <Card.Title className="productCart_title">{y.product_name}</Card.Title>
+                                                         <Card.Text className="productCart_price">{y.product_cost}</Card.Text>
+                                                        <button className="productCart_button">Add To Cart</button>
+                                                        </Card.Body>
+                                                        </div>
+                                                    </Card>
+                                                 );
+                                                }))
+                                            // { 
+                                            //     y.map((y,i)=>{
+                                            //     return(
+                                            //         <Card className="productCart">
+                                            //             <div key={i} className="productCart_body">
+                                            //             //  <Card.Img className="productCartImg" variant="top" src={productData.image} />
+                                            //              <Card.Body className="productCart_body_display">
+                                            //              <Card.Title className="productCart_title">{y.product_name}</Card.Title>
+                                            //             // <Card.Text className="productCart_price">{productData.prise}</Card.Text>
+                                            //             <button className="productCart_button">Add To Cart</button>
+                                            //             </Card.Body>
+                                            //             </div>
+                                            //         </Card>
+                                            //      );
+                                            //     })
+                                            // }
+                                        }
+                                           
+                                         
                                      </div>
                                </Col>
                            </Row>
