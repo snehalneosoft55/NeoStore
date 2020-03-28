@@ -1,24 +1,34 @@
 import * as actionTypes from "../../lib/constants/actionTypes";
 
 const initialState = {
-  NoOfProducts:10
+  data:''
 };
 
+// switch (action.type) {
+//   case types.GET_PRODUCT:
+//     return {
+//       productData: action.payload.data,
+//     };
+
+//   default:
+//     return state;
+// }
 const productReducer = (state = initialState, action) => {
   console.log("'",action.type,"10");console.log(state);
   switch (action.type) {
     
-    case actionTypes.DISPLAYPRODUCTS:
-      console.log("in switch");
+    case actionTypes.GET_PRODUCT:
+      console.log("in switch",action.payload);
       return {
         
         ...state,
-        NoOfProducts : state.NoOfProducts -1
+        productData: action.payload,
+        // data : action.data
         
       };
       
     default:
-      console.log("In default", state.NoOfProducts)
+      console.log("In default", state.productData)
         return state
   }
 };
