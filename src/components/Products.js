@@ -36,10 +36,10 @@ class Products extends React.Component{
                    <div>
                        <Container>
                            <Row>
-                               <Col xs={4}><SideMenu/></Col>
+                               <Col xs={2}><SideMenu/></Col>
                                <Col>
                                     <div>
-                                         <h2 className="header1">Products</h2>
+                                         <h2 className="header1">All Categories</h2>
                 
                                         {
                                             // if()
@@ -50,12 +50,12 @@ class Products extends React.Component{
                                             // })
                                             (y!=undefined)&&( y.map((y,i)=>{
                                                 return(
-                                                    <Card className="productCart">
+                                                    <Card className="productCart1">
                                                         <div key={i} className="productCart_body">
                                                           <Card.Img className="productCartImg" variant="top" src={'http://180.149.241.208:3022/' + y.product_image} />
                                                          <Card.Body className="productCart_body_display">
                                                          <Card.Title className="productCart_title">{y.product_name}</Card.Title>
-                                                         <Card.Text className="productCart_price">{y.product_cost}</Card.Text>
+                                                         <Card.Text className="productCart_price">{'₹'+y.product_cost}</Card.Text>
                                                         <button className="productCart_button">Add To Cart</button>
                                                         </Card.Body>
                                                         </div>
