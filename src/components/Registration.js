@@ -198,7 +198,7 @@ const validateForm = (users) => {
             this.setState({submitError:''});
             console.log("valid form","forbutton:",forbutton, this.state.users,JSON.stringify(this.state.users));
             const userData1 = {
-                u_firstName:this.state.users.firstName,
+                first_name:this.state.users.firstName,
                 last_name:this.state.users.lastName,
                 email:this.state.users.email,
                 pass:this.state.users.password,

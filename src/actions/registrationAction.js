@@ -7,12 +7,15 @@ const postUserData = data => (
 });
 
 export function postUserInfo(userData1) {
-    console.log('in action call',userData1);
+    console.log('in action call');
   return function(dispatch) {
-    return axios.post('http://180.149.241.208:3022/register',{userData1})
+    return axios.post('http://180.149.241.208:3022/register',userData1)
       .then(({ data }) => {
-        console.log("in axios1",data.message);
+        alert(data.message);
       dispatch(postUserData(data));
+    })
+    .catch( (error) =>{
+        alert("Error",error.message);
     });
   };
 }
