@@ -15,6 +15,7 @@ export default function Inputs(props){
             placeholder={props.placeholder}
             onChange={props.handleChange}
             autoComplete="off"
+            required
             />
         
     );

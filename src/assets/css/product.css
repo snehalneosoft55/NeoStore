@@ -11,7 +11,7 @@
 .productCartImg{
     padding:20px 20px 0px 20px;
     width:280px;
-    height: 280px;
+    height: 130px;
 }
 .header1{
     margin-left:22px;
@@ -30,7 +30,7 @@
     text-align: center !important; 
 }
 .productCart_button{
-    margin-left:14%;
+    margin-left:27%;
     background-color: red;
     border:none;
     width: 120px;

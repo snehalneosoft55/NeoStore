@@ -9,6 +9,9 @@ import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
 
+import { connect } from 'react-redux'
+import {postUserInfo}  from '../actions/registrationAction'
+
 let valid = true;
 let forbutton;
 const validateForm = (users) => {
@@ -25,7 +28,7 @@ const validateForm = (users) => {
 }
 
 //Registration page
-export default class Registration extends React.Component{
+ class Registration extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -55,12 +58,12 @@ export default class Registration extends React.Component{
 
     handleChange = (event) => {
         event.preventDefault();
-            console.log("in handlechange");
+            // console.log("in handlechange");
         
         const {name , value} = event.target;
         let errors = this.state.errors;
         let users =this.state.users;
-        console.log(users);     
+        // console.log(users);     
 
         switch(name){
             case 'FirstName':
@@ -69,7 +72,7 @@ export default class Registration extends React.Component{
                 }
                
                 else if(!((RegEx.FirstName).test(value))){
-                        console.log("in alphabates validation",value);
+                        // console.log("in alphabates validation",value);
                         errors.firstName='Only alphabates are allowed';
                     }
                 else{
@@ -82,7 +85,7 @@ export default class Registration extends React.Component{
                     errors.lastName="Required";
                 }
                 else if(!((RegEx.LastName).test(value))){
-                        console.log("in alphabates validation",value);
+                        // console.log("in alphabates validation",value);
                         errors.lastName="Only alphabates are allowed";
                     }
                 else{
@@ -95,7 +98,7 @@ export default class Registration extends React.Component{
                     errors.email="Required";  
                 }
                 else if(!((RegEx.Email).test(value))){
-                    console.log('no error in email');
+                    // console.log('no error in email');
                     errors.email = 'Enter valid email' ;
                 }
                 else{
@@ -104,7 +107,7 @@ export default class Registration extends React.Component{
                 }
                break;
             case 'Username' :
-                console.log("in username");
+                // console.log("in username");
                 if(value===''){
                     errors.username='Required';
                 }
@@ -152,7 +155,7 @@ export default class Registration extends React.Component{
                 }
               
             else if(value.length !== 10){
-                    console.log("");
+                    // console.log("");
                     errors.mobileNo = 'Mobile No should be of 10 Digit';
                     
                 }
@@ -164,21 +167,21 @@ export default class Registration extends React.Component{
                 break;
                 // errors.confirmPassword = this.
                 case 'gender':
-                    console.log("in radio vallidation");
+                    // console.log("in radio vallidation");
                     if(value.length===0){
-                        console.log("gender not selected");
+                        // console.log("gender not selected");
                        errors.gender="select gender" ;
 
                     }
                     else{
 
-                        console.log("gender is selected");
+                        // console.log("gender is selected");
                         errors.gender="";
                         users.gender=value;
                     }
                     
                     
-                    console.log("gender", users.gender);
+                    // console.log("gender", users.gender);
                     break;
             default:
                 break;
@@ -193,24 +196,34 @@ export default class Registration extends React.Component{
         if(validateForm(this.state.users)){
             forbutton=true;
             this.setState({submitError:''});
-            // let userDate=this.state.users;
-            // let userDataInjson=JSON.stringify();
-            
             console.log("valid form","forbutton:",forbutton, this.state.users,JSON.stringify(this.state.users));
+            const userData1 = {
+                u_firstName:this.state.users.firstName,
+                last_name:this.state.users.lastName,
+                email:this.state.users.email,
+                pass:this.state.users.password,
+                confirmPass:this.state.users.confirmPassword,
+                phone_no:this.state.users.mobileNo,
+                gender:this.state.users.gender
+            };
+            console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
+            console.log("------------userData,in onsubmit",userData1);
+            this.props.postUserInfo(userData1);
+          
         }
         else{
             forbutton=false;
             this.setState({submitError:"Enter values"});
-            console.log("Invalid form","forbutton:",forbutton);
+            // console.log("Invalid form","forbutton:",forbutton);
             // alert("enter all fields");
         }
     }
-    // componentDidMount(){
-    //     const userData = {
-    //         email : this.state.users.email,
-    //         password : this.state.users
-    //     };
-    // }
+    componentWillMount(){
+        console.log('in willmount');
+        console.log('in willmount----gender::',this.state.users.gender);
+        // console.log("------------userData,in will mount",userData);
+    };
+    
     render(){
         const {errors} = this.state;
         
@@ -259,8 +272,8 @@ export default class Registration extends React.Component{
                         <Form.Group className="formGridCheckbox" >
                             <label className="genderLabel">Gender</label>
                         
-                                <Form.Check inline type="radio" label="Female" name="gender" value="Female" onChange={this.handleChange}/>
-                                <Form.Check inline type="radio" label="Male" name="gender" value="Male" onChange={this.handleChange}/>
+                                <Form.Check inline type="radio" label="Female" name="gender" value="F" onChange={this.handleChange}/>
+                                <Form.Check inline type="radio" label="Male" name="gender" value="M" onChange={this.handleChange}/>
                         </Form.Group>
                         <span className="errorShow">{errors.gender}</span>
                         
@@ -289,3 +302,14 @@ export default class Registration extends React.Component{
         );
     }
 }
+const mapStateToProps = state => ({
+    userData: state.userData
+  });
+
+  const mapDispatchToProps = {
+    postUserInfo
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Registration);

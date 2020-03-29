@@ -10,9 +10,7 @@ import HomeNavBar from './navbar'
 import SideMenu from './SideMenu';
 
 class Products extends React.Component{
-    constructor(props){
-        super(props);
-      }  
+     
     componentWillMount(){
         this.props.getProducts().then(() => {
             const { productData } = this.props;
@@ -48,7 +46,7 @@ class Products extends React.Component{
                                             //         <p>{productData.productData.product_name}</p>
                                             //     )
                                             // })
-                                            (y!=undefined)&&( y.map((y,i)=>{
+                                            (y!==undefined)&&( y.map((y,i)=>{
                                                 return(
                                                     <Card className="productCart1">
                                                         <div key={i} className="productCart_body">
