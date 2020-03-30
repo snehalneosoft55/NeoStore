@@ -4,6 +4,7 @@ import {getProducts}  from '../actions/displayProductAction'
 
 import {Container , Row, Col} from 'react-bootstrap'
 import {Card} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 import Footer from './footer'
 import HomeNavBar from './navbar'
@@ -52,8 +53,9 @@ class Products extends React.Component{
                                                         <div key={i} className="productCart_body">
                                                           <Card.Img className="productCartImg" variant="top" src={'http://180.149.241.208:3022/' + y.product_image} />
                                                          <Card.Body className="productCart_body_display">
-                                                         <Card.Title className="productCart_title">{y.product_name}</Card.Title>
+                                                         <Card.Title className="productCart_title"><Link to="/ProductDetails">{y.product_name}</Link></Card.Title>
                                                          <Card.Text className="productCart_price">{'₹'+y.product_cost}</Card.Text>
+                                                         <Card.Text className="productCart_price">{y.product_rating}</Card.Text>
                                                         <button className="productCart_button">Add To Cart</button>
                                                         </Card.Body>
                                                         </div>

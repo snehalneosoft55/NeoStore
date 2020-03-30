@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux'
+
 // import store from './redux/store'
 import { configureStore } from "./redux/store";
 
@@ -18,6 +19,7 @@ import HomePage from './components/homepage'
 import ForgotPassword from './components/forgotPassword'
 import Order from './components/Order'
 import Products from './components/Products'
+import ProductDetails from './components/ProductDetails';
 const store = configureStore();
 //Router 
 function App() {
@@ -34,6 +36,7 @@ function App() {
         <Route path="/Registration" component={Registration}/>
         <Route path="/signIn" component={SignIn}/>
         <Route path="/forgotPassword" component={ForgotPassword}/>
+        <Route path="/ProductDetails" component={ProductDetails}/>
         
       </Router>
     </div>
