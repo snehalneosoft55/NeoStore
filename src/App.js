@@ -28,6 +28,7 @@ function App() {
     <Provider store={store}>
     <div className="App">
       <Router>
+        
         <Route path="/" exact component={HomePage} />
         {/* <Route path="/HomePage" component={HomePage} /> */}
 

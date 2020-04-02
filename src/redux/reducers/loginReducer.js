@@ -4,7 +4,7 @@ const initialState = {
   data:''
 };
 const loginReducer = (state = initialState, action) => {
-  console.log("'",action.type,"10");console.log(state);
+  console.log("action data",action);
   switch (action.type) {
     
     case actionTypes.LOGIN:

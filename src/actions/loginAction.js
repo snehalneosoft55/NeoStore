@@ -6,21 +6,32 @@ const loginUser = data => (
   type: actionTypes.LOGIN,
   payload: data
 });
-
-export function loginUserInfo(userData1) {
+let status={code:0};
+ function loginUserInfo(userData1) {
     console.log('in action call');
   return function(dispatch) {
     return axios.post('http://180.149.241.208:3022/login',userData1)
       .then(({ data }) => {
-        // console.log('in data',data.message)
-        swal(data.message);
+        console.log("print status",data)
+        //  status.code=data.status_code;
+        // console.log('status.code',status.code)
+        // swal(data.message);
+        
+
       dispatch(loginUser(data));
     })
     .catch( (error) =>{
+      console.log("error::",error)
+
       let x=JSON.parse(error.request.response);
+
+      console.log("to print error status",x.status_code);
+      // status=x.status_code;
       swal(x.message);
       // swal(error.request.response);
         // alert("Error",data.message);
     });
   };
 }
+
+export {loginUserInfo,status};

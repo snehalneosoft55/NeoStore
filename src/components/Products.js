@@ -41,12 +41,7 @@ class Products extends React.Component{
                                          <h2 className="header1">All Categories</h2>
                 
                                         {
-                                            // if()
-                                            // y.map((y,i)=>{
-                                            //     return(
-                                            //         <p>{productData.productData.product_name}</p>
-                                            //     )
-                                            // })
+                                            
                                             (y!==undefined)&&( y.map((y,i)=>{
                                                 return(
                                                     <Card className="productCart1">
@@ -62,22 +57,7 @@ class Products extends React.Component{
                                                     </Card>
                                                  );
                                                 }))
-                                            // { 
-                                            //     y.map((y,i)=>{
-                                            //     return(
-                                            //         <Card className="productCart">
-                                            //             <div key={i} className="productCart_body">
-                                            //             //  <Card.Img className="productCartImg" variant="top" src={productData.image} />
-                                            //              <Card.Body className="productCart_body_display">
-                                            //              <Card.Title className="productCart_title">{y.product_name}</Card.Title>
-                                            //             // <Card.Text className="productCart_price">{productData.prise}</Card.Text>
-                                            //             <button className="productCart_button">Add To Cart</button>
-                                            //             </Card.Body>
-                                            //             </div>
-                                            //         </Card>
-                                            //      );
-                                            //     })
-                                            // }
+                                            
                                         }
                                            
                                          
