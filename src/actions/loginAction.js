@@ -13,6 +13,7 @@ let status={code:0};
     return axios.post('http://180.149.241.208:3022/login',userData1)
       .then(({ data }) => {
         console.log("print status",data)
+        // this.props.history.push('./');
         //  status.code=data.status_code;
         // console.log('status.code',status.code)
         // swal(data.message);

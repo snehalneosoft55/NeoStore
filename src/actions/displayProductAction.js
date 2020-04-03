@@ -15,7 +15,6 @@ export function getProducts() {
       .then(({ data }) => {
         console.log("in axios1",data.product_details);
         const x=data.product_details;
-        
         console.log("in axios2",x);
       dispatch(getProductsSuccess(x));
     });

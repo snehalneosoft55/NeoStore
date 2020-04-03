@@ -2,3 +2,4 @@
 export const GET_PRODUCT = "GET_PRODUCT";
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
+export const GET_POPULAR_PRODUCT = "GET_POPULAR_PRODUCT";

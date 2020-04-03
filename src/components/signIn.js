@@ -111,7 +111,7 @@ class signIn extends React.Component
             console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
             console.log("------------userData,in onsubmit",userData1);
             this.props.loginUserInfo(userData1);
-            // this.props.history.push('./');
+            console.log("for history check",this.props.history);
             const { userData } = this.props;
             // console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
         }
