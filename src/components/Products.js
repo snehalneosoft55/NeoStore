@@ -37,21 +37,35 @@ class Products extends React.Component{
                            <Row>
                                <Col xs={2}><SideMenu/></Col>
                                <Col>
-                                    <div>
+                               <div className="popularProduct">
                                          <h2 className="header1">All Categories</h2>
-                
+                                         <div className="product_wrapper">
                                         {
                                             
                                             (y!==undefined)&&( y.map((y,i)=>{
                                                 return(
-                                                    <Card className="productCart1">
+                                                    <Card className="productCart">
                                                         <div key={i} className="productCart_body">
-                                                          <Card.Img className="productCartImg" variant="top" src={'http://180.149.241.208:3022/' + y.product_image} />
-                                                         <Card.Body className="productCart_body_display">
-                                                         <Card.Title className="productCart_title"><Link to="/ProductDetails">{y.product_name}</Link></Card.Title>
-                                                         <Card.Text className="productCart_price">{'₹'+y.product_cost}</Card.Text>
-                                                         <Card.Text className="productCart_price">{y.product_rating}</Card.Text>
+                                                            <Card.Img className="productCartImg" 
+                                                                variant="top" 
+                                                                src={'http://180.149.241.208:3022/' + y.product_image} 
+                                                            />
+                                                            <Card.Body className="productCart_body_display">
+                                                            <Card.Title className="productCart_title">
+                                                                <Link to="/ProductDetails">{y.product_name}
+                                                                </Link>
+                                                            </Card.Title>
+                                                            <Card.Text className="productCart_price">{'₹'+y.product_cost}</Card.Text>
+                                                            {/* <Card.Text className="productCart_rating">{y.product_rating}</Card.Text> */}
                                                         <button className="productCart_button">Add To Cart</button>
+                                                        <Card.Text className="productCart_rating">{(isNaN(y.product_rating))?0:y.product_rating}</Card.Text>
+                                     <Card.Text className="productCart_rating">
+                                     <span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+                                     </Card.Text>
                                                         </Card.Body>
                                                         </div>
                                                     </Card>
@@ -60,7 +74,7 @@ class Products extends React.Component{
                                             
                                         }
                                            
-                                         
+                                         </div>
                                      </div>
                                </Col>
                            </Row>
