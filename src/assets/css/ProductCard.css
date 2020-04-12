@@ -1,0 +1,43 @@
+
+.ProductCardwrapperCard{
+
+    
+    padding:16px;
+    box-sizing: border-box;
+    height:300px;
+    width:262.5px;
+    display: inline-flex;
+    margin:14px
+    /* flex-direction: row; */
+}
+.ProductCardwrapperImg{
+    height:120px;
+    width:100%;
+    margin-bottom: 16px;
+}
+.ProductCardwrapperTitle{
+    /* margin-bottom:20px; */
+    text-align: center;
+    /* box-sizing: border-box; */
+    font-size:medium;
+}
+.ProductCardwrapperTitleWrapper{
+    height:20px;
+    margin-bottom: 35px;
+}
+.productCart_price{
+    text-align: center;
+    margin-top: 0%;
+    font-size: 14px;
+    /* box-sizing: border-box; */
+    /* padding-top: 20px !important; */
+}
+.ProductCardwrapperButton{
+    margin-left:23%;
+    background-color: red;
+    border:none;
+    width: 120px;
+    height: 100%;
+    border-radius: 4%;
+    box-sizing: border-box;
+}

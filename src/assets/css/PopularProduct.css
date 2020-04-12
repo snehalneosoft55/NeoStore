@@ -26,13 +26,18 @@
     box-sizing: border-box;
     /* margin-top:4%; */
 }
-.ViewAllLink{
+.ViewAllLinkWrapper{
     /* text-align: center !important; */
     margin-left: 604px;
-    margin-top: 300px !important;
+    color:black !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
     box-sizing: border-box;
     /* margin-bottom: 4000px; */
 
+}
+.ViewAllLink{
+    color:black
 }
 .productCart_title{
     color: #36b;

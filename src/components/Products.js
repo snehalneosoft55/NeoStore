@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import Footer from './footer'
 import HomeNavBar from './navbar'
 import SideMenu from './SideMenu';
+import ProductCard from './ProductCard';
 
 class Products extends React.Component{
      
@@ -43,32 +44,18 @@ class Products extends React.Component{
                                         {
                                             
                                             (y!==undefined)&&( y.map((y,i)=>{
+                                                let productImage=y.product_image;
+                                                let productTitle=y.product_name;
+                                                let productPrice=y.product_cost;
+                                                let productRating=y.product_rating
                                                 return(
-                                                    <Card className="productCart">
-                                                        <div key={i} className="productCart_body">
-                                                            <Card.Img className="productCartImg" 
-                                                                variant="top" 
-                                                                src={'http://180.149.241.208:3022/' + y.product_image} 
-                                                            />
-                                                            <Card.Body className="productCart_body_display">
-                                                            <Card.Title className="productCart_title">
-                                                                <Link to="/ProductDetails">{y.product_name}
-                                                                </Link>
-                                                            </Card.Title>
-                                                            <Card.Text className="productCart_price">{'₹'+y.product_cost}</Card.Text>
-                                                            {/* <Card.Text className="productCart_rating">{y.product_rating}</Card.Text> */}
-                                                        <button className="productCart_button">Add To Cart</button>
-                                                        <Card.Text className="productCart_rating">{(isNaN(y.product_rating))?0:y.product_rating}</Card.Text>
-                                     <Card.Text className="productCart_rating">
-                                     <span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-                                     </Card.Text>
-                                                        </Card.Body>
-                                                        </div>
-                                                    </Card>
+                                                    <ProductCard 
+                                                        image={productImage} 
+                                                        title={productTitle} 
+                                                        price={productPrice} 
+                                                        rating={productRating}
+                                                    />
+//                                                     
                                                  );
                                                 }))
                                             
