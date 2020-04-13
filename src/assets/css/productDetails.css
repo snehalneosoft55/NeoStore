@@ -1,0 +1,26 @@
+.productDetailImg{
+    width:480px;
+    height:336px;
+    padding-top: 80px;
+    padding-left:130px
+}
+.square {
+    /* margin-top:20px; */
+    height: 16px;
+    width: 30px;
+    display:inline-flex
+    /* background-color: #555; */
+  }
+.subimagesWrapper{
+    padding-top:70px
+}
+.productDetailSubImg{
+    width:80px;
+    height:50px;
+    margin-left:100px
+}
+.productDetailColor{
+    width:120px;
+    height:120px;
+
+}

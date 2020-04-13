@@ -12,7 +12,12 @@ export default function ProductCard (props){
             <Card className="ProductCardwrapperCard">
                 <Card.Img className="ProductCardwrapperImg" src={'http://180.149.241.208:3022/' + props.image}/> 
                 <div className="ProductCardwrapperTitleWrapper">
-                    <Link>
+                    <Link to={{
+                        pathname : "/ProductDetails",
+                        state:{
+                                productId : props.id
+                        }
+                    }}>
                         <Card.Title className="ProductCardwrapperTitle">
                             {props.title}
                         </Card.Title>

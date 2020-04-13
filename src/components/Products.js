@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import {getProducts}  from '../actions/displayProductAction'
 
 import {Container , Row, Col} from 'react-bootstrap'
-import {Card} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
 
 import Footer from './footer'
 import HomeNavBar from './navbar'
@@ -47,9 +45,11 @@ class Products extends React.Component{
                                                 let productImage=y.product_image;
                                                 let productTitle=y.product_name;
                                                 let productPrice=y.product_cost;
-                                                let productRating=y.product_rating
+                                                let productRating=y.product_rating;
+                                                let productId=y.product_id;
                                                 return(
                                                     <ProductCard 
+                                                        id={productId}
                                                         image={productImage} 
                                                         title={productTitle} 
                                                         price={productPrice} 

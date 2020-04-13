@@ -1,9 +1,9 @@
-import React from 'react'
-import { Card } from 'react-bootstrap';
+import React from 'react';
+
 import { connect } from 'react-redux';
-import {getPopularProducts}  from '../actions/PopularProductAction'
-import {Link} from 'react-router-dom'
-import StarRatingComponent from 'react-star-rating-component';
+    import {getPopularProducts}  from '../actions/PopularProductAction';
+import {Link} from 'react-router-dom';
+
 import ProductCard from './ProductCard';
 
 
@@ -39,12 +39,13 @@ import ProductCard from './ProductCard';
                 <div className="product_wrapper">
                 {
                     (TopRatingProducts !== undefined)&&(TopRatingProducts.map((val,i)=>{
-            
+                        
                         dashbordProduct[i]=val.DashboardProducts;
                         let productTitle=dashbordProduct[i][0].product_name;
                         let productPrice=dashbordProduct[i][0].product_cost;
                         let productImage= dashbordProduct[i][0].product_image;
                         let productRating=dashbordProduct[i][0].product_rating;
+                        let productId=dashbordProduct[i][0].product_id;
                         return(
                             
                                 <ProductCard 
@@ -52,6 +53,7 @@ import ProductCard from './ProductCard';
                                     title={productTitle} 
                                     price={productPrice} 
                                     rating={productRating}
+                                    id={productId}
                                 />
                             
         //                     <Card className="productCart">
@@ -85,9 +87,13 @@ import ProductCard from './ProductCard';
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => 
+
+{
+    console.log("in popular product mapStatetopropsssss",state.popularProducts);
+    return({
     popularProducts: state.popularProducts
-  });
+  });}
 
   const mapDispatchToProps = {
     getPopularProducts
