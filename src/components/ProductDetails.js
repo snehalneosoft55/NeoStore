@@ -81,26 +81,26 @@ class ProductDetails extends React.Component{
                                     <StarRatingComponent 
                                         name="rate2" 
                                         editing={false}
-                                        renderStarIcon={() => <span>☆</span>}
+                                        renderStarIcon={() => <span className="star">★</span>}
                                         starCount={5}
                                         value={2}
                                     />
                                     <hr></hr>
-                                    <h6>Price:{cost}</h6>
-                                    color:
-                                        <div 
+                                    <h5 >Price:<span className="productDetailInfoPrice">₹{cost}</span></h5>
+                                    <h5>color:<div 
                                             class="square" 
                                             style={{backgroundColor:`${productColor}`}}>
-                                        </div>
-                                        <div>
-                                            <button >Add To Cart</button>
-                                            <button>Rate Product</button>
+                                        </div></h5>
+                                        
+                                        <div className="productDetailInfoButtons">
+                                            <button className="productDetailInfoButton1">ADD TO CART</button>
+                                            <button className="productDetailInfoButton2">RATE PRODUCT</button>
                                         </div>
                                 </div>
                             </Col>
                         </Row>
                         <Row>
-                            <Tabs>
+                            <Tabs className="productDetailInfoTab">
                                 <TabList>
                                     <Tab>Description</Tab>
                                     <Tab>Features</Tab>
