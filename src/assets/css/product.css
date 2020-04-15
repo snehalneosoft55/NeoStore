@@ -6,6 +6,9 @@
     margin-bottom: 50px;
     box-sizing: border-box;
 }
+.sidemenu{
+    height:800px
+}
 .addToCart{
     width:120px !important;
     margin-left:85px

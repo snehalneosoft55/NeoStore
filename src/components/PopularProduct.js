@@ -28,7 +28,7 @@ import ProductCard from './ProductCard';
         const TopRatingProducts =popularProducts.popularProducts;
         console.log("topratingp--",TopRatingProducts,typeof TopRatingProducts);
         let dashbordProduct=[];
-        const { rating } = this.state;
+        // const { rating } = this.state;
         return(
             <div className="popularProduct">
                 <h4 className="header">Popular Products</h4>

@@ -12,6 +12,15 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 class ProductDetails extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            showImg:''
+        }
+    }
+    // changeImg(){
+    //     this.setState({showImg:subimages})
+    // }
     componentWillMount(){
         // console.log("in componentwill mount---1111",this.props.location.state.productId);
         let productId = this.props.location.state.productId;
@@ -69,6 +78,7 @@ class ProductDetails extends React.Component{
                                                 <img 
                                                     className="productDetailSubImg" 
                                                     src={'http://180.149.241.208:3022/' + subimages}
+                                                    onClick={this.changeImg}
                                                 />  
                                             )
                                         })

@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom'
+// import {withRouter} from 'react-router-dom'
 
 import {Container,Row,Col, Card} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ import {RegEx} from './RegEx';
 import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
-import {status} from '../actions/loginAction'
+// import {status} from '../actions/loginAction'
 
 let valid = true;
 let forbutton;
@@ -111,8 +111,8 @@ class signIn extends React.Component
             console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
             console.log("------------userData,in onsubmit",userData1);
             this.props.loginUserInfo(userData1);
-            console.log("for history check",this.props.history);
-            const { userData } = this.props;
+            // console.log("for history check",this.props.history);
+            // const { userData } = this.props;
             // console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
         }
         else

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import img1 from '../assets/images/chair.jpg'
+// import img1 from '../assets/images/chair.jpg'
 import '../assets/css/ProductCard.css'
 import StarRatingComponent from 'react-star-rating-component';
 

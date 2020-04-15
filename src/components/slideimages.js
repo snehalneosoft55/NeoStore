@@ -3,7 +3,7 @@ import '../assets/css/slideimagesstyle.css';
 // import {Carousel,Image} from 'react-bootstrap';
 // import Assets from '../constants/Image';
 import Axios from 'axios';
-import { Card, Carousel } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 
 
 export default class Slideimages extends React.Component{
