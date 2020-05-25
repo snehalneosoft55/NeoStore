@@ -36,8 +36,9 @@
     /* padding-top: 20px !important; */
 }
 .ProductCardwrapperButton{
-    margin-left:23%;
+    /* margin-left:23%; */
     background-color: #f44336;
+    
     color:white;
     border:none;
     width: 141px;

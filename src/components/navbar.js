@@ -6,8 +6,10 @@ import {Link} from 'react-router-dom';
 import {InputGroup,FormControl} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {Dropdown} from 'react-bootstrap';
+import Cart from './Cart'
 
 export default class HomeNavbar extends React.Component{
+    
     render(){
         return(
             <div >
@@ -33,7 +35,7 @@ export default class HomeNavbar extends React.Component{
                             
                             />
                         </InputGroup>
-                        <Button className="cartButton" variant="Link"><i class="fa fa-cart-arrow-down"></i>Cart</Button>
+                        <Link className="cartlink" to="/Cart"><Button className="cartButton" variant="Link"><i class="fa fa-cart-arrow-down a"><div class="circle">0</div></i>Cart</Button></Link>
                         {/* <Button className="forUser" variant="Link"><i class="fa fa-angle-down" /></Button> */}
                         <Dropdown className="userDropdown">
                             <Dropdown.Toggle className="userDropdown_toggle" >

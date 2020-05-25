@@ -174,14 +174,9 @@ const validateForm = (users) => {
 
                     }
                     else{
-
-                        // console.log("gender is selected");
                         errors.gender="";
                         users.gender=value;
                     }
-                    
-                    
-                    // console.log("gender", users.gender);
                     break;
             default:
                 break;
@@ -248,7 +243,7 @@ const validateForm = (users) => {
                 <Card className="signupInfo_card">
                     <Row className="signUpInfo">
                         <form onSubmit={this.handleSubmit} action="./signIn.js">
-                        <Form.Group >
+                        <Form.Group>
                     {/* <Form> */}
                         <h1 className="registrationLabel">Register To NeoStore</h1>
                         <br/><br/>

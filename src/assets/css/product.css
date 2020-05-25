@@ -61,3 +61,14 @@
     padding-left:5%;
     box-sizing: border-box;
 }
+.sort{
+    width:100px;
+    margin-left:20px;
+    background-color: transparent;
+    color:blue;
+    border:none
+}
+.sort:hover{
+    background-color: rgba(128, 128, 128, 0.089);
+    color:blue
+}

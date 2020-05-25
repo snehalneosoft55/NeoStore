@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import '../assets/css/productDetails.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import AddToCart from './AddToCart';
+// import AddToCart from '/'
 
 class ProductDetails extends React.Component{
     constructor(){
@@ -18,14 +20,17 @@ class ProductDetails extends React.Component{
             showImg:''
         }
     }
-    // changeImg(){
-    //     this.setState({showImg:subimages})
-    // }
+    changeImg(subimage){
+        this.setState({showImg:subimage})
+    }
     componentWillMount(){
         // console.log("in componentwill mount---1111",this.props.location.state.productId);
         let productId = this.props.location.state.productId;
         this.props.getProductDetail(productId).then(() => {
             const { productDetails } = this.props;
+            let imgUrl = productDetails.product_image;;
+            this.setState({showImg : imgUrl});
+            
             // console.log("in componentwill mount---",productDetails.product_name);
       })
     }
@@ -35,7 +40,7 @@ class ProductDetails extends React.Component{
         let title;
         let cost;
         let productColor;
-        let imgUrl;
+        let imgUrl ;
         let subimages=[];
         let productDescription;
         let dimensions;
@@ -51,7 +56,7 @@ class ProductDetails extends React.Component{
             dimensions = productDetails.product_dimension;
             material = productDetails.product_material;
             Manufacturer = productDetails.product_producer;
-
+            
             for( let i=0;i<productDetails.subImages_id.product_subImages.length;i++)
             {
                 subimages[i] = productDetails.subImages_id.product_subImages[i];
@@ -68,17 +73,17 @@ class ProductDetails extends React.Component{
                                 <Row>
                                     <img 
                                         className="productDetailImg" 
-                                        src={'http://180.149.241.208:3022/' + imgUrl}
+                                        src={'http://180.149.241.208:3022/' + this.state.showImg}
                                     />
                                 </Row>
                                 <Row className="subimagesWrapper" >
                                     {
-                                        subimages.map((subimages,i)=>{
+                                        subimages.map((subimage,i)=>{
                                             return(
                                                 <img 
                                                     className="productDetailSubImg" 
-                                                    src={'http://180.149.241.208:3022/' + subimages}
-                                                    onClick={this.changeImg}
+                                                    src={'http://180.149.241.208:3022/' + subimage}
+                                                    onClick={(ev)=>this.changeImg(subimage)}
                                                 />  
                                             )
                                         })
@@ -103,7 +108,8 @@ class ProductDetails extends React.Component{
                                         </div></h5>
                                         
                                         <div className="productDetailInfoButtons">
-                                            <button className="productDetailInfoButton1">ADD TO CART</button>
+                                            <AddToCart color="blue" width="160px" height="40px"/>
+                                            {/* <button className="productDetailInfoButton1">ADD TO CART</button> */}
                                             <button className="productDetailInfoButton2">RATE PRODUCT</button>
                                         </div>
                                 </div>

@@ -12,8 +12,11 @@
     margin-bottom:7%
     
 }
-.productDetailInfoButton1,.productDetailInfoButton2{
+
+.productDetailInfoButton2{
+    display:inline-flex;
     color:white;
+    text-align: center;
     margin-right: 4%;
     width:160px;
     height:40px;
@@ -25,6 +28,7 @@
     background-color: #00acee;;
 }
 .productDetailInfoButton2{
+    margin-left:50px;
     background-color:#754b10;
 }
 .productDetailInfoPrice{

@@ -4,7 +4,7 @@ import { Dropdown } from 'react-bootstrap'
 export class SideMenu extends Component {
     render() {
         return (
-          <div>
+          
             <div className="container">
   {/* <h2>Collapsible List Group</h2> */}
   {/* <p>Click on the collapsible panel to open and close it.</p> */}
@@ -12,7 +12,7 @@ export class SideMenu extends Component {
     <div className="panel panel-default">
       <div className="panel-heading">
         <h4 className="panel-title">
-          <a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
+          <a data-toggle="collapse" href="#collapse1">Collaps</a>
         </h4>
       </div>
       <div id="collapse1" className="panel-collapse collapse">
@@ -26,7 +26,7 @@ export class SideMenu extends Component {
     </div>
   </div>
 </div>
-          </div>
+          
 //             <div>
 //                 <nav className="navbar ">
 //                 <ul className="navbar-nav">

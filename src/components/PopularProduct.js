@@ -11,7 +11,8 @@ import ProductCard from './ProductCard';
      constructor(){
          super();
          this.state = {
-            rating: 1
+            rating: 1,
+            cartProduct:0
           };
      }
     componentWillMount(){
@@ -23,6 +24,7 @@ import ProductCard from './ProductCard';
             
       })
     }
+    
     render(){
         const { popularProducts } = this.props;
         const TopRatingProducts =popularProducts.popularProducts;
@@ -54,6 +56,7 @@ import ProductCard from './ProductCard';
                                     price={productPrice} 
                                     rating={productRating}
                                     id={productId}
+                                    
                                 />
                             
         //                     <Card className="productCart">

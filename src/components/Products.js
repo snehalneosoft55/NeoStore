@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {getProducts}  from '../actions/displayProductAction'
 
 import {Container , Row, Col} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 import Footer from './footer'
 import HomeNavBar from './navbar'
@@ -10,7 +11,12 @@ import SideMenu from './SideMenu';
 import ProductCard from './ProductCard';
 
 class Products extends React.Component{
-     
+     constructor(){
+         super();
+         this.state={
+             
+         }
+     }
     componentWillMount(){
         this.props.getProducts().then(() => {
             const { productData } = this.props;
@@ -36,8 +42,20 @@ class Products extends React.Component{
                            <Row>
                                <Col xs={2}><SideMenu/></Col>
                                <Col>
+                               <Row>
+                                   <Col>
+                                        <h2 className="header1">All Categories</h2>
+                                   </Col>
+                                   <Col>
+                                        Sort By:
+                                        <Button className="sort">★</Button>
+                                        <Button className="sort">₹</Button>
+                                        <Button className="sort">₹</Button>
+                                   </Col>
+                               </Row>
+                               <Row>
                                <div className="popularProduct">
-                                         <h2 className="header1">All Categories</h2>
+                                         
                                          <div className="product_wrapper">
                                         {
                                             
@@ -63,6 +81,8 @@ class Products extends React.Component{
                                            
                                          </div>
                                      </div>
+                               </Row>
+                               
                                </Col>
                            </Row>
                        </Container>

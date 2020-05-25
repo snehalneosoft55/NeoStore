@@ -20,13 +20,17 @@ import ForgotPassword from './components/forgotPassword'
 import Order from './components/Order'
 import Products from './components/Products'
 import ProductDetails from './components/ProductDetails';
+import Example from "./components/Example";
+import Cart from './components/Cart'
 const store = configureStore();
 //Router 
 function App() {
   return (
     // <Provider store={store}>
+    
     <Provider store={store}>
     <div className="App">
+    {/* <Example/> */}
       <Router>
         
         <Route path="/" exact component={HomePage} />
@@ -38,7 +42,7 @@ function App() {
         <Route path="/signIn" component={SignIn}/>
         <Route path="/forgotPassword" component={ForgotPassword}/>
         <Route path="/ProductDetails" component={ProductDetails}/>
-        
+        <Route path="/Cart" component={Cart} />
       </Router>
     </div>
     </Provider>
