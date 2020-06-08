@@ -1,5 +1,7 @@
 import React from 'react';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+
+// require("bootstrap/less/bootstrap.less")
 
 // import store from './redux/store'
 import { configureStore } from "./redux/store";
@@ -30,12 +32,8 @@ function App() {
     
     <Provider store={store}>
     <div className="App">
-    {/* <Example/> */}
       <Router>
-        
         <Route path="/" exact component={HomePage} />
-        {/* <Route path="/HomePage" component={HomePage} /> */}
-
         <Route path="/Order" component={Order}/>
         <Route path="/Products" component={Products} />
         <Route path="/Registration" component={Registration}/>

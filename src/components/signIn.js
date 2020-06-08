@@ -109,7 +109,7 @@ class signIn extends React.Component
                 
             };
             console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
-            console.log("------------userData,in onsubmit",userData1);
+            console.log("before action call------------userData,in onsubmit",userData1);
             this.props.loginUserInfo(userData1);
             // console.log("for history check",this.props.history);
             // const { userData } = this.props;
@@ -183,9 +183,16 @@ class signIn extends React.Component
         );
     }
 }
-const mapStateToProps = state => ({
-    userData: state.userData
-  });
+const mapStateToProps = state => 
+{
+    console.log("IN MAP STATE TO PROPS::::::")
+    return(
+        {
+            userData: state.userData
+          }
+    );
+}
+
 
   const mapDispatchToProps = {
     loginUserInfo

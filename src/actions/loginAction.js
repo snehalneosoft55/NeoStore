@@ -1,16 +1,18 @@
 import axios from 'axios'
 import swal from 'sweetalert';
 import * as actionTypes from "../lib/constants/actionTypes";
-const loginUser = data => (
-  {
-  type: actionTypes.LOGIN,
-  payload: data
-});
+const loginUser = data => {
+  console.log("in action.js---in function where payload is defined")
+  return({
+    type: actionTypes.LOGIN,
+    payload: data
+  });
+}
 
 let status={code:0};
 function loginUserInfo(userData1) 
 {
-  console.log('in action call');
+  console.log('in action ---where we call axios');
   return function(dispatch) 
   {
     return axios.post('http://180.149.241.208:3022/login',userData1)

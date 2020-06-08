@@ -1,6 +1,6 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import {getProducts}  from '../actions/displayProductAction'
+import React from 'react';
+import { connect } from 'react-redux';
+import ReactPaginate from 'react-paginate';
 
 import {Container , Row, Col} from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
@@ -9,30 +9,62 @@ import Footer from './footer'
 import HomeNavBar from './navbar'
 import SideMenu from './SideMenu';
 import ProductCard from './ProductCard';
+import {getProducts}  from '../actions/displayProductAction'
 
+let fetcheddata=null;
 class Products extends React.Component{
      constructor(){
          super();
          this.state={
-             
+            offset: 0,
+            data: [],
+            perPage: 5,
+            currentPage: 0
          }
      }
+
     componentWillMount(){
         this.props.getProducts().then(() => {
             const { productData } = this.props;
-            console.log('in willmount',productData.productData);
             const y=productData.productData;
-            console.log("y==",y);
+            fetcheddata=y;
       })
     }
+
+    receivedData()
+    {
+        const slice = fetcheddata.slice(this.state.offset, this.state.offset + this.state.perPage)
+                const postData = slice.map(pd => 
+                                    <React.Fragment>
+                                        <ProductCard 
+                                            id={pd.product_id}
+                                            image={pd.product_image} 
+                                            title={pd.product_name} 
+                                            price={pd.product_cost} 
+                                            rating={pd.product_rating}
+                                        />
+                                    </React.Fragment>)
+                this.setState
+                ({
+                    pageCount: Math.ceil(fetcheddata.length / this.state.perPage),
+                    postData
+                })
+    }
+    handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * this.state.perPage;
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.receivedData()
+        });
+    };
     render()
     {
         const { productData } = this.props;
-        console.log('in render',productData.productData);
         const y=productData.productData;
-        console.log("y==",y);
-        // const x=productData.productData;
-        // console.log('next of render',x.product_details);
+        fetcheddata=y;
         return(
             <div>
                 <HomeNavBar/>
@@ -55,38 +87,28 @@ class Products extends React.Component{
                                </Row>
                                <Row>
                                <div className="popularProduct">
-                                         
-                                         <div className="product_wrapper">
-                                        {
-                                            
-                                            (y!==undefined)&&( y.map((y,i)=>{
-                                                let productImage=y.product_image;
-                                                let productTitle=y.product_name;
-                                                let productPrice=y.product_cost;
-                                                let productRating=y.product_rating;
-                                                let productId=y.product_id;
-                                                return(
-                                                    <ProductCard 
-                                                        id={productId}
-                                                        image={productImage} 
-                                                        title={productTitle} 
-                                                        price={productPrice} 
-                                                        rating={productRating}
-                                                    />
-//                                                     
-                                                 );
-                                                }))
-                                            
-                                        }
-                                           
-                                         </div>
-                                     </div>
+                                    <div>
+                                        {this.state.postData}
+                                        <ReactPaginate
+                                            previousLabel={"prev"}
+                                            nextLabel={"next"}
+                                            breakLabel={"..."}
+                                            breakClassName={"break-me"}
+                                            pageCount={this.state.pageCount}
+                                            marginPagesDisplayed={2}
+                                            pageRangeDisplayed={5}
+                                            onPageChange={this.handlePageClick}
+                                            containerClassName={"pagination"}
+                                            subContainerClassName={"pages pagination"}
+                                            activeClassName={"active"}/>
+                                    </div>
+                                </div>
                                </Row>
-                               
                                </Col>
                            </Row>
                        </Container>
                    </div>
+                   <hr></hr>
                 <Footer/>
             </div>
         );
