@@ -5,6 +5,7 @@ import HALL_IMAGE from '../assets/images/hall.jpg';
 import TEA_POY_IMAGE from '../assets/images/teapoy.jpeg';
 import SOFASET_TEAPOY_IMAGE from '../assets/images/sofaset_teapoy.jpeg';
 import SHOPPING_BACKGROUND_IMAGE from '../assets/images/Shopping.jpeg';
+import PROFILE_PIC from '../assets/images/image_preview.png';
 const Assets = {
     SIDE_IMAGE,
     SOFA_IMAGE,
@@ -12,7 +13,8 @@ const Assets = {
     HALL_IMAGE,
     TEA_POY_IMAGE,
     SOFASET_TEAPOY_IMAGE,
-    SHOPPING_BACKGROUND_IMAGE
+    SHOPPING_BACKGROUND_IMAGE,
+    PROFILE_PIC
 };
 export default Assets;
     

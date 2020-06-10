@@ -36,6 +36,11 @@
     /* margin-bottom: 4000px; */
 
 }
+@media screen and (min-width: 1480px){
+    .ViewAllLinkWrapper{
+        margin-left:30px
+    }
+}
 .ViewAllLink{
     color:black
 }

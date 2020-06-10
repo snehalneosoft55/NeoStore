@@ -1,3 +1,42 @@
 .productDetailInfo{
     padding-top:60px
 }
+.orderWrapperMainContent{
+    margin:40px
+}
+.orderWrapper > h2{
+    margin-left:50px;
+    margin-top:15px;
+    font-weight:normal;
+}
+.orderWrapperProfilepic{
+    border-radius: 50%;
+    /* margin-left:110px; */
+}
+.orderWrapper img{
+    border-radius: 50%;
+    width:210px;
+    height:220px;
+    margin-left:30px
+}
+.orderWrapper ul{
+    list-style-type: none;
+    padding-left:0px;
+}
+.orderCard{
+    padding:20px;
+    box-shadow: 4px 4px 8px gray;
+}
+.orderWrapperBtnList{
+    margin-top:50px;
+
+}
+.orderWrapperBtnList button{
+    /* margin-left:px; */
+    margin-top:10px;
+    height:40px;
+    padding-left:0px !important;
+    width:280px;
+    background: transparent;
+    
+}

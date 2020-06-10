@@ -13,8 +13,7 @@ export default class HomeNavbar extends React.Component{
     render(){
         return(
             <div >
-               <Navbar bg="dark" className="homeNav">
-
+               <Navbar bg="dark" className="homeNav" expand="lg">
                    <Navbar.Brand className="font-weight-bold navbarBrand"><span className="navbarBrandNeo">Neo</span><span className="navbarBrandStore">STORE</span></Navbar.Brand>
                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                    <Navbar.Collapse id="basic-navbar-nav">

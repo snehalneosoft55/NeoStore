@@ -18,7 +18,7 @@ class Products extends React.Component{
          this.state={
             offset: 0,
             data: [],
-            perPage: 5,
+            perPage: 6,
             currentPage: 0
          }
      }
@@ -122,21 +122,7 @@ const mapStateToProps = state => ({
   const mapDispatchToProps = {
   getProducts
 };
-// const mapStateToProps = state => {
-//     // console.log(state,state.productData.NoOfProducts,"hello");
-//     return state
-//     //     NoOfProducts : state.productData.NoOfProducts
-//     // }
-// }
 
-    // const mapDispatchToProps = dispatch =>{
-    //     return bindActionCreators({
-
-    //         displaydata:()=>dispatch(displaydata())
-    //     }
-    //     )
-    // }
-// export default connect(mapStateToProps,mapDispatchToProps)(Products)
 export default connect(
     mapStateToProps,
     mapDispatchToProps

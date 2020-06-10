@@ -72,6 +72,9 @@ padding:0px  !important;
     border:1px solid white;
     border-radius: 5% !important;
 }
+.toggle{
+    color:white
+}
 .userDropdown_items{
     background-color: black !important; 
 
