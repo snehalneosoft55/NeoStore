@@ -24,6 +24,8 @@
     padding-left:0px;
 }
 .orderCard{
+    width:631;
+    height:372;
     padding:20px;
     box-shadow: 4px 4px 8px gray;
 }

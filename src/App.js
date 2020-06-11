@@ -23,7 +23,9 @@ import Order from './components/Order'
 import Products from './components/Products'
 import ProductDetails from './components/ProductDetails';
 import Example from "./components/Example";
-import Cart from './components/Cart'
+import Cart from './components/Cart';
+import Profile from './components/Profile'
+
 const store = configureStore();
 //Router 
 function App() {
@@ -41,6 +43,7 @@ function App() {
         <Route path="/forgotPassword" component={ForgotPassword}/>
         <Route path="/ProductDetails" component={ProductDetails}/>
         <Route path="/Cart" component={Cart} />
+        <Route path="/Profile" component={Profile}></Route>
       </Router>
     </div>
     </Provider>

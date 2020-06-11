@@ -6,10 +6,8 @@ import {Link} from 'react-router-dom';
 import {InputGroup,FormControl} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {Dropdown} from 'react-bootstrap';
-import Cart from './Cart'
 
 export default class HomeNavbar extends React.Component{
-    
     render(){
         return(
             <div >
@@ -40,7 +38,6 @@ export default class HomeNavbar extends React.Component{
                             <Dropdown.Toggle className="userDropdown_toggle" >
                                 <i className="fa fa-user userDropdown_toggle_icon"></i>
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu className="userDropdown_items">
                                     <Dropdown.Item href="#/action-1"><Link to="/Registration">Registration</Link></Dropdown.Item>
                                     <Dropdown.Item href="#/action-2"><Link to="/SignIn">Sign In</Link></Dropdown.Item>
