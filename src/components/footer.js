@@ -12,11 +12,6 @@ export default function Footer(){
             <Row className="footerContent">
                 <Col>
                 <h4>About Company</h4>
-                {/* <p>NeoSOFT Technologies is here at your quick and easy service for shooping . </p>
-                <p>Contact information</p>
-                <p>Email: contact@neosofttech.com</p>
-                <p>Phone: +91 0000000000</p>
-                <p>MUMBAI, INDIA</p> */}
                 <p>
                 NeoSOFT Technologies is here at your <br></br>
                 quick and easy service for shooping.
@@ -24,8 +19,6 @@ export default function Footer(){
                             Email: contact@neosofttech.com<br></br>
                                 Phone: +91 0000000000<br></br>
                                     MUMBAI, INDIA
-                
-                
                 </p>
                 </Col>
                 <Col>

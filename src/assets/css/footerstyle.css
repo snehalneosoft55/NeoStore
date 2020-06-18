@@ -18,6 +18,12 @@
     padding-top: 3%;
     /* padding-bottom: 4%; */
 }
+@media screen and (max-width:600px){
+    .footerContent,.footer_endTag{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
 .footer_endTag{
     padding-top: 3%;
     padding-left: 33%;
