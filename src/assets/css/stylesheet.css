@@ -64,6 +64,9 @@
 .google{
     background-color: #db4437;
 }
+.textField{
+    height:80px
+}
 .errorShow{
     color:red
 }

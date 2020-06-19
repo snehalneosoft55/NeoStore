@@ -8,9 +8,12 @@ import {RegEx} from './RegEx';
 import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
+import '../assets/css/stylesheet.css'
+
 
 import { connect } from 'react-redux'
 import {postUserInfo}  from '../actions/registrationAction'
+import TextField from '@material-ui/core/TextField'
 
 let valid = true;
 let forbutton;
@@ -58,7 +61,7 @@ const validateForm = (users) => {
 
     handleChange = (event) => {
         event.preventDefault();
-            // console.log("in handlechange");
+            console.log("in handlechange of reg");
         
         const {name , value} = event.target;
         let errors = this.state.errors;
@@ -247,19 +250,68 @@ const validateForm = (users) => {
                     {/* <Form> */}
                         <h1 className="registrationLabel">Register To NeoStore</h1>
                         <br/><br/>
-                        <Inputs name="FirstName" type="text" placeholder="First Name" value={this.state.value} handleChange={this.handleChange}/>
-                        <span className="errorShow" >{errors.firstName}</span>
-                        <Inputs name="LastName" type="text" placeholder="Last Name" value={this.state.value} handleChange={this.handleChange}/>
-                        <span className="errorShow">{errors.lastName}</span>
-                        <Inputs name="Email" type="Email" placeholder="Email" value={this.state.value} handleChange={this.handleChange}/>
-                        <span className="errorShow">{errors.email}</span>
-                        <Inputs name="Username" type="text" placeholder="Username" value={this.state.value} handleChange={this.handleChange}/>
+                        <div className="textField">
+                            <TextField 
+                                className="s"
+                                id="outlined-basic" 
+                                name="FirstName" 
+                                label="FirstName" 
+                                variant="outlined" 
+                                placeholder="First Name"
+                                autoComplete="off"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                            <br/><span className="errorShow" >{errors.firstName}</span>
+                        </div>
+                        <div className="textField">
+                            <TextField 
+                                className="s"
+                                id="outlined-basic" 
+                                name="LastName" 
+                                label="LastName" 
+                                variant="outlined" 
+                                placeholder="Last Name"
+                                autoComplete="off"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                            <br/><span className="errorShow" >{errors.lastName}</span>
+                        </div>
+                        <div className="textField">
+                            <TextField 
+                                className="s"
+                                id="outlined-basic" 
+                                name="Email" 
+                                label="Email" 
+                                variant="outlined" 
+                                placeholder="Email"
+                                autoComplete="off"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                            <br/><span className="errorShow" >{errors.email}</span>
+                        </div>
+                        <div className="textField">
+                            <TextField 
+                                className="s"
+                                id="outlined-basic" 
+                                name="Password" 
+                                label="Password" 
+                                variant="outlined" 
+                                placeholder="Password"
+                                autoComplete="off"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                            <br/><span className="errorShow" >{errors.password}</span>
+                        </div>
                         <span className="errorShow">{errors.username}</span>
-                        <Inputs name="Password" type="password" maxlength="10" placeholder="Password" value={this.state.value} handleChange={this.handleChange} />
+                        {/* <Inputs name="Password" type="password" maxlength="10" placeholder="Password" value={this.state.value} handleChange={this.handleChange} /> */}
                         <span className="errorShow">{errors.password}</span>
-                        <Inputs name="ConfirmPassword" type="password" placeholder="Confirm Password" value={this.state.value} handleChange={this.handleChange}/>
+                        {/* <Inputs name="ConfirmPassword" type="password" placeholder="Confirm Password" value={this.state.value} handleChange={this.handleChange}/> */}
                         <span className="errorShow">{errors.confirmPassword}</span>
-                        <Inputs name="mobileNo" type="number" placeholder="Mobile No" value={this.state.value} handleChange={this.handleChange}/> 
+                        {/* <Inputs name="mobileNo" type="number" placeholder="Mobile No" value={this.state.value} handleChange={this.handleChange}/>  */}
                         <span className="errorShow">{errors.mobileNo}</span>
                         {/* <Form.check type="radio">Male</Form.check> */}
                         
