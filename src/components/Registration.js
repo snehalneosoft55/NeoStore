@@ -219,35 +219,21 @@ const validateForm = (users) => {
     componentWillMount(){
         console.log('in willmount');
         console.log('in willmount----gender::',this.state.users.gender);
-        // console.log("------------userData,in will mount",userData);
     };
     
-    render(){
+    render()
+    {
         const {errors} = this.state;
-        
-        // const {password}=this.state;
-        // const {formInputs}=this.state;
         return(
         <div>
             <HomeNavBar></HomeNavBar>
             <Container fluid={true} >
-            
-            {/* <Row className="SocialButton">
-                <Button className="facebook"><span><i src="fa fa-facebook"></i></span>Login With Facebook</Button>
-                <Button className="google"><span><i src="fa fa-google"></i></span>Login With Google</Button>
-
-            </Row> */}
             <hr className="line"></hr>
             <Row className="Signup-wrapper">
-                {/* <Col xs={7}>
-                    <Image className="sideImage" src={Assets.SIDE_IMAGE} alt="SIDE_IMAGE"/>
-                </Col>
-                <Col xs={5}> */}
                 <Card className="signupInfo_card">
                     <Row className="signUpInfo">
                         <form onSubmit={this.handleSubmit} action="./signIn.js">
                         <Form.Group>
-                    {/* <Form> */}
                         <h1 className="registrationLabel">Register To NeoStore</h1>
                         <br/><br/>
                         <div className="textField">
