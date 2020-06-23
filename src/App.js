@@ -25,6 +25,7 @@ import ProductDetails from './components/ProductDetails';
 import Example from "./components/Example";
 import Cart from './components/Cart';
 import Profile from './components/Profile'
+import PageNotFound from './components/pageNotFound';
 
 const store = configureStore();
 //Router 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/ProductDetails" component={ProductDetails}/>
         <Route path="/Cart" component={Cart} />
         <Route path="/Profile" component={Profile}></Route>
+        <Route path="/*" component={PageNotFound}></Route>
       </Router>
     </div>
     </Provider>

@@ -10,6 +10,9 @@ import HomeNavBar from './navbar'
 import SideMenu from './SideMenu';
 import ProductCard from './ProductCard';
 import {getProducts}  from '../actions/displayProductAction'
+import StarIcon from '@material-ui/icons/Star';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 let fetcheddata=null;
 class Products extends React.Component{
@@ -28,27 +31,33 @@ class Products extends React.Component{
             const { productData } = this.props;
             const y=productData.productData;
             fetcheddata=y;
+            console.log("fetched data :::::",fetcheddata);
       })
     }
 
     receivedData()
     {
-        const slice = fetcheddata.slice(this.state.offset, this.state.offset + this.state.perPage)
-                const postData = slice.map(pd => 
-                                    <React.Fragment>
-                                        <ProductCard 
-                                            id={pd.product_id}
-                                            image={pd.product_image} 
-                                            title={pd.product_name} 
-                                            price={pd.product_cost} 
-                                            rating={pd.product_rating}
-                                        />
-                                    </React.Fragment>)
-                this.setState
-                ({
-                    pageCount: Math.ceil(fetcheddata.length / this.state.perPage),
-                    postData
-                })
+        if(fetcheddata != undefined)
+        {
+            const slice = fetcheddata.slice(this.state.offset,this.state.offset + this.state.perPage)
+            const postData = slice.map(pd => 
+                                <React.Fragment>
+                                    <ProductCard 
+                                        id={pd.product_id}
+                                        image={pd.product_image} 
+                                        title={pd.product_name} 
+                                        price={pd.product_cost} 
+                                        rating={pd.product_rating}
+                                    />
+                                </React.Fragment>)
+            this.setState
+            ({
+                pageCount: Math.ceil(fetcheddata.length / this.state.perPage),
+                postData
+            })
+        }
+       
+        
     }
     handlePageClick = (e) => {
         const selectedPage = e.selected;
@@ -65,31 +74,10 @@ class Products extends React.Component{
         const { productData } = this.props;
         const y=productData.productData;
         fetcheddata=y;
-        return(
-            <div>
-                <HomeNavBar/>
-                <hr></hr>
-                   <div>
-                       <Container>
-                           <Row>
-                               <Col xs={2}><SideMenu/></Col>
-                               <Col>
-                               <Row>
-                                   <Col>
-                                        <h2 className="header1">All Categories</h2>
-                                   </Col>
-                                   <Col>
-                                        Sort By:
-                                        <Button className="sort">★</Button>
-                                        <Button className="sort">₹</Button>
-                                        <Button className="sort">₹</Button>
-                                   </Col>
-                               </Row>
-                               <Row>
-                               <div className="popularProduct">
-                                    <div>
-                                        {this.state.postData}
-                                        <ReactPaginate
+        let paginationLayout ="";
+        if(fetcheddata!=undefined){
+            paginationLayout=(
+                <ReactPaginate
                                             previousLabel={"prev"}
                                             nextLabel={"next"}
                                             breakLabel={"..."}
@@ -101,6 +89,46 @@ class Products extends React.Component{
                                             containerClassName={"pagination"}
                                             subContainerClassName={"pages pagination"}
                                             activeClassName={"active"}/>
+            )
+        }
+        else{
+            paginationLayout=(
+                <h1 style={{paddingLeft:"400px"}}>No products available</h1>
+            )
+        }
+        return(
+            <div>
+                <HomeNavBar/>
+
+                <hr style={{marginTop:"40px"}}></hr>
+                   <div>
+                       <Container>
+                           <Row>
+                               <Col xs={2}><SideMenu/></Col>
+                               <Col style={{marginLeft:"78px"}}>
+                               <Row>
+                               <p className="header1" ><span style={{fontSize:"25px"}}>All Categories</span>
+                               <span style={{paddingLeft:"370px",fontSize:"16px"}}>
+                               Sort By:
+                                        <Button className="sort"><StarIcon/></Button>
+                                        <Button className="sort">₹<ArrowUpwardIcon></ArrowUpwardIcon></Button>
+                                        <Button className="sort">₹<ArrowDownwardIcon/></Button>
+                               </span>
+                               </p>
+                               
+                                   <Col>
+                                   </Col>
+                                   <Col style={{paddingLeft:"168px"}}>
+                                        
+                                   </Col>
+                               </Row>
+                               <Row>
+                               <div className="popularProduct" >
+                                    <div>
+                                        
+                                        {this.state.postData}
+                                        
+                                        {paginationLayout}
                                     </div>
                                 </div>
                                </Row>

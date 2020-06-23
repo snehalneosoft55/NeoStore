@@ -1,75 +1,76 @@
-import React, { Component } from 'react'
-import { Dropdown } from 'react-bootstrap'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
+import '../assets/css/sideMenu.css';
+import ListOfSideMenu from './ListOfSideMenu'
+import ListOfColors from './ListOfColors'
 
-export class SideMenu extends Component {
-    render() {
-        return (
-          
-            <div className="container">
-  {/* <h2>Collapsible List Group</h2> */}
-  {/* <p>Click on the collapsible panel to open and close it.</p> */}
-  <div className="panel-group">
-    <div className="panel panel-default">
-      <div className="panel-heading">
-        <h4 className="panel-title">
-          <a data-toggle="collapse" href="#collapse1">Collaps</a>
-        </h4>
-      </div>
-      <div id="collapse1" className="panel-collapse collapse">
-        <ul className="list-group">
-          <li className="list-group-item">One</li>
-          <li className="list-group-item">Two</li>
-          <li className="list-group-item">Three</li>
-        </ul>
-        <div className="panel-footer">Footer</div>
-      </div>
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
+
+export default function SimpleExpansionPanel() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root} style={{paddingTop:"40px"}}>
+      <Button 
+        className="btn" 
+        variant="contained" 
+        style={{
+                  width:"200px",
+                  backgroundColor:"white",
+                  marginBottom:"20px",
+                  
+                }}
+      >
+        All Products
+      </Button>
+      
+      <ExpansionPanel style={{marginBottom:"20px",width:"200px"}}>
+        
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className={classes.heading}>Categories</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            
+            <ListOfSideMenu/>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel style={{width:"200px"}}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography className={classes.heading} >
+            Color
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          <ListOfColors/>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      
     </div>
-  </div>
-</div>
-          
-//             <div>
-//                 <nav className="navbar ">
-//                 <ul className="navbar-nav">
-//     <li className="nav-item">
-//       <a className="nav-link" href="#"><Dropdown classNameName="menuItem">All Products</Dropdown></a>
-//     </li>
-//     <li className="nav-item">
-//       <a className="nav-link" href="#">
-//       <Dropdown>
-//   <Dropdown.Toggle variant="success" id="dropdown-basic">
-//     Categories
-//   </Dropdown.Toggle>
-
-//   <Dropdown.Menu>
-//     <Dropdown.Item href="#/action-1">Sofa</Dropdown.Item>
-//     <Dropdown.Item href="#/action-2">Bed</Dropdown.Item>
-//     <Dropdown.Item href="#/action-3">Chair</Dropdown.Item>
-//     <Dropdown.Item href="#/action-4">Table</Dropdown.Item>
-//     <Dropdown.Item href="#/action-3">Almirah</Dropdown.Item>
-//   </Dropdown.Menu>
-// </Dropdown>
-//       </a>
-//     </li>
-//     <li className="nav-item">
-//       <a className="nav-link" href="#">
-//       <Dropdown>
-//   <Dropdown.Toggle variant="success" id="dropdown-basic">
-//     Color
-//   </Dropdown.Toggle>
-
-//   <Dropdown.Menu>
-//     <Dropdown.Item href="#/action-1">Red</Dropdown.Item>
-//     <Dropdown.Item href="#/action-2">White</Dropdown.Item>
-//     <Dropdown.Item href="#/action-3">Blue</Dropdown.Item>
-//   </Dropdown.Menu>
-// </Dropdown>
-//       </a>
-//     </li>
-//   </ul>
-//                 </nav>
-//             </div>
-        )
-    }
+  );
 }
-
-export default SideMenu

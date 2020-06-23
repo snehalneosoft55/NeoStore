@@ -62,8 +62,8 @@
     box-sizing: border-box;
 }
 .sort{
-    width:100px;
-    margin-left:20px;
+    width:70px;
+    margin-left:5px;
     background-color: transparent;
     color:blue;
     border:none
