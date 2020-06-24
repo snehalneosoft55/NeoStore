@@ -35,12 +35,12 @@ export default function SimpleExpansionPanel() {
                   
                 }}
       >
-        All Products
+        <Typography>All Products</Typography>
       </Button>
       
       <ExpansionPanel style={{marginBottom:"20px",width:"200px"}}>
         
-        <ExpansionPanelSummary
+        <ExpansionPanelSummary style={{marginLeft:"40px"}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
@@ -55,7 +55,7 @@ export default function SimpleExpansionPanel() {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel style={{width:"200px"}}>
-        <ExpansionPanelSummary
+        <ExpansionPanelSummary style={{marginLeft:"40px"}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"

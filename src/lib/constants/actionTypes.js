@@ -1,6 +1,7 @@
-// export const DISPLAYPRODUCTS = 'DISPLAYPRODUCTS';
 export const GET_PRODUCT = "GET_PRODUCT";
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 export const GET_POPULAR_PRODUCT = "GET_POPULAR_PRODUCT";
 export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
+export const GET_COLORS = "GET_COLORS";
+export const GET_CATEGORIES ="GET_CATEGORIES";

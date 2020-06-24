@@ -13,11 +13,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
 }));
-
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
 export default function SimpleList() {
   const classes = useStyles();
 
@@ -25,7 +20,10 @@ export default function SimpleList() {
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
         <ListItem button>
-          <ListItemText primary="Sofa" style={{marginLeft:"20px"}} />
+          <ListItemText style={{marginLeft:"20px"}} >
+            Sofa
+            </ListItemText>
+
         </ListItem>
         <Divider/>
         <ListItem button>

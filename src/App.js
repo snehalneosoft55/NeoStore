@@ -8,7 +8,7 @@ import { configureStore } from "./redux/store";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {BrowserRouter as Router,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Route, Switch} from 'react-router-dom'
 import './assets/css/stylesheet.css';
 import './App.css';
 import './assets/css/SignIn.css'
@@ -36,6 +36,7 @@ function App() {
     <Provider store={store}>
     <div className="App">
       <Router>
+        <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/Order" component={Order}/>
         <Route path="/Products" component={Products} />
@@ -45,7 +46,8 @@ function App() {
         <Route path="/ProductDetails" component={ProductDetails}/>
         <Route path="/Cart" component={Cart} />
         <Route path="/Profile" component={Profile}></Route>
-        <Route path="/*" component={PageNotFound}></Route>
+        <Route path="/*" exact component={PageNotFound}></Route>
+        </Switch>
       </Router>
     </div>
     </Provider>

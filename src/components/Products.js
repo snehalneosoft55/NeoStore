@@ -93,7 +93,7 @@ class Products extends React.Component{
         }
         else{
             paginationLayout=(
-                <h1 style={{paddingLeft:"400px"}}>No products available</h1>
+                <h1 style={{paddingLeft:"204px",paddingTop:"12px"}}>No products available</h1>
             )
         }
         return(
