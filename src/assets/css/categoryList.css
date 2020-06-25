@@ -1,0 +1,17 @@
+.categoryListItem{
+    text-align: center;
+    list-style-type: none;
+}
+.listItem{
+    background: none;
+    border:none;
+    width: 100px;
+    height:40px
+}
+.listItem:hover{
+    background:rgb(211, 208, 208)
+}
+hr{
+    margin: 1px ;
+    width:80px
+}

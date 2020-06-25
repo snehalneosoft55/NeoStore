@@ -61,7 +61,7 @@ const mapStateToProps = state =>
     popularProducts: state.popularProducts
   });}
 
-  const mapDispatchToProps = {
+const mapDispatchToProps = {
     getPopularProducts
 };
 export default connect(mapStateToProps,mapDispatchToProps)(Popularproduct);

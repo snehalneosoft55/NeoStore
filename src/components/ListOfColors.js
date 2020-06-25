@@ -22,6 +22,9 @@ export class ListOfColors extends Component {
       })
       
     }
+    colorHandler(colorId){
+        console.log("in colorHandler and get color id==",colorId);
+    }
     render() {
         const { colors } = this.props;
         console.log("colors",colors);
@@ -46,7 +49,7 @@ export class ListOfColors extends Component {
                         return(
                             <div >
                                 <Tooltip title={val.color_name}>
-                                <button  style={divStyle}>
+                                <button  style={divStyle} onClick={()=>this.colorHandler(val.color_id)}>
                                 </button>
                                 </Tooltip>
                                 
