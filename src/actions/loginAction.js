@@ -15,7 +15,7 @@ function loginUserInfo(userData1)
   console.log('in action ---where we call axios');
   return function(dispatch) 
   {
-    return axios.post('http://180.149.241.208:3022/login',userData1)
+    return axios.post('https://5e94f67d50bd.ngrok.io/login',userData1)
       .then(({ data }) => {
         console.log("print status",data)
         // this.props.history.push('./');

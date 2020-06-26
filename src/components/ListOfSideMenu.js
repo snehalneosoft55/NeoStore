@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import axios from 'axios'
 
 import '../assets/css/categoryList.css'
 
@@ -21,6 +22,11 @@ class ListOfSideMenu extends Component {
   }
   categoryHandler(categoryId){
       console.log("in category handler,,and category id ==",categoryId);
+      axios.get(" https://5e94f67d50bd.ngrok.io/commonProducts", { params: { "category_id":categoryId}})
+      .then(({ data }) => {
+        console.log("data of category####",data);
+    });
+    
   }
   render() {
     const { categories } = this.props;

@@ -70,7 +70,9 @@ class Products extends React.Component{
         });
     };
     render()
-    {
+    
+    {const { categories } = this.props;
+    console.log("----------in product page and data is-------===",categories);
         const { productData } = this.props;
         const y=productData.productData;
         fetcheddata=y;
@@ -144,7 +146,10 @@ class Products extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    productData: state.productData
+    
+    productData: state.productData,
+    categories:state.categories
+    
   });
 
   const mapDispatchToProps = {
