@@ -7,7 +7,7 @@ const postUserData = data => (
 });
 
 export function postUserInfo(userData1) {
-    console.log('in action call');
+    //console.log('in action call');
   return function(dispatch) {
     return axios.post('http://180.149.241.208:3022/register',userData1)
       .then(({ data }) => {

@@ -15,7 +15,7 @@ const getProductByColorIdSuccess = data => (
         return axios.get("")
             .then(({ data }) =>
             {
-                console.log("data colors",data);
+                //console.log("data colors",data);
                 dispatch(getProductByColorIdSuccess(data));
             });
     };

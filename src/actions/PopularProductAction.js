@@ -9,15 +9,15 @@ const getPopularProductsSuccess = data => (
     payload: data
   });
   export function getPopularProducts() {
-      console.log("in Popular product action");
+      //console.log("in Popular product action");
     return function(dispatch) {
       //return axios.get("http://180.149.241.208:3022/getAllProducts")
       return axios.get( BASE_URL+'defaultTopRatingProduct')
         .then(({ data }) => {
-          console.log("in axios1",data);
+          //console.log("in axios1",data);
           const x=data.product_details;
           //const x=data;
-        console.log("in axios2",x);
+        //console.log("in axios2",x);
         dispatch(getPopularProductsSuccess(x));
       });
     };

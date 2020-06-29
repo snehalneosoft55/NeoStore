@@ -12,11 +12,11 @@ export default class AddToCart extends React.Component{
     {
         const { cartProduct } = this.state;
         localStorage.setItem('cartProduct', cartProduct);
-        console.log("cartProduct:::",this.state.cartProduct,"----and the cartProduct=",cartProduct);
+        //console.log("cartProduct:::",this.state.cartProduct,"----and the cartProduct=",cartProduct);
         this.state.cartProduct=cartProduct+1;
-        console.log("cartProduct=====",this.state.cartProduct);
+        //console.log("cartProduct=====",this.state.cartProduct);
         // this.setState({cartProduct:this.cartProduct+1});
-        // console.log("cart value===",this.cartProduct);
+        // //console.log("cart value===",this.cartProduct);
     }
     render(){
         return(

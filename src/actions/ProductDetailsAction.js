@@ -8,15 +8,15 @@ const getProductDetailSuccess = data => (
     payload: data
   });
   export function getProductDetail(productId) {
-      console.log("in product details action");
+      //console.log("in product details action");
     return function(dispatch) {
       //return axios.get("http://180.149.241.208:3022/getAllProducts")
       return axios.get("http://180.149.241.208:3022/commonProducts?_id=" + productId)
         .then(({ data }) => {
-          console.log("in details action",data.product_details[0]);
+          //console.log("in details action",data.product_details[0]);
         //   const x=data.product_details;
           //const x=data;
-        // console.log("in axios2",x);
+        // //console.log("in axios2",x);
         dispatch(getProductDetailSuccess(data.product_details[0]));
       });
     };

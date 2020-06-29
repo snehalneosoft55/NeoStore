@@ -4,11 +4,11 @@ const initialState = {
   data:''
 };
 const PopularProductReducer = (state = initialState, action) => {
-//   console.log("'",action.type,"10");console.log(state);
+//   //console.log("'",action.type,"10");//console.log(state);
   switch (action.type) {
     
     case actionTypes.GET_POPULAR_PRODUCT:
-      console.log("in switch of popular product",action.payload);
+      //console.log("in switch of popular product",action.payload);
       return {
         
         ...state,
@@ -16,7 +16,7 @@ const PopularProductReducer = (state = initialState, action) => {
       };
       
     default:
-      console.log("In default", state.popularProducts)
+      //console.log("In default", state.popularProducts)
         return state
   }
 };

@@ -18,16 +18,16 @@ export class ListOfColors extends Component {
         this.props.getColors().then(() => 
         {
             const { colors } = this.props;
-            console.log("colors--",this.props.colors);
+            //console.log("colors--",this.props.colors);
       })
       
     }
     colorHandler(colorId){
-        console.log("in colorHandler and get color id==",colorId);
+        //console.log("in colorHandler and get color id==",colorId);
     }
     render() {
         const { colors } = this.props;
-        console.log("colors",colors);
+        //console.log("colors",colors);
         const allColors= colors.color_details;
         let colorDiv="";
         if(allColors!= undefined){
@@ -45,7 +45,7 @@ export class ListOfColors extends Component {
                             borderRadis:"40%"
 
                         }
-                        console.log("divcolor",divColor);
+                        //console.log("divcolor",divColor);
                         return(
                             <div >
                                 <Tooltip title={val.color_name}>
@@ -79,7 +79,7 @@ export class ListOfColors extends Component {
 }
 const mapStateToProps = state => 
 {
-    console.log("state.colors",state.colors);
+    //console.log("state.colors",state.colors);
 
 //     return({
 //     colors: state.colors

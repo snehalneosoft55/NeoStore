@@ -22,16 +22,16 @@ class ListOfSideMenu extends Component {
         })
   }
   categoryHandler(categoryId){
-      console.log("in category handler,,and category id ==",categoryId);
+      //console.log("in category handler,,and category id ==",categoryId);
       axios.get(" https://5e94f67d50bd.ngrok.io/commonProducts", { params: { "category_id":categoryId}})
       .then(({ data }) => {
-        console.log("data of category####",data);
+        //console.log("data of category####",data);
     });
     
   }
   render() {
     const { categories } = this.props;
-    console.log("categories-------",categories);
+    //console.log("categories-------",categories);
     const allCtegories = categories.category_details;
     let ListDisplay=""
 
@@ -42,7 +42,7 @@ class ListOfSideMenu extends Component {
             {
               allCtegories.map(
                 (val,i)=>{
-                  console.log(`category id of ${val.category_name}==${val.category_id}`);
+                  //console.log(`category id of ${val.category_name}==${val.category_id}`);
                   return(
                     <div>
                       <li className="categoryListItem" ><button  className="listItem" onClick={()=>this.categoryHandler(val.category_id)}>{val.category_name}</button></li>
@@ -67,7 +67,7 @@ class ListOfSideMenu extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("in map state to props,,,,categories==",state.categories);
+  //console.log("in map state to props,,,,categories==",state.categories);
   const {categories } = state.getCategoriesReducer
     return {categories};
 

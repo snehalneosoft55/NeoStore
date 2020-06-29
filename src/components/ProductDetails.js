@@ -24,14 +24,14 @@ class ProductDetails extends React.Component{
         this.setState({showImg:subimage})
     }
     componentWillMount(){
-        // console.log("in componentwill mount---1111",this.props.location.state.productId);
+        // //console.log("in componentwill mount---1111",this.props.location.state.productId);
         let productId = this.props.location.state.productId;
         this.props.getProductDetail(productId).then(() => {
             const { productDetails } = this.props;
             let imgUrl = productDetails.product_image;;
             this.setState({showImg : imgUrl});
             
-            // console.log("in componentwill mount---",productDetails.product_name);
+            // //console.log("in componentwill mount---",productDetails.product_name);
       })
     }
     render()
@@ -141,7 +141,7 @@ class ProductDetails extends React.Component{
 }
 const mapStateToProps = state => 
 {
-    // console.log("in mapstateToprops#####",state.ProductDetailsReducer.productDetails)
+    // //console.log("in mapstateToprops#####",state.ProductDetailsReducer.productDetails)
     return({
     productDetails: state.ProductDetailsReducer.productDetails
   });}

@@ -16,7 +16,7 @@ import HomeNavBar from './navbar';
 let valid = true;
 let forbutton;
 const validateForm = (users) => {
-    // console.log("in validateForm");
+    // //console.log("in validateForm");
     Object.values(users).forEach(
         (val) => {
             if(val===''){
@@ -53,11 +53,11 @@ class signIn extends React.Component
     handleChange = (event) => 
     {
         event.preventDefault();
-        // console.log("in handlechange");
+        // //console.log("in handlechange");
         const {name , value} = event.target;
         let errors = this.state.errors;
         let users =this.state.users;
-        // console.log(users);     
+        // //console.log(users);     
         switch(name)
         {
             case 'Email':
@@ -67,7 +67,7 @@ class signIn extends React.Component
                 }
                 else if(!((RegEx.Email).test(value)))
                 {
-                    console.log('no error in email');
+                    //console.log('no error in email');
                     errors.email = 'Enter valid email' ;
                 }
                 else
@@ -108,24 +108,24 @@ class signIn extends React.Component
                 pass:this.state.users.password,
                 
             };
-            console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
-            console.log("before action call------------userData,in onsubmit",userData1);
+            //console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
+            //console.log("before action call------------userData,in onsubmit",userData1);
             this.props.loginUserInfo(userData1);
-            // console.log("for history check",this.props.history);
+            // //console.log("for history check",this.props.history);
             // const { userData } = this.props;
-            // console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
+            // //console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
         }
         else
         {
             forbutton=false;
             this.setState({submitError:"Enter values"});
-            console.log("Invalid form","forbutton:",forbutton);
+            //console.log("Invalid form","forbutton:",forbutton);
         }
     }
     render()
     {
         const { userData } = this.props;
-        console.log("userData::::",userData);
+        //console.log("userData::::",userData);
         const {errors} = this.state;
         return(
         <div>
@@ -185,7 +185,7 @@ class signIn extends React.Component
 }
 const mapStateToProps = state => 
 {
-    console.log("IN MAP STATE TO PROPS::::::")
+    //console.log("IN MAP STATE TO PROPS::::::")
     return(
         {
             userData: state.userData

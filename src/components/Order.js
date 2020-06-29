@@ -17,11 +17,11 @@ export default class Order extends React.Component{
     }
   }
   handleProfile=()=>{
-    console.log("in pro");
+    //console.log("in pro");
     this.setState({show:1});
   }
   handleAddr = ()=>{
-    console.log("in add");
+    //console.log("in add");
     this.setState({show:2});
   } 
   handleOrders = () => {
