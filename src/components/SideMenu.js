@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleExpansionPanel() {
   const classes = useStyles();
 
+
+function myCallback(dataFromChild){
+  
+  console.log("^^^^^^^^^in sidemenu..",dataFromChild);
+  
+}
   return (
     <div className={classes.root} style={{paddingTop:"40px"}}>
       <Button 
@@ -50,7 +56,20 @@ export default function SimpleExpansionPanel() {
         <ExpansionPanelDetails>
           <Typography>
             
-            <ListOfSideMenu/>
+
+
+
+
+
+
+
+
+            <ListOfSideMenu callbackFromParent={(categories)=>{console.log("in callbackfromparent");return myCallback(categories)}}/>
+
+
+
+
+
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

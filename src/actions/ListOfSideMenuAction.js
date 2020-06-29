@@ -10,7 +10,7 @@ const getCategoriesSuccess = data => (
 
   export function getCategories() 
   {
-    //console.log("in getcategories action");
+    console.log("in getcategories action");
     return function(dispatch) {
         return axios.get("http://180.149.241.208:3022/getAllCategories")
             .then(({ data }) =>

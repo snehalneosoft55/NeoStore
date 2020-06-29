@@ -2,7 +2,7 @@ import * as actionTypes from "../../lib/constants/actionTypes";
 
 const initialState = {
   data:'',
-  categories:''
+  categories:0
 };
 const getCategoriesReducer = (state = initialState, action) => {
 //console.log("action.payload",action.payload);

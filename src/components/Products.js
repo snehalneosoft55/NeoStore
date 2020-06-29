@@ -13,6 +13,7 @@ import {getProducts}  from '../actions/displayProductAction'
 import StarIcon from '@material-ui/icons/Star';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import {getCategories} from '../actions/ListOfSideMenuAction'
 
 let fetcheddata=null;
 class Products extends React.Component{
@@ -72,7 +73,7 @@ class Products extends React.Component{
     render()
     
     {const { categories } = this.props;
-    //console.log("----------in product page and data is-------===",categories);
+    console.log("----------in product page and data is-------===",categories);
         const { productData } = this.props;
         const y=productData.productData;
         fetcheddata=y;
@@ -147,7 +148,10 @@ class Products extends React.Component{
 
 const mapStateToProps = state => 
 {
-    //console.log("%%%%%%%%%%  categories==",state.categories);
+    if(state.categories !=undefined){
+        console.log("%%%%%%%%%%  categories==",state.categories);
+    }
+    
     return ({
     
         productData: state.productData,
@@ -157,7 +161,8 @@ const mapStateToProps = state =>
 }
 
   const mapDispatchToProps = {
-  getProducts
+  getProducts,
+  getCategories
 };
 
 export default connect(
