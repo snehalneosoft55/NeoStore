@@ -145,12 +145,16 @@ class Products extends React.Component{
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => 
+{
+    console.log("%%%%%%%%%%  categories==",state.categories);
+    return ({
     
-    productData: state.productData,
-    categories:state.categories
-    
-  });
+        productData: state.productData,
+        categories:state.categories
+        
+      });
+}
 
   const mapDispatchToProps = {
   getProducts
