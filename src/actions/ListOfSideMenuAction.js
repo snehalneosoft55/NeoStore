@@ -1,4 +1,5 @@
-import * as actionTypes from "../lib/constants/actionTypes"
+import * as actionTypes from "../lib/constants/actionTypes";
+import {BASE_URL} from '../constants/BaseURL'
 
 import axios from 'axios'
 const getCategoriesSuccess = data => (
@@ -10,12 +11,12 @@ const getCategoriesSuccess = data => (
 
   export function getCategories() 
   {
-    console.log("in getcategories action");
+    //console.log("in getcategories action");
     return function(dispatch) {
-        return axios.get("http://180.149.241.208:3022/getAllCategories")
+        return axios.get(BASE_URL+"getAllCategories")
             .then(({ data }) =>
             {
-                //console.log("data categories------",data);
+                ////console.log("data categories------",data);
                 dispatch(getCategoriesSuccess(data));
             });
     };

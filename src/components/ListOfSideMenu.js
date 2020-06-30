@@ -16,22 +16,22 @@ class ListOfSideMenu extends Component {
   componentWillMount() {
     this.props.getCategories().then(() => {
       const { categories } = this.props;
-      console.log("in list of side menu...comonentwillmount", this.props);
+      //console.log("in list of side menu...comonentwillmount", this.props);
       // this.props.callbackFromParent(categories);
     });
   }
   // // categoryHandler(categoryId){
-  // //     console.log("in category handler,,and category id ==",categoryId);
+  // //     //console.log("in category handler,,and category id ==",categoryId);
   // //     axios.get(" https://27fc8643f73c.ngrok.io/commonProducts", { params: { "category_id":categoryId}})
   // //     .then(({ data }) => {
-  // //       console.log("data of category####",data);
+  // //       //console.log("data of category####",data);
   // //       this.props.callbackFromParent(data);
   // //   });
 
   // }
   render() {
     const { categories } = this.props;
-    console.log("categories-------", categories);
+    //console.log("categories-------", categories);
     const allCtegories = categories.category_details;
     let ListDisplay = "";
 
@@ -40,9 +40,9 @@ class ListOfSideMenu extends Component {
         <div>
           <ul>
             {allCtegories.map((val, i) => {
-              console.log(
-                `category id of ${val.category_name}==${val.category_id}`
-              );
+              // console.log(
+              //   `category id of ${val.category_name}==${val.category_id}`
+              // );
               return (
                 <div>
                   <li className="categoryListItem">
@@ -66,7 +66,7 @@ class ListOfSideMenu extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("in map state to props,,,,categories==", state.categories);
+  //console.log("in map state to props,,,,categories==", state.categories);
   const { categories } = state.getCategoriesReducer;
   return { categories };
 };

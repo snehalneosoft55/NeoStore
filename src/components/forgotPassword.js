@@ -11,7 +11,7 @@ import HomeNavBar from './navbar';
 let valid = true;
 let forbutton;
 const validateForm = (users) => {
-    //console.log("in validateForm");
+    ////console.log("in validateForm");
     
     Object.values(users).forEach(
         (val) => {
@@ -44,12 +44,12 @@ export default class Registration extends React.Component{
 
     handleChange = (event) => {
         event.preventDefault();
-            //console.log("in handlechange");
+            ////console.log("in handlechange");
         
         const {name , value} = event.target;
         let errors = this.state.errors;
         let users =this.state.users;
-        //console.log(users);     
+        ////console.log(users);     
 
         switch(name){
            
@@ -58,7 +58,7 @@ export default class Registration extends React.Component{
                     errors.email="Required";  
                 }
                 else if(!((RegEx.Email).test(value))){
-                    //console.log('no error in email');
+                    ////console.log('no error in email');
                     errors.email = 'Enter valid email' ;
                 }
                 else{
@@ -80,12 +80,12 @@ export default class Registration extends React.Component{
         if(validateForm(this.state.users)){
             forbutton=true;
             this.setState({submitError:''});
-            //console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
+            ////console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
         }
         else{
             forbutton=false;
             this.setState({submitError:"Enter values"});
-            //console.log("Invalid form","forbutton:",forbutton);
+            ////console.log("Invalid form","forbutton:",forbutton);
             // alert("enter all fields");
         }
     }

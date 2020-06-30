@@ -8,11 +8,12 @@ export default class Slideimages extends React.Component{
   constructor(){
     super();
     this.state={
+      id:0,
       dashboardImages:[]
     }
   }
   componentWillMount(){
-    Axios.get('http://180.149.241.208:3022/getAllCategories')
+    Axios.get('https://1c23e7cef0cd.ngrok.io/getAllCategories')
     .then(({data}) => {
       const response = data.category_details;
       this.setState({dashboardImages:response});

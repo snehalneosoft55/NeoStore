@@ -18,7 +18,7 @@ import TextField from '@material-ui/core/TextField'
 let valid = true;
 let forbutton;
 const validateForm = (users) => {
-    //console.log("in validateForm");
+    ////console.log("in validateForm");
     
     Object.values(users).forEach(
         (val) => {
@@ -61,12 +61,12 @@ const validateForm = (users) => {
 
     handleChange = (event) => {
         event.preventDefault();
-            //console.log("in handlechange of reg");
+            ////console.log("in handlechange of reg");
         
         const {name , value} = event.target;
         let errors = this.state.errors;
         let users =this.state.users;
-        // //console.log(users);     
+        // ////console.log(users);     
 
         switch(name){
             case 'FirstName':
@@ -75,7 +75,7 @@ const validateForm = (users) => {
                 }
                
                 else if(!((RegEx.FirstName).test(value))){
-                        // //console.log("in alphabates validation",value);
+                        // ////console.log("in alphabates validation",value);
                         errors.firstName='Only alphabates are allowed';
                     }
                 else{
@@ -88,7 +88,7 @@ const validateForm = (users) => {
                     errors.lastName="Required";
                 }
                 else if(!((RegEx.LastName).test(value))){
-                        // //console.log("in alphabates validation",value);
+                        // ////console.log("in alphabates validation",value);
                         errors.lastName="Only alphabates are allowed";
                     }
                 else{
@@ -101,7 +101,7 @@ const validateForm = (users) => {
                     errors.email="Required";  
                 }
                 else if(!((RegEx.Email).test(value))){
-                    // //console.log('no error in email');
+                    // ////console.log('no error in email');
                     errors.email = 'Enter valid email' ;
                 }
                 else{
@@ -110,7 +110,7 @@ const validateForm = (users) => {
                 }
                break;
             case 'Username' :
-                // //console.log("in username");
+                // ////console.log("in username");
                 if(value===''){
                     errors.username='Required';
                 }
@@ -144,11 +144,11 @@ const validateForm = (users) => {
                     errors.confirmPassword='Required';
                 }
                 else if(users.password  !== users.confirmPassword){
-                   // //console.log("in c pass true", users.confirmPassword);
+                   // ////console.log("in c pass true", users.confirmPassword);
                     errors.confirmPassword='Password not matched';
                 }
                 else{
-                    ////console.log("in false",users.password,users.confirmPassword);
+                    //////console.log("in false",users.password,users.confirmPassword);
                     errors.confirmPassword='';
                 }
                 break;
@@ -158,7 +158,7 @@ const validateForm = (users) => {
                 }
               
             else if(value.length !== 10){
-                    // //console.log("");
+                    // ////console.log("");
                     errors.mobileNo = 'Mobile No should be of 10 Digit';
                     
                 }
@@ -170,9 +170,9 @@ const validateForm = (users) => {
                 break;
                 // errors.confirmPassword = this.
                 case 'gender':
-                    // //console.log("in radio vallidation");
+                    // ////console.log("in radio vallidation");
                     if(value.length===0){
-                        // //console.log("gender not selected");
+                        // ////console.log("gender not selected");
                        errors.gender="select gender" ;
 
                     }
@@ -194,7 +194,7 @@ const validateForm = (users) => {
         if(validateForm(this.state.users)){
             forbutton=true;
             this.setState({submitError:''});
-            //console.log("valid form","forbutton:",forbutton, this.state.users,JSON.stringify(this.state.users));
+            ////console.log("valid form","forbutton:",forbutton, this.state.users,JSON.stringify(this.state.users));
             const userData1 = {
                 first_name:this.state.users.firstName,
                 last_name:this.state.users.lastName,
@@ -204,21 +204,21 @@ const validateForm = (users) => {
                 phone_no:this.state.users.mobileNo,
                 gender:this.state.users.gender
             };
-            //console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
-            //console.log("------------userData,in onsubmit",userData1);
+            ////console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
+            ////console.log("------------userData,in onsubmit",userData1);
             this.props.postUserInfo(userData1);
           
         }
         else{
             forbutton=false;
             this.setState({submitError:"Enter values"});
-            // //console.log("Invalid form","forbutton:",forbutton);
+            // ////console.log("Invalid form","forbutton:",forbutton);
             // alert("enter all fields");
         }
     }
     componentWillMount(){
-        //console.log('in willmount');
-        //console.log('in willmount----gender::',this.state.users.gender);
+        ////console.log('in willmount');
+        ////console.log('in willmount----gender::',this.state.users.gender);
     };
     
     render()

@@ -4,11 +4,11 @@ const initialState = {
   data:''
 };
 const productReducer = (state = initialState, action) => {
-  //console.log("'",action.type,"10");//console.log(state);
+  ////console.log("'",action.type,"10");////console.log(state);
   switch (action.type) {
     
     case actionTypes.GET_PRODUCT:
-      //console.log("in switch",action.payload);
+      ////console.log("in switch",action.payload);
       return {
         
         ...state,
@@ -16,7 +16,7 @@ const productReducer = (state = initialState, action) => {
       };
       
     default:
-      //console.log("In default", state.productData)
+      ////console.log("In default", state.productData)
         return state
   }
 };

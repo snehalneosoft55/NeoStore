@@ -5,7 +5,7 @@ const initialState = {
   colors:''
 };
 const getColorsReducer = (state = initialState, action) => {
-//console.log("action.payload",action.payload);
+////console.log("action.payload",action.payload);
   switch (action.type) {
     
     case actionTypes.GET_COLORS:

@@ -24,13 +24,13 @@ export default function SimpleExpansionPanel(props) {
   const classes = useStyles();
   // useEffect(
   //   ()=>{
-  //     console.log("in useEffect of sidemenu",fetchedData);
+  //     //console.log("in useEffect of sidemenu",fetchedData);
   //     props.callbackFromParent(fetchedData);
   //   }
   // );
   function myCallback(fetchedData) {
-    console.log("^^^^^^^^^in sidemenu..", fetchedData);
-    props.callbackFromParentInProduct(fetchedData);
+    //console.log("^^^^^^^^^in sidemenu..", fetchedData);
+    // props.callbackFromParentInProduct(fetchedData);
   }
   return (
     <div className={classes.root} style={{ paddingTop: "40px" }}>
@@ -60,7 +60,7 @@ export default function SimpleExpansionPanel(props) {
             <ListOfSideMenu
             categoryHandler={(val)=>props.categoryHandler(val)}
               // callbackFromParent={categories => {
-              //   console.log("in callbackfromparent");
+              //   //console.log("in callbackfromparent");
               //   return myCallback(categories);
               // }}
             />

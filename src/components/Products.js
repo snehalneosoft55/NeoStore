@@ -29,18 +29,20 @@ class Products extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    //console.log("in componentwillmount of product page");
     this.props.getProducts().then(() => {
       const { productData } = this.props;
 
       const y = productData.productData;
       this.setState({ products: y });
 
-      //console.log("fetched data :::::",products);
+      ////console.log("fetched data :::::",products);
     });
   }
 
   receivedData() {
+    //console.log("in receivedData");
     if (this.state.products != undefined) {
       const slice = this.state.products.slice(
         this.state.offset,
@@ -64,6 +66,7 @@ class Products extends React.Component {
     }
   }
   handlePageClick = e => {
+    //console.log("in handlePageClick");
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
     this.setState(
@@ -76,20 +79,20 @@ class Products extends React.Component {
       }
     );
   };
-  myCallback(products1) {
-    console.log("^^^^^^^^^in sidemenu of product page..", products1);
-    this.setState({callbackData:products1});
-    console.log("callbackData",this.state.callbackData);
+  // myCallback(products1) {
+  //   //console.log("^^^^^^^^^in myCall of product page..", products1);
+  //   this.setState({callbackData:products1});
+  //   //console.log("callbackData",this.state.callbackData);
     
-  }
+  // }
   categoryHandler(val){
-      console.log("in handlecategory[][][[[][]",val);
+      //console.log("in handlecategory[][][[[][]",val);
       axios
-      .get(" https://27fc8643f73c.ngrok.io/commonProducts", {
+      .get(" https://1c23e7cef0cd.ngrok.io/commonProducts", {
         params: { category_id: val }
       })
       .then(({ data }) => {
-        console.log("data of category####", data.product_details);
+        //console.log("data of category####", data.product_details);
         let catProducts=data.product_details;
         this.setState({products:catProducts});
       });
@@ -97,13 +100,14 @@ class Products extends React.Component {
   }
   render() {
     // const { categories } = this.props;
-    // console.log("----------in product page and data is-------===", categories);
+    // //console.log("----------in product page and data is-------===", categories);
     // const { productData } = this.props;
     // const y = productData.productData;
     // this.state.products = y;
     let paginationLayout = "";
-    console.log("products----",this.state.products);
+    //console.log("products----",this.state.products);
     if (this.state.products != undefined) {
+      //console.log("in render in pagination");
       paginationLayout = (
         <ReactPaginate
           previousLabel={"prev"}
@@ -186,7 +190,7 @@ class Products extends React.Component {
 
 const mapStateToProps = state => {
   if (state.categories != undefined) {
-    console.log("%%%%%%%%%%  categories==", state.categories);
+    //console.log("%%%%%%%%%%  categories==", state.categories);
   }
 
   return {

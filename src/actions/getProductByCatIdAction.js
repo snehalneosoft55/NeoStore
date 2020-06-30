@@ -1,4 +1,5 @@
-import * as actionTypes from "../lib/constants/actionTypes"
+import * as actionTypes from "../lib/constants/actionTypes";
+import {BASE_URL} from '../constants/BaseURL'
 
 import axios from 'axios';
 
@@ -15,7 +16,7 @@ const getProductByCatIdSuccess = data => (
         return axios.get("")
             .then(({ data }) =>
             {
-                //console.log("data colors",data);
+                ////console.log("data colors",data);
                 dispatch(getProductByCatIdSuccess(data));
             });
     };
