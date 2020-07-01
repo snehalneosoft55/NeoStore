@@ -14,18 +14,26 @@ import StarIcon from "@material-ui/icons/Star";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { getCategories } from "../actions/ListOfSideMenuAction";
-import axios from 'axios'
+import Posts from "./Posts";
+import Pagination from "./Paginations";
+import axios from "axios";
+import { BASE_URL } from "../constants/BaseURL";
 // const products1 = null;
 class Products extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      posts: "",
+
+      currentPage: 1,
+
+      postsPerPage: 10,
       offset: 0,
       data: [],
       perPage: 6,
       currentPage: 0,
       products: "",
-      callbackData:''
+      callbackData: ""
     };
   }
 
@@ -33,9 +41,9 @@ class Products extends React.Component {
     //console.log("in componentwillmount of product page");
     this.props.getProducts().then(() => {
       const { productData } = this.props;
-
+      console.log("productdata in didmount", productData);
       const y = productData.productData;
-      this.setState({ products: y });
+      this.setState({ posts: y });
 
       ////console.log("fetched data :::::",products);
     });
@@ -83,74 +91,72 @@ class Products extends React.Component {
   //   //console.log("^^^^^^^^^in myCall of product page..", products1);
   //   this.setState({callbackData:products1});
   //   //console.log("callbackData",this.state.callbackData);
-    
+
   // }
-  categoryHandler(val){
-      //console.log("in handlecategory[][][[[][]",val);
-      axios
-      .get(" https://1c23e7cef0cd.ngrok.io/commonProducts", {
+  categoryHandler(val) {
+    //console.log("in handlecategory[][][[[][]",val);
+
+    axios
+
+      .get(BASE_URL + "commonProducts", {
         params: { category_id: val }
       })
+
       .then(({ data }) => {
         //console.log("data of category####", data.product_details);
-        let catProducts=data.product_details;
-        this.setState({products:catProducts});
+
+        let catProducts = data.product_details;
+
+        this.setState({ posts: catProducts });
+
+        // setPosts(catProducts);
+
+        // this.setState({products:catProducts});
       });
+
     //   this.setState({products:products1});
   }
   render() {
-    // const { categories } = this.props;
-    // //console.log("----------in product page and data is-------===", categories);
-    // const { productData } = this.props;
-    // const y = productData.productData;
-    // this.state.products = y;
-    let paginationLayout = "";
-    //console.log("products----",this.state.products);
-    if (this.state.products != undefined) {
-      //console.log("in render in pagination");
-      paginationLayout = (
-        <ReactPaginate
-          previousLabel={"prev"}
-          nextLabel={"next"}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={this.state.pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={this.handlePageClick}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active"}
-        />
-      );
-    } else {
-      paginationLayout = (
-        <h1 style={{ paddingLeft: "204px", paddingTop: "12px" }}>
-          No products available
-        </h1>
-      );
-    }
+    const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+
+    const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+
+    console.log("posts before current p", this.state.posts);
+    const temPosts = this.state.posts;
+    console.log("both", indexOfFirstPost, indexOfLastPost);
+    const currentPosts = temPosts.slice(0, 10);
+    console.log("in return current p==", currentPosts);
+
+    // Change page
+
+    const paginate = pageNumber => this.setState({ CurrentPage: pageNumber });
+
     return (
       <div>
         <HomeNavBar />
 
         <hr style={{ marginTop: "40px" }}></hr>
+
         <div>
           <Container>
             <Row>
               <Col xs={2}>
                 <SideMenu
-                // //   callbackFromParentInProduct={products1 => {
-                // //     this.myCallback(products1)
-                    
-                //   }}
-                  categoryHandler={(val)=>this.categoryHandler(val)}
+                  // //   callbackFromParentInProduct={products1 => {
+
+                  // //     this.myCallback(products1)
+
+                  //   }}
+
+                  categoryHandler={val => this.categoryHandler(val)}
                 />
               </Col>
+
               <Col style={{ marginLeft: "78px" }}>
                 <Row>
                   <p className="header1">
                     <span style={{ fontSize: "25px" }}>All Categories</span>
+
                     <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
                       Sort By:
                       <Button className="sort">
@@ -166,14 +172,22 @@ class Products extends React.Component {
                   </p>
 
                   <Col></Col>
+
                   <Col style={{ paddingLeft: "168px" }}></Col>
                 </Row>
+
                 <Row>
                   <div className="popularProduct">
-                    <div>
-                      {this.state.postData}
+                    <div className="container mt-5">
+                      {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
+                      {console.log("in redner posts===",currentPosts)}
+                      <Posts posts={currentPosts}  {...this.props}/>
 
-                      {paginationLayout}
+                      <Pagination
+                        postsPerPage={this.state.postsPerPage}
+                        totalPosts={this.state.posts.length}
+                        paginate={paginate}
+                      />
                     </div>
                   </div>
                 </Row>
@@ -181,7 +195,9 @@ class Products extends React.Component {
             </Row>
           </Container>
         </div>
+
         <hr></hr>
+
         <Footer />
       </div>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/slideimagesstyle.css';
 import Axios from 'axios';
 import { Carousel } from 'react-bootstrap';
-
+import { BASE_URL } from "../constants/BaseURL";
 
 export default class Slideimages extends React.Component{
   constructor(){
@@ -13,7 +13,7 @@ export default class Slideimages extends React.Component{
     }
   }
   componentWillMount(){
-    Axios.get('https://1c23e7cef0cd.ngrok.io/getAllCategories')
+    Axios.get(BASE_URL+'getAllCategories')
     .then(({data}) => {
       const response = data.category_details;
       this.setState({dashboardImages:response});
