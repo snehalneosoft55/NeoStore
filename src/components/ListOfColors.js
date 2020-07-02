@@ -8,8 +8,8 @@ import Button from '@material-ui/core/Button'
 import { Tooltip } from '@material-ui/core';
 
 export class ListOfColors extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             id:0,
             colors:""
@@ -23,9 +23,9 @@ export class ListOfColors extends Component {
       })
       
     }
-    colorHandler(colorId){
-        ////console.log("in colorHandler and get color id==",colorId);
-    }
+    // colorHandler(colorId){
+    //     ////console.log("in colorHandler and get color id==",colorId);
+    // }
     render() {
         const { colors } = this.props;
         ////console.log("colors",colors);
@@ -50,7 +50,10 @@ export class ListOfColors extends Component {
                         return(
                             <div >
                                 <Tooltip title={val.color_name}>
-                                <button  style={divStyle} onClick={()=>this.colorHandler(val.color_id)}>
+                                <button  
+                                    style={divStyle} 
+                                    onClick= { ()=>this.props.colorHandler(val.color_id)}
+                                >
                                 </button>
                                 </Tooltip>
                                 

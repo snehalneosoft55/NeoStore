@@ -11,7 +11,7 @@ export class Posts extends Component {
         console.log("this.props.posts;;;====---",this.props.posts);
         const products = this.props.posts;
         let x=''
-        if(products!= undefined && products !=''){
+        if(products!== undefined && products !==''){
             x =(
                 products.map(pd=>(
                     <ProductCard
@@ -24,8 +24,12 @@ export class Posts extends Component {
                 ))
             )
         }
-        else{
-            x=null
+        if(products ==='No details' || products=== null){
+            x=(
+                <div>
+                    <h1>Product Not Found</h1>
+                </div>
+            )
         }
         return (
             <div>

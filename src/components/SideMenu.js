@@ -78,7 +78,9 @@ export default function SimpleExpansionPanel(props) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            <ListOfColors />
+            <ListOfColors 
+              colorHandler={(val)=>props.colorHandler(val)}
+            />
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

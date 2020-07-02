@@ -33,7 +33,9 @@ class Products extends React.Component {
       perPage: 6,
       currentPage: 0,
       products: "",
-      callbackData: ""
+      callbackData: "",
+      category_id: "",
+      color_id: ""
     };
   }
 
@@ -93,6 +95,51 @@ class Products extends React.Component {
   //   //console.log("callbackData",this.state.callbackData);
 
   // }
+  colorHandler(val) {
+    axios
+
+      .get(BASE_URL + "commonProducts", {
+        params: { color_id: val }
+      })
+
+      .then(({ data }) => {
+        //console.log("data of category####", data.product_details);
+
+        let catProducts = data.product_details;
+
+        this.setState({ posts: catProducts, color_id: val });
+
+        // setPosts(catProducts);
+
+        // this.setState({products:catProducts});
+      });
+
+    //   this.setState({products:products1});
+  }
+  sortByRating(val) {
+    axios
+
+      .get(BASE_URL + "commonProducts", {
+        params: {
+          category_id: val.category_id,
+          color_id: val.color_id,
+          sortBy: val.sortBy,
+          sortIn: val.sortIn
+        }
+      })
+
+      .then(({ data }) => {
+        //console.log("data of category####", data.product_details);
+
+        let catProducts = data.product_details;
+
+        this.setState({ posts: catProducts });
+
+        // setPosts(catProducts);
+
+        // this.setState({products:catProducts});
+      });
+  }
   categoryHandler(val) {
     //console.log("in handlecategory[][][[[][]",val);
 
@@ -107,7 +154,7 @@ class Products extends React.Component {
 
         let catProducts = data.product_details;
 
-        this.setState({ posts: catProducts });
+        this.setState({ posts: catProducts, category_id: val });
 
         // setPosts(catProducts);
 
@@ -117,6 +164,9 @@ class Products extends React.Component {
     //   this.setState({products:products1});
   }
   render() {
+    // used 3 files (paginations.js, posts.js, productCard.js)
+    //  in this product pageXOffset, issue with indexOfFirstPost and indexOfLastPost
+
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
 
     const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
@@ -149,6 +199,7 @@ class Products extends React.Component {
                   //   }}
 
                   categoryHandler={val => this.categoryHandler(val)}
+                  colorHandler={val => this.colorHandler(val)}
                 />
               </Col>
 
@@ -159,7 +210,17 @@ class Products extends React.Component {
 
                     <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
                       Sort By:
-                      <Button className="sort">
+                      <Button
+                        className="sort"
+                        onClick={() =>
+                          this.sortByRating({
+                            category_id: this.state.category_id,
+                            color_id: this.state.color_id,
+                            sortBy: "product_rating",
+                            sortIn: true
+                          })
+                        }
+                      >
                         <StarIcon />
                       </Button>
                       <Button className="sort">
@@ -180,14 +241,21 @@ class Products extends React.Component {
                   <div className="popularProduct">
                     <div className="container mt-5">
                       {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
-                      {console.log("in redner posts===",currentPosts)}
-                      <Posts posts={currentPosts}  {...this.props}/>
-
-                      <Pagination
-                        postsPerPage={this.state.postsPerPage}
-                        totalPosts={this.state.posts.length}
-                        paginate={paginate}
-                      />
+                      {console.log("in redner posts===", currentPosts)}
+                      {currentPosts !== "No details" ? (
+                        <div>
+                          <Posts posts={currentPosts} {...this.props} />
+                          <Pagination
+                            postsPerPage={this.state.postsPerPage}
+                            totalPosts={this.state.posts.length}
+                            paginate={paginate}
+                          />
+                        </div>
+                      ) : (
+                        <h1 style={{ marginLeft: "230px" }}>
+                          No products Available
+                        </h1>
+                      )}
                     </div>
                   </div>
                 </Row>
