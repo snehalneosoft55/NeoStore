@@ -42,6 +42,7 @@ export default function SimpleExpansionPanel(props) {
           backgroundColor: "white",
           marginBottom: "20px"
         }}
+        onClick={props.allProductsHandler}
       >
         <Typography>All Products</Typography>
       </Button>

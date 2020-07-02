@@ -35,7 +35,8 @@ class Products extends React.Component {
       products: "",
       callbackData: "",
       category_id: "",
-      color_id: ""
+      color_id: "",
+      allProducts:''
     };
   }
 
@@ -45,56 +46,46 @@ class Products extends React.Component {
       const { productData } = this.props;
       console.log("productdata in didmount", productData);
       const y = productData.productData;
-      this.setState({ posts: y });
+      this.setState({ posts: y,allProducts:y });
 
       ////console.log("fetched data :::::",products);
     });
   }
 
-  receivedData() {
-    //console.log("in receivedData");
-    if (this.state.products != undefined) {
-      const slice = this.state.products.slice(
-        this.state.offset,
-        this.state.offset + this.state.perPage
-      );
-      const postData = slice.map(pd => (
-        <React.Fragment>
-          <ProductCard
-            id={pd.product_id}
-            image={pd.product_image}
-            title={pd.product_name}
-            price={pd.product_cost}
-            rating={pd.product_rating}
-          />
-        </React.Fragment>
-      ));
-      this.setState({
-        pageCount: Math.ceil(this.state.products.length / this.state.perPage),
-        postData
-      });
-    }
-  }
-  handlePageClick = e => {
-    //console.log("in handlePageClick");
-    const selectedPage = e.selected;
-    const offset = selectedPage * this.state.perPage;
-    this.setState(
-      {
-        currentPage: selectedPage,
-        offset: offset
-      },
-      () => {
-        this.receivedData();
+  
+ 
+  sortByAscending(){
+    axios
+    .get(BASE_URL + "commonProducts", {
+      params: {
+        // category_id: val.category_id,
+        // color_id: val.color_id,
+        // sortBy: val.sortBy,
+        sortIn: false
       }
-    );
-  };
-  // myCallback(products1) {
-  //   //console.log("^^^^^^^^^in myCall of product page..", products1);
-  //   this.setState({callbackData:products1});
-  //   //console.log("callbackData",this.state.callbackData);
+    })
 
-  // }
+    .then(({ data }) => {
+      let catProducts = data.product_details;
+      this.setState({ posts: catProducts });
+    });
+  }
+  sortByRating(val) {
+    axios
+      .get(BASE_URL + "commonProducts", {
+        params: {
+          // category_id: val.category_id,
+          // color_id: val.color_id,
+          sortBy: val.sortBy,
+          // sortIn: val.sortIn
+        }
+      })
+
+      .then(({ data }) => {
+        let catProducts = data.product_details;
+        this.setState({ posts: catProducts });
+      });
+  }
   colorHandler(val) {
     axios
 
@@ -116,37 +107,15 @@ class Products extends React.Component {
 
     //   this.setState({products:products1});
   }
-  sortByRating(val) {
-    axios
-
-      .get(BASE_URL + "commonProducts", {
-        params: {
-          category_id: val.category_id,
-          color_id: val.color_id,
-          sortBy: val.sortBy,
-          sortIn: val.sortIn
-        }
-      })
-
-      .then(({ data }) => {
-        //console.log("data of category####", data.product_details);
-
-        let catProducts = data.product_details;
-
-        this.setState({ posts: catProducts });
-
-        // setPosts(catProducts);
-
-        // this.setState({products:catProducts});
-      });
-  }
   categoryHandler(val) {
     //console.log("in handlecategory[][][[[][]",val);
 
     axios
 
       .get(BASE_URL + "commonProducts", {
-        params: { category_id: val }
+        params: { category_id: val ,
+          color_id:this.state.color_id
+        }
       })
 
       .then(({ data }) => {
@@ -162,6 +131,9 @@ class Products extends React.Component {
       });
 
     //   this.setState({products:products1});
+  }
+  allProductsHandler=()=>{
+    this.setState({posts:this.state.allProducts})
   }
   render() {
     // used 3 files (paginations.js, posts.js, productCard.js)
@@ -197,7 +169,7 @@ class Products extends React.Component {
                   // //     this.myCallback(products1)
 
                   //   }}
-
+                  allProductsHandler={this.allProductsHandler}
                   categoryHandler={val => this.categoryHandler(val)}
                   colorHandler={val => this.colorHandler(val)}
                 />
@@ -223,7 +195,11 @@ class Products extends React.Component {
                       >
                         <StarIcon />
                       </Button>
-                      <Button className="sort">
+                      <Button className="sort"
+                              onClick={
+                                ()=>this.sortByAscending
+                              }
+                      >
                         ₹<ArrowUpwardIcon></ArrowUpwardIcon>
                       </Button>
                       <Button className="sort">
