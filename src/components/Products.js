@@ -56,7 +56,7 @@ class Products extends React.Component {
         const { getProductBYColorId } = this.props;
         console.log("getProductBYColorId==",getProductBYColorId.getProductBYColorId);
         let catProducts = getProductBYColorId.getProductBYColorId;
-        this.setState({ posts: catProducts, color_id: val });
+        this.setState({ posts: catProducts, color_id: val ,category_id:''});
       });
   }
   categoryHandler(val) {
@@ -70,23 +70,46 @@ class Products extends React.Component {
       .then(({ data }) => {
         let catProducts = data.product_details;
         console.log("in console");
-        this.setState({ posts: catProducts, category_id: val });
+        this.setState({ posts: catProducts, category_id: val ,color_id:''});
       });
   }
-  sortByAscending() {
+  sortByAscending=()=> {
+    console.log("in sort by acs====");
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
           // category_id: val.category_id,
           // color_id: val.color_id,
           // sortBy: val.sortBy,
+          sortBy: "product_cost",
           sortIn: false
         }
       })
 
       .then(({ data }) => {
+        console.log("data",data);
         let catProducts = data.product_details;
-        this.setState({ posts: catProducts });
+        console.log("catPro---",catProducts);
+        this.setState({posts:catProducts});
+      });
+  }
+  sortByDesc=() =>{
+    axios
+      .get(BASE_URL + "commonProducts", {
+        params: {
+          // category_id: val.category_id,
+          // color_id: val.color_id,
+          // sortBy: val.sortBy,
+          sortBy: "product_cost",
+          sortIn: true
+        }
+      })
+
+      .then(({ data }) => {
+        console.log("data",data);
+        let catProducts = data.product_details;
+        console.log("catPro---",catProducts);
+        this.setState({posts:catProducts});
       });
   }
   sortByRating(val) {
@@ -172,12 +195,15 @@ class Products extends React.Component {
                       </Button>
                       <Button className="sort"
                         onClick={
-                          () => this.sortByAscending
+                          this.sortByAscending
                         }
                       >
                         ₹<ArrowUpwardIcon></ArrowUpwardIcon>
                       </Button>
-                      <Button className="sort">
+                      <Button className="sort"
+                        onClick={this.sortByDesc}
+                      >
+
                         ₹<ArrowDownwardIcon />
                       </Button>
                     </span>
