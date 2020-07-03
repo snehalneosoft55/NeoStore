@@ -69,6 +69,7 @@ class Products extends React.Component {
       })
       .then(({ data }) => {
         let catProducts = data.product_details;
+        console.log("in console");
         this.setState({ posts: catProducts, category_id: val });
       });
   }
