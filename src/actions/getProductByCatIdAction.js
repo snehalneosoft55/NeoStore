@@ -10,14 +10,28 @@ const getProductByCatIdSuccess = data => (
     payload: data
   });
 
-  export function getProductByCatId() 
+  export function getProductByCatId(val) 
   {
     return function(dispatch) {
-        return axios.get("")
+      return axios.get(BASE_URL + "commonProducts", {params: { category_id: val }})
+        
             .then(({ data }) =>
             {
                 ////console.log("data colors",data);
-                dispatch(getProductByCatIdSuccess(data));
+                console.log("data categoryyyyyyyyyyyyy=---",data);
+            const products = data.product_details;
+            console.log("products",products);
+                dispatch(getProductByCatIdSuccess(products));
             });
     };
   }
+//   return function(dispatch) {
+//     return axios.get(BASE_URL + "commonProducts", {params: { color_id: val }})
+//         .then(({ data }) =>
+//         {
+//             console.log("data colors",data);
+//             const products = data.product_details;
+//             console.log("products",products);
+//             dispatch(getProductByColorIdSuccess(products));
+//         });
+// };

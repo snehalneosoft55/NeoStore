@@ -10,14 +10,17 @@ const getProductByColorIdSuccess = data => (
     payload: data
   });
 
-  export function getProductByColorId() 
+  export function getProductByColorId(val) 
   {
     return function(dispatch) {
-        return axios.get("")
+        return axios.get(BASE_URL + "commonProducts", {params: { color_id: val }})
             .then(({ data }) =>
             {
-                ////console.log("data colors",data);
-                dispatch(getProductByColorIdSuccess(data));
+                console.log("data colors",data);
+                const products = data.product_details;
+                console.log("products",products);
+                dispatch(getProductByColorIdSuccess(products));
             });
     };
   }
+  

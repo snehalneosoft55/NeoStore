@@ -13,11 +13,13 @@ import { getProducts } from "../actions/displayProductAction";
 import StarIcon from "@material-ui/icons/Star";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import { getCategories } from "../actions/ListOfSideMenuAction";
+import { getCategories} from "../actions/ListOfSideMenuAction";
+import { getProductByColorId } from '../actions/getproductByColorIdAction'
 import Posts from "./Posts";
 import Pagination from "./Paginations";
 import axios from "axios";
 import { BASE_URL } from "../constants/BaseURL";
+
 // const products1 = null;
 class Products extends React.Component {
   constructor(props) {
@@ -36,39 +38,55 @@ class Products extends React.Component {
       callbackData: "",
       category_id: "",
       color_id: "",
-      allProducts:''
+      allProducts: ''
     };
   }
 
   componentDidMount() {
-    //console.log("in componentwillmount of product page");
     this.props.getProducts().then(() => {
       const { productData } = this.props;
       console.log("productdata in didmount", productData);
       const y = productData.productData;
-      this.setState({ posts: y,allProducts:y });
-
-      ////console.log("fetched data :::::",products);
+      this.setState({ posts: y, allProducts: y });
     });
   }
-
-  
- 
-  sortByAscending(){
+  colorHandler(val) {
+    
+      this.props.getProductByColorId(val).then(() => {
+        const { getProductBYColorId } = this.props;
+        console.log("getProductBYColorId==",getProductBYColorId.getProductBYColorId);
+        let catProducts = getProductBYColorId.getProductBYColorId;
+        this.setState({ posts: catProducts, color_id: val });
+      });
+  }
+  categoryHandler(val) {
     axios
-    .get(BASE_URL + "commonProducts", {
-      params: {
-        // category_id: val.category_id,
-        // color_id: val.color_id,
-        // sortBy: val.sortBy,
-        sortIn: false
-      }
-    })
+      .get(BASE_URL + "commonProducts", {
+        params: {
+          category_id: val,
+          color_id: this.state.color_id
+        }
+      })
+      .then(({ data }) => {
+        let catProducts = data.product_details;
+        this.setState({ posts: catProducts, category_id: val });
+      });
+  }
+  sortByAscending() {
+    axios
+      .get(BASE_URL + "commonProducts", {
+        params: {
+          // category_id: val.category_id,
+          // color_id: val.color_id,
+          // sortBy: val.sortBy,
+          sortIn: false
+        }
+      })
 
-    .then(({ data }) => {
-      let catProducts = data.product_details;
-      this.setState({ posts: catProducts });
-    });
+      .then(({ data }) => {
+        let catProducts = data.product_details;
+        this.setState({ posts: catProducts });
+      });
   }
   sortByRating(val) {
     axios
@@ -86,54 +104,10 @@ class Products extends React.Component {
         this.setState({ posts: catProducts });
       });
   }
-  colorHandler(val) {
-    axios
 
-      .get(BASE_URL + "commonProducts", {
-        params: { color_id: val }
-      })
-
-      .then(({ data }) => {
-        //console.log("data of category####", data.product_details);
-
-        let catProducts = data.product_details;
-
-        this.setState({ posts: catProducts, color_id: val });
-
-        // setPosts(catProducts);
-
-        // this.setState({products:catProducts});
-      });
-
-    //   this.setState({products:products1});
-  }
-  categoryHandler(val) {
-    //console.log("in handlecategory[][][[[][]",val);
-
-    axios
-
-      .get(BASE_URL + "commonProducts", {
-        params: { category_id: val ,
-          color_id:this.state.color_id
-        }
-      })
-
-      .then(({ data }) => {
-        //console.log("data of category####", data.product_details);
-
-        let catProducts = data.product_details;
-
-        this.setState({ posts: catProducts, category_id: val });
-
-        // setPosts(catProducts);
-
-        // this.setState({products:catProducts});
-      });
-
-    //   this.setState({products:products1});
-  }
-  allProductsHandler=()=>{
-    this.setState({posts:this.state.allProducts})
+  
+  allProductsHandler = () => {
+    this.setState({ posts: this.state.allProducts })
   }
   render() {
     // used 3 files (paginations.js, posts.js, productCard.js)
@@ -196,9 +170,9 @@ class Products extends React.Component {
                         <StarIcon />
                       </Button>
                       <Button className="sort"
-                              onClick={
-                                ()=>this.sortByAscending
-                              }
+                        onClick={
+                          () => this.sortByAscending
+                        }
                       >
                         ₹<ArrowUpwardIcon></ArrowUpwardIcon>
                       </Button>
@@ -228,10 +202,10 @@ class Products extends React.Component {
                           />
                         </div>
                       ) : (
-                        <h1 style={{ marginLeft: "230px" }}>
-                          No products Available
-                        </h1>
-                      )}
+                          <h1 style={{ marginLeft: "230px" }}>
+                            No products Available
+                          </h1>
+                        )}
                     </div>
                   </div>
                 </Row>
@@ -249,18 +223,22 @@ class Products extends React.Component {
 }
 
 const mapStateToProps = state => {
-  if (state.categories != undefined) {
-    //console.log("%%%%%%%%%%  categories==", state.categories);
+  if (state.getProductBYColorId != undefined) {
+  console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
+
   }
+  console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
 
   return {
     productData: state.productData,
-    categories: state.categories
+    categories: state.categories,
+    getProductBYColorId:state.getProductByColorIdReducer
   };
 };
 
 const mapDispatchToProps = {
   getProducts,
+  getProductByColorId,
   getCategories
 };
 
