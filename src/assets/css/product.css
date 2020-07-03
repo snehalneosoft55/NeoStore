@@ -20,8 +20,8 @@
 }
 .header1{
     margin-left:22px;
-    margin-top:4%;
-    margin-bottom: 4%;
+    /* margin-top:0; */
+    /* margin-bottom: 4%; */
     font-weight: 400;
 }
 .productCart_title{

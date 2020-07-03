@@ -22,18 +22,10 @@ const useStyles = makeStyles(theme => ({
 const fetchedData='';
 export default function SimpleExpansionPanel(props) {
   const classes = useStyles();
-  // useEffect(
-  //   ()=>{
-  //     //console.log("in useEffect of sidemenu",fetchedData);
-  //     props.callbackFromParent(fetchedData);
-  //   }
-  // );
   function myCallback(fetchedData) {
-    //console.log("^^^^^^^^^in sidemenu..", fetchedData);
-    // props.callbackFromParentInProduct(fetchedData);
   }
   return (
-    <div className={classes.root} style={{ paddingTop: "40px" }}>
+    <div className={classes.root} style={{ paddingTop: "4px" }}>
       <Button
         className="btn"
         variant="contained"

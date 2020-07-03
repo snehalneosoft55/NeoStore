@@ -13,12 +13,14 @@ import { getProducts } from "../actions/displayProductAction";
 import StarIcon from "@material-ui/icons/Star";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import { getCategories} from "../actions/ListOfSideMenuAction";
-import { getProductByColorId } from '../actions/getproductByColorIdAction'
+import { getCategories } from "../actions/ListOfSideMenuAction";
+import { getProductByColorId } from "../actions/getproductByColorIdAction";
 import Posts from "./Posts";
 import Pagination from "./Paginations";
 import axios from "axios";
 import { BASE_URL } from "../constants/BaseURL";
+import Example from './Loader'
+import Loader from 'react-loader-spinner';
 
 // const products1 = null;
 class Products extends React.Component {
@@ -38,7 +40,7 @@ class Products extends React.Component {
       callbackData: "",
       category_id: "",
       color_id: "",
-      allProducts: ''
+      allProducts: "",
     };
   }
 
@@ -51,29 +53,31 @@ class Products extends React.Component {
     });
   }
   colorHandler(val) {
-    
-      this.props.getProductByColorId(val).then(() => {
-        const { getProductBYColorId } = this.props;
-        console.log("getProductBYColorId==",getProductBYColorId.getProductBYColorId);
-        let catProducts = getProductBYColorId.getProductBYColorId;
-        this.setState({ posts: catProducts, color_id: val ,category_id:''});
-      });
+    this.props.getProductByColorId(val).then(() => {
+      const { getProductBYColorId } = this.props;
+      console.log(
+        "getProductBYColorId==",
+        getProductBYColorId.getProductBYColorId
+      );
+      let catProducts = getProductBYColorId.getProductBYColorId;
+      this.setState({ posts: catProducts, color_id: val, category_id: "" });
+    });
   }
   categoryHandler(val) {
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
           category_id: val,
-          color_id: this.state.color_id
-        }
+          color_id: this.state.color_id,
+        },
       })
       .then(({ data }) => {
         let catProducts = data.product_details;
         console.log("in console");
-        this.setState({ posts: catProducts, category_id: val ,color_id:''});
+        this.setState({ posts: catProducts, category_id: val, color_id: "" });
       });
   }
-  sortByAscending=()=> {
+  sortByAscending = () => {
     console.log("in sort by acs====");
     axios
       .get(BASE_URL + "commonProducts", {
@@ -82,18 +86,18 @@ class Products extends React.Component {
           // color_id: val.color_id,
           // sortBy: val.sortBy,
           sortBy: "product_cost",
-          sortIn: false
-        }
+          sortIn: false,
+        },
       })
 
       .then(({ data }) => {
-        console.log("data",data);
+        console.log("data", data);
         let catProducts = data.product_details;
-        console.log("catPro---",catProducts);
-        this.setState({posts:catProducts});
+        console.log("catPro---", catProducts);
+        this.setState({ posts: catProducts });
       });
-  }
-  sortByDesc=() =>{
+  };
+  sortByDesc = () => {
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
@@ -101,17 +105,17 @@ class Products extends React.Component {
           // color_id: val.color_id,
           // sortBy: val.sortBy,
           sortBy: "product_cost",
-          sortIn: true
-        }
+          sortIn: true,
+        },
       })
 
       .then(({ data }) => {
-        console.log("data",data);
+        console.log("data", data);
         let catProducts = data.product_details;
-        console.log("catPro---",catProducts);
-        this.setState({posts:catProducts});
+        console.log("catPro---", catProducts);
+        this.setState({ posts: catProducts });
       });
-  }
+  };
   sortByRating(val) {
     axios
       .get(BASE_URL + "commonProducts", {
@@ -120,7 +124,7 @@ class Products extends React.Component {
           // color_id: val.color_id,
           sortBy: val.sortBy,
           // sortIn: val.sortIn
-        }
+        },
       })
 
       .then(({ data }) => {
@@ -129,10 +133,9 @@ class Products extends React.Component {
       });
   }
 
-  
   allProductsHandler = () => {
-    this.setState({ posts: this.state.allProducts })
-  }
+    this.setState({ posts: this.state.allProducts });
+  };
   render() {
     // used 3 files (paginations.js, posts.js, productCard.js)
     //  in this product pageXOffset, issue with indexOfFirstPost and indexOfLastPost
@@ -149,16 +152,57 @@ class Products extends React.Component {
 
     // Change page
 
-    const paginate = pageNumber => this.setState({ CurrentPage: pageNumber });
-
+    const paginate = (pageNumber) => this.setState({ CurrentPage: pageNumber });
+    let x=''
+    if(currentPosts === undefined || currentPosts ==='')
+    {
+        x=(
+          
+            <Loader
+               type="Oval"
+               color="#00BFFF"
+               height={100}
+               width={100}
+              //  style={
+              //    {marginLeft:"1000px",marginTop:"100px"}
+              //  }
+               
+       
+            />
+        )
+    }
+    else{
+      x=(
+        <React.Fragment className="popularProduct">
+        <React.Fragment className="container mt-5">
+          {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
+          {console.log("in redner posts===", currentPosts)}
+          {currentPosts !== "No details" ? (
+            <React.Fragment>
+              <Posts posts={currentPosts} {...this.props} />
+              <Pagination
+                postsPerPage={this.state.postsPerPage}
+                totalPosts={this.state.posts.length}
+                paginate={paginate}
+              />
+            </React.Fragment>
+          ) : (
+            <h1 style={{ marginLeft: "230px" }}>
+              No products Available
+            </h1>
+          )}
+        </React.Fragment>
+      </React.Fragment>
+      )
+    }
     return (
-      <div>
+      <React.Fragment>
         <HomeNavBar />
 
-        <hr style={{ marginTop: "40px" }}></hr>
+        <hr style={{marginTop:"30px",width:"1300px",marginBottom:"16px"}}></hr>
 
-        <div>
-          <Container>
+        <React.Fragment>
+          <Container fluid={false}>
             <Row>
               <Col xs={2}>
                 <SideMenu
@@ -168,14 +212,14 @@ class Products extends React.Component {
 
                   //   }}
                   allProductsHandler={this.allProductsHandler}
-                  categoryHandler={val => this.categoryHandler(val)}
-                  colorHandler={val => this.colorHandler(val)}
+                  categoryHandler={(val) => this.categoryHandler(val)}
+                  colorHandler={(val) => this.colorHandler(val)}
                 />
               </Col>
 
               <Col style={{ marginLeft: "78px" }}>
                 <Row>
-                  <p className="header1">
+                  <div className="header1">
                     <span style={{ fontSize: "25px" }}>All Categories</span>
 
                     <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
@@ -187,27 +231,20 @@ class Products extends React.Component {
                             category_id: this.state.category_id,
                             color_id: this.state.color_id,
                             sortBy: "product_rating",
-                            sortIn: true
+                            sortIn: true,
                           })
                         }
                       >
                         <StarIcon />
                       </Button>
-                      <Button className="sort"
-                        onClick={
-                          this.sortByAscending
-                        }
-                      >
+                      <Button className="sort" onClick={this.sortByAscending}>
                         ₹<ArrowUpwardIcon></ArrowUpwardIcon>
                       </Button>
-                      <Button className="sort"
-                        onClick={this.sortByDesc}
-                      >
-
+                      <Button className="sort" onClick={this.sortByDesc}>
                         ₹<ArrowDownwardIcon />
                       </Button>
                     </span>
-                  </p>
+                  </div>
 
                   <Col></Col>
 
@@ -215,58 +252,40 @@ class Products extends React.Component {
                 </Row>
 
                 <Row>
-                  <div className="popularProduct">
-                    <div className="container mt-5">
-                      {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
-                      {console.log("in redner posts===", currentPosts)}
-                      {currentPosts !== "No details" ? (
-                        <div>
-                          <Posts posts={currentPosts} {...this.props} />
-                          <Pagination
-                            postsPerPage={this.state.postsPerPage}
-                            totalPosts={this.state.posts.length}
-                            paginate={paginate}
-                          />
-                        </div>
-                      ) : (
-                          <h1 style={{ marginLeft: "230px" }}>
-                            No products Available
-                          </h1>
-                        )}
-                    </div>
-                  </div>
+                {x}
+                
+
                 </Row>
               </Col>
             </Row>
           </Container>
-        </div>
+        </React.Fragment>
 
         <hr></hr>
 
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   if (state.getProductBYColorId != undefined) {
-  console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
-
+    console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
   }
   console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
 
   return {
     productData: state.productData,
     categories: state.categories,
-    getProductBYColorId:state.getProductByColorIdReducer
+    getProductBYColorId: state.getProductByColorIdReducer,
   };
 };
 
 const mapDispatchToProps = {
   getProducts,
   getProductByColorId,
-  getCategories
+  getCategories,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
