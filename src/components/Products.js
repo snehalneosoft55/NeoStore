@@ -45,6 +45,22 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
+    if(this.props.location.state){
+      const datafromSlideImage =this.props.location.state.category_id_fromslide_images
+      axios
+      .get(BASE_URL + "commonProducts", {
+        params: {
+          category_id:datafromSlideImage ,
+        },
+      })
+      .then(({ data }) => {
+        let catProducts = data.product_details;
+        // console.log("in console---data----",data);
+
+        this.setState({ posts: catProducts, category_id: datafromSlideImage, color_id: "" });
+      });
+     
+    }
     this.props.getProducts().then(() => {
       const { productData } = this.props;
       console.log("productdata in didmount", productData);
@@ -68,7 +84,7 @@ class Products extends React.Component {
       .get(BASE_URL + "commonProducts", {
         params: {
           category_id: val,
-          color_id: this.state.color_id,
+          // color_id: this.state.color_id,
         },
       })
       .then(({ data }) => {
