@@ -20,7 +20,7 @@
 .x{
     position: relative;
     z-index: 0;
-    /* margin-left:20px */
+    /* margin-left:/ */
 }
 .circle{
     position: absolute;
@@ -30,7 +30,7 @@
     background-color: red;
     width:20px;
     top:10px;
-    left:1085px;
+    left:1062px;
 }
 .circl{
     /* display: grid; */
@@ -121,9 +121,11 @@ padding:0px  !important;
 }
 .cartButton{
     background-color: white !important;
+    width:90px;
     height:46px;
     margin-right: 10px;
     margin-left: 10px;
+    margin-bottom: 10px;
     
 }
 .userDropdown{

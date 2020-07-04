@@ -8,12 +8,15 @@ import {RegEx} from './RegEx';
 import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
-import '../assets/css/stylesheet.css'
+import '../assets/css/stylesheet.css';
+
+// import {Button} from '@material-ui/core/Button'
 
 
 import { connect } from 'react-redux'
 import {postUserInfo}  from '../actions/registrationAction'
 import TextField from '@material-ui/core/TextField'
+import ButtnfromReg from './buttonsInRegForm'
 
 let valid = true;
 let forbutton;
@@ -227,6 +230,9 @@ const validateForm = (users) => {
         return(
         <div>
             <HomeNavBar></HomeNavBar>
+            <div>
+                <ButtnfromReg></ButtnfromReg>
+            </div>
             <Container fluid={true} >
             <hr className="line"></hr>
             <Row className="Signup-wrapper">

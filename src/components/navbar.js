@@ -9,6 +9,7 @@ import {Dropdown} from 'react-bootstrap';
 import Assets from '../constants/Image';
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import LoginReg from './LoginReg'
 
 export default class HomeNavbar extends React.Component{
     render(){
@@ -42,26 +43,14 @@ export default class HomeNavbar extends React.Component{
                             <input type="text" class="form-control" placeholder="Search"/>
                         </div>
                         
-                        <Link className="cartlink" to="/Cart">
+                        <Link className="cartlink"  to="/Cart">
                             <Button className="cartButton" variant="Link">
                                 <ShoppingCartIcon className="x"></ShoppingCartIcon>
                                 <span className="circle">0</span>
                                      <span style={{marginLeft:"14px"}}>Cart</span>
                             </Button>
                         </Link>
-                        {/* <Button className="forUser" variant="Link">
-                        <i class="fa fa-angle-down" /></Button> */}
-                        
-                        <Dropdown className=" mr-auto userDropdown">
-                            <Dropdown.Toggle className="userDropdown_toggle" >
-                                <i className="fa fa-user userDropdown_toggle_icon"></i>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="userDropdown_items">
-                                    <Dropdown.Item href="#/action-1"><Link to="/Registration">Registration</Link></Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2"><Link to="/SignIn">Sign In</Link></Dropdown.Item>
-                            </Dropdown.Menu>
-                         </Dropdown>
-                         
+                            <LoginReg ></LoginReg>
                          
                    </Nav>
                    </Navbar.Collapse>

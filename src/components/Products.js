@@ -31,16 +31,16 @@ class Products extends React.Component {
 
       currentPage: 1,
 
-      postsPerPage: 10,
-      offset: 0,
-      data: [],
-      perPage: 6,
-      currentPage: 0,
-      products: "",
-      callbackData: "",
-      category_id: "",
-      color_id: "",
-      allProducts: "",
+      postsPerPage: 2,
+      // offset: 0,
+      // data: [],
+      // perPage: 6,
+      // currentPage: 0,
+      // products: "",
+      // callbackData: "",
+      // category_id: "",
+      // color_id: "",
+      // allProducts: "",
     };
   }
 
@@ -155,15 +155,15 @@ class Products extends React.Component {
   render() {
     // used 3 files (paginations.js, posts.js, productCard.js)
     //  in this product pageXOffset, issue with indexOfFirstPost and indexOfLastPost
-
+    console.log("currentPage==anddd,post per page==",this.state.currentPage,this.state.postsPerPage);
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
-
+    console.log("index of last post ==",indexOfLastPost);
     const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
-
-    console.log("posts before current p", this.state.posts);
+    
+    // console.log("indexOfFirstPost", this.state.posts);
     const temPosts = this.state.posts;
     console.log("both", indexOfFirstPost, indexOfLastPost);
-    const currentPosts = temPosts.slice(0, 10);
+    const currentPosts = temPosts.slice(indexOfFirstPost, indexOfLastPost);
     console.log("in return current p==", currentPosts);
 
     // Change page
