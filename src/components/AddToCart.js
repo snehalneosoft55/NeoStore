@@ -33,14 +33,14 @@ export default class AddToCart extends React.Component{
         console.log("productdetails====");
 			const myArray = await localStorage.getItem('cartProducts');
 			// console.log("myArray: ",JSON.parse(myArray));
-			let newProduct, flag=false;
+			let productsInLocalStorage, flag=false;
 
 			if(myArray !== null){ 
 					
-					newProduct =  JSON.parse(myArray);
-                console.log("newProduct",newProduct);
+					productsInLocalStorage =  JSON.parse(myArray);
+                console.log("productsInLocalStorage",productsInLocalStorage);
 
-					newProduct.map( (val,i)=>{
+					productsInLocalStorage.map( (val,i)=>{
                         let x=val;
                         // console.log("x==",x.productDetail.id)
                         
@@ -69,14 +69,14 @@ export default class AddToCart extends React.Component{
 
 					
 							if(flag === false){
-							newProduct.push(productDetails);
+							productsInLocalStorage.push(productDetails);
 							alert("Added to cart");
-							// console.log("Modified myArray newProduct: ",newProduct);
+							// console.log("Modified myArray productsInLocalStorage: ",productsInLocalStorage);
 							}
 							else{
 							alert('Already in cart');
 							}
-							await localStorage.setItem('cartProducts', JSON.stringify(newProduct));
+							await localStorage.setItem('cartProducts', JSON.stringify(productsInLocalStorage));
 					
 			}
 			else{
@@ -91,10 +91,10 @@ export default class AddToCart extends React.Component{
     //     // ];
     //     const myArray= localStorage.getItem('cartProducts');
 
-    //     let newProduct;
+    //     let productsInLocalStorage;
     //     let flag=false;
     //     if(myArray !== null){
-    //         newProduct=JSON.parse(myArray)
+    //         productsInLocalStorage=JSON.parse(myArray)
     //         data1.map(val=>{
     //             if(val.productDetail.id==productDetail.id){
     //                 flag=true;
@@ -108,7 +108,7 @@ export default class AddToCart extends React.Component{
                 
     //         )
             
-    //             localStorage.setItem('cartProducts', JSON.stringify(newProduct));
+    //             localStorage.setItem('cartProducts', JSON.stringify(productsInLocalStorage));
     //             console.log("localstorage length==",localStorage.length);
     //     }
     //     else{
