@@ -20,6 +20,8 @@ export class Posts extends Component {
                                           title={pd.product_name}
                                           price={pd.product_cost}
                                           rating={pd.product_rating}
+                                          productStock={pd.product_stock}
+                                          productProducer={pd.product_producer}
                                         />
                 ))
             )
