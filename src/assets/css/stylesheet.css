@@ -67,9 +67,10 @@
     background-color: #db4437;
 }
 .textField{
-    height:80px
+    height:90px
 }
 .errorShow{
+    margin-top:20px;
     color:red
 }
 .formGridCheckbox{

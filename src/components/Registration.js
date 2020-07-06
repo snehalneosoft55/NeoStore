@@ -9,6 +9,7 @@ import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
 import '../assets/css/stylesheet.css';
+import TextFieldsIcon from '@material-ui/icons/TextFields';
 
 // import {Button} from '@material-ui/core/Button'
 
@@ -26,15 +27,17 @@ import Radio from '@material-ui/core/Radio'
 let valid = true;
 let forbutton;
 const validateForm = (users) => {
-    ////console.log("in validateForm");
+    console.log("in validateForm");
     
     Object.values(users).forEach(
         (val) => {
+            console.log("in obj.values-----val");
             if(val===''){valid = false;}
             else{valid=true;}
         }  
     
     );
+    console.log("valid==",valid);
     return valid;
 }
 
@@ -52,7 +55,7 @@ const validateForm = (users) => {
                 confirmPassword:'',
                 mobileNo:'',
                 gender:'',
-                value:''
+                // value:''
             },
                 errors:{
                     firstName:"",
@@ -199,9 +202,11 @@ const validateForm = (users) => {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        
+        console.log("in handleSubmit");
         if(validateForm(this.state.users)){
-            forbutton=true;
+            
+            valid=true;
+            console.log("in handlesub valid==",valid);
             this.setState({submitError:''});
             ////console.log("valid form","forbutton:",forbutton, this.state.users,JSON.stringify(this.state.users));
             const userData1 = {
@@ -216,7 +221,7 @@ const validateForm = (users) => {
             ////console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
             ////console.log("------------userData,in onsubmit",userData1);
             this.props.postUserInfo(userData1);
-          
+        //   <Link to="/HomePage"></Link>
         }
         else{
             forbutton=false;
@@ -259,7 +264,12 @@ const validateForm = (users) => {
                                 autoComplete="off"
                                 value={this.state.value}
                                 onChange={this.handleChange}
-                            />
+                            >
+                                <span>
+                                <TextFieldsIcon></TextFieldsIcon>
+                                </span>
+                            </TextField>
+                                
                             <br/><span className="errorShow" >{errors.firstName}</span>
                         </div>
                         <div className="textField">
@@ -316,7 +326,7 @@ const validateForm = (users) => {
                                 value={this.state.value}
                                 onChange={this.handleChange}
                             />
-                            <br/><span className="errorShow" >{errors.ConfirmPassword}</span>
+                            <br/><span className="errorShow" >{errors.confirmPassword}</span>
                         </div>
                         <div className="textField">
                             <TextField 
@@ -332,29 +342,29 @@ const validateForm = (users) => {
                             />
                             <br/><span className="errorShow" >{errors.mobileNo}</span>
                         </div>
-                        <span className="errorShow">{errors.username}</span>
+                        {/* <span className="errorShow">{errors.username}</span> */}
                         {/* <Inputs name="Password" type="password" maxlength="10" placeholder="Password" value={this.state.value} handleChange={this.handleChange} /> */}
-                        <span className="errorShow">{errors.password}</span>
+                        {/* <span className="errorShow">{errors.password}</span> */}
                         {/* <Inputs name="ConfirmPassword" type="password" placeholder="Confirm Password" value={this.state.value} handleChange={this.handleChange}/> */}
-                        <span className="errorShow">{errors.confirmPassword}</span>
+                        {/* <span className="errorShow">{errors.confirmPassword}</span> */}
                         {/* <Inputs name="mobileNo" type="number" placeholder="Mobile No" value={this.state.value} handleChange={this.handleChange}/>  */}
-                        <span className="errorShow">{errors.mobileNo}</span>
+                        {/* <span className="errorShow">{errors.mobileNo}</span> */}
                         {/* <Form.check type="radio">Male</Form.check> */}
                         
                         
-                        {/* <Form.Group className="formGridCheckbox" >
+                        <Form.Group className="formGridCheckbox" >
                             <label className="genderLabel">Gender</label>
                         
                                 <Form.Check inline type="radio" label="Female" name="gender" value="F" onChange={this.handleChange}/>
                                 <Form.Check inline type="radio" label="Male" name="gender" value="M" onChange={this.handleChange}/>
-                        </Form.Group> */}
-                        <FormControl component="fieldset">
+                        </Form.Group>
+                        {/* <FormControl component="fieldset"> */}
   {/* <FormLabel component="legend">Gender</FormLabel> */}
-  <RadioGroup aria-label="gender" name="gender1" value={this.state.value} onChange={this.handleChange}>
+  {/* <RadioGroup aria-label="gender" name="gender1" value={this.state.value} onChange={this.handleChange}>
     <FormControlLabel value="female" control={<Radio />} label="Male" />
     <FormControlLabel value="male" control={<Radio />} label="Female" />
   </RadioGroup>
-</FormControl>
+</FormControl> */}
                         <span className="errorShow">{errors.gender}</span>
                         
 

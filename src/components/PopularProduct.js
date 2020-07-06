@@ -22,6 +22,7 @@ class Popularproduct extends React.Component{
     render(){
         const { popularProducts } = this.props;
         const TopRatingProducts =popularProducts.popularProducts;
+        // console.log("TopRatingProducts in render----",TopRatingProducts);
         let dashbordProduct=[];
         return(
             <div className="popularProduct">
@@ -33,12 +34,17 @@ class Popularproduct extends React.Component{
                 {
                     (TopRatingProducts !== undefined)&&(TopRatingProducts.map((val,i)=>
                     {
+                        
                         dashbordProduct[i]=val.DashboardProducts;
+                        console.log("dashbordProduct",dashbordProduct);
                         let productTitle=dashbordProduct[i][0].product_name;
                         let productPrice=dashbordProduct[i][0].product_cost;
                         let productImage= dashbordProduct[i][0].product_image;
                         let productRating=dashbordProduct[i][0].product_rating;
                         let productId=dashbordProduct[i][0].product_id;
+                        let productStock = dashbordProduct[i][0].product_stock;
+                        let productProducer = dashbordProduct[i][0].product_producer
+
                         return(
                                 <ProductCard 
                                     image={productImage} 
@@ -46,6 +52,8 @@ class Popularproduct extends React.Component{
                                     price={productPrice} 
                                     rating={productRating}
                                     id={productId}
+                                    productStock={productStock}
+                                    productProducer={productProducer}
                                 />
                         )
                     }))

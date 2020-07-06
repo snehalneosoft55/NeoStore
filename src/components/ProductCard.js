@@ -30,7 +30,7 @@ export default class ProductCard extends React.Component{
                     </Link>
                 </div> 
                 <Card.Text className="productCart_price"> ₹ {this.props.price} </Card.Text>
-                <AddTocart m='23%'/>
+                <AddTocart m='23%' ProductData={this.props}/>
                 <Card.Text className="productCart_rating">
                     <StarRatingComponent 
                         name="rate2" 

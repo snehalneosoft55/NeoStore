@@ -8,22 +8,22 @@
 .ButtnfromRegWrapperfacebook{
     width:221px;
     height:70px;
-    background: rgb(47, 47, 170);
+    background: #3b5998;
     border:none;
     margin-right:15px;
     font-size: 14px;
     
 }
 .ButtnfromRegWrapperfacebook:hover{
-    background: rgb(47, 47, 170);
+    background: #3b5998;
 }
 .ButtnfromRegWrapperGoogle{
     width:221px;
-    background: red;
+    background: #db4437;
     border:none;
     height:65px;
 }
 .ButtnfromRegWrapperGoogle:hover{
-    background: red;
+    background: #db4437;
     border:none
 }
