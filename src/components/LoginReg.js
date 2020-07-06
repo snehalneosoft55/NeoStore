@@ -13,7 +13,8 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
+    
     
   },
   paper: {

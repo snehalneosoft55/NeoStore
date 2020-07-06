@@ -1,0 +1,29 @@
+.ButtnfromRegWrapper{
+    margin-top:70px;
+    margin-left:450px;
+    text-align:"webkit-center";
+    margin-bottom: 20px;
+    /* font-size: 14px; */
+}
+.ButtnfromRegWrapperfacebook{
+    width:221px;
+    height:70px;
+    background: rgb(47, 47, 170);
+    border:none;
+    margin-right:15px;
+    font-size: 14px;
+    
+}
+.ButtnfromRegWrapperfacebook:hover{
+    background: rgb(47, 47, 170);
+}
+.ButtnfromRegWrapperGoogle{
+    width:221px;
+    background: red;
+    border:none;
+    height:65px;
+}
+.ButtnfromRegWrapperGoogle:hover{
+    background: red;
+    border:none
+}

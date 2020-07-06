@@ -31,7 +31,7 @@ class Products extends React.Component {
 
       currentPage: 1,
 
-      postsPerPage: 2,
+      postsPerPage: 6,
       // offset: 0,
       // data: [],
       // perPage: 6,
@@ -233,7 +233,7 @@ class Products extends React.Component {
                 />
               </Col>
 
-              <Col style={{ marginLeft: "78px" }}>
+              <Col style={{ marginLeft: "78px" ,maxWidth:"74%" }}>
                 <Row>
                   <div className="header1">
                     <span style={{ fontSize: "25px" }}>All Categories</span>

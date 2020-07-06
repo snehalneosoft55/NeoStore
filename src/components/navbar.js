@@ -45,7 +45,7 @@ export default class HomeNavbar extends React.Component{
                         
                         <Link className="cartlink"  to="/Cart">
                             <Button className="cartButton" variant="Link">
-                                <ShoppingCartIcon className="x"></ShoppingCartIcon>
+                                <ShoppingCartIcon className="x" style={{marginLeft:"-7px"}}></ShoppingCartIcon>
                                 <span className="circle">0</span>
                                      <span style={{marginLeft:"14px"}}>Cart</span>
                             </Button>

@@ -17,6 +17,11 @@ import { connect } from 'react-redux'
 import {postUserInfo}  from '../actions/registrationAction'
 import TextField from '@material-ui/core/TextField'
 import ButtnfromReg from './buttonsInRegForm'
+import FormControl from '@material-ui/core/FormControl'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Radio from '@material-ui/core/Radio'
+// import value from '@material-ui/core/value'
 
 let valid = true;
 let forbutton;
@@ -46,7 +51,8 @@ const validateForm = (users) => {
                 password:'',
                 confirmPassword:'',
                 mobileNo:'',
-                gender:''
+                gender:'',
+                value:''
             },
                 errors:{
                     firstName:"",
@@ -298,6 +304,34 @@ const validateForm = (users) => {
                             />
                             <br/><span className="errorShow" >{errors.password}</span>
                         </div>
+                        <div className="textField">
+                            <TextField 
+                                className="s"
+                                id="outlined-basic" 
+                                name="ConfirmPassword" 
+                                label="Confirm Password" 
+                                variant="outlined" 
+                                placeholder="Confirm Password"
+                                autoComplete="off"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                            <br/><span className="errorShow" >{errors.ConfirmPassword}</span>
+                        </div>
+                        <div className="textField">
+                            <TextField 
+                                className="s"
+                                id="outlined-basic" 
+                                name="mobileNo" 
+                                label="Mobile No" 
+                                variant="outlined" 
+                                placeholder="Mobile No"
+                                autoComplete="off"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                            <br/><span className="errorShow" >{errors.mobileNo}</span>
+                        </div>
                         <span className="errorShow">{errors.username}</span>
                         {/* <Inputs name="Password" type="password" maxlength="10" placeholder="Password" value={this.state.value} handleChange={this.handleChange} /> */}
                         <span className="errorShow">{errors.password}</span>
@@ -308,12 +342,19 @@ const validateForm = (users) => {
                         {/* <Form.check type="radio">Male</Form.check> */}
                         
                         
-                        <Form.Group className="formGridCheckbox" >
+                        {/* <Form.Group className="formGridCheckbox" >
                             <label className="genderLabel">Gender</label>
                         
                                 <Form.Check inline type="radio" label="Female" name="gender" value="F" onChange={this.handleChange}/>
                                 <Form.Check inline type="radio" label="Male" name="gender" value="M" onChange={this.handleChange}/>
-                        </Form.Group>
+                        </Form.Group> */}
+                        <FormControl component="fieldset">
+  {/* <FormLabel component="legend">Gender</FormLabel> */}
+  <RadioGroup aria-label="gender" name="gender1" value={this.state.value} onChange={this.handleChange}>
+    <FormControlLabel value="female" control={<Radio />} label="Male" />
+    <FormControlLabel value="male" control={<Radio />} label="Female" />
+  </RadioGroup>
+</FormControl>
                         <span className="errorShow">{errors.gender}</span>
                         
 
