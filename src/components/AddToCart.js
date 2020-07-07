@@ -46,8 +46,8 @@ export default class AddToCart extends React.Component{
                         
                         if(i===0){
                             console.log("x");
-                            console.log("x==",x.productDetail.id)
-                            let z=x.productDetail.id;
+                            console.log("x==",x[0].productDetail.id)
+                            let z=x[0].productDetail.id;
                             console.log("productDetails",productDetails);
                             if(z===productDetails[i].productDetail.id)
                             flag = true;
