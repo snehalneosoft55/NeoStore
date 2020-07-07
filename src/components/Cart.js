@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar  from './navbar';
 import Footer from './footer'
+import CartInCart from './cartIncart';
 
 export default class Cart extends React.Component{
     async componentDidMount(){
@@ -15,6 +16,14 @@ export default class Cart extends React.Component{
             <div>
                 <Navbar></Navbar>
                 <hr></hr>
+                <div>
+                <div style={{display:"inline"}}>
+                <button >ok</button><hr></hr><button>ok</button>
+                </div>
+                <CartInCart></CartInCart>
+                </div>
+                
+                
                 <Footer/>
             </div>
         );
