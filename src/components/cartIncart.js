@@ -5,6 +5,27 @@ import TableInCart from './TableIncart';
 import {BASE_URL} from '../constants/BaseURL'
 
 export default class CartInCart extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            quantity:''
+        }
+    }
+    componentDidMount(){
+        const x= JSON.parse(localStorage.getItem('cartProducts'));
+        this.setState({quantity:1});
+        
+    }
+    incrementBtnHandler = ()=>{
+        let incVal= this.state.quantity;
+        incVal=incVal+1;
+        this.setState({quantity:incVal});
+    }
+    decrementHandler = () =>{
+        let decVal= this.state.quantity;
+        decVal=decVal-1;
+        this.setState({quantity:decVal})
+    }
     render(){
         const x= JSON.parse(localStorage.getItem('cartProducts'));
         console.log("in cart.js,,,data==",x);
@@ -42,7 +63,7 @@ export default class CartInCart extends React.Component{
                                     <React.Fragment>
                                         <Container>
                                             <Row>
-                                                <Col >
+                                                <Col xs={3}>
                                                     <img style={{height:"60px",width:"60px"}} src={BASE_URL + data.image}></img>
                                                 </Col>
                                                 <Col>
@@ -54,8 +75,9 @@ export default class CartInCart extends React.Component{
                                         </Container>
                                     </React.Fragment>
                                 </td>
+                                <td>q</td>
                             <td>{data.price}</td>
-                                <td>john@example.com</td>
+                                <td>t</td>
                               </tr>
                             )
                         }
@@ -68,7 +90,7 @@ export default class CartInCart extends React.Component{
                                 <React.Fragment>
                                         <Container>
                                             <Row>
-                                                <Col >
+                                                <Col xs={3}>
                                                     <img style={{height:"60px",width:"60px"}} src={BASE_URL + data1.image}></img>
                                                 </Col>
                                                 <Col>
@@ -80,8 +102,29 @@ export default class CartInCart extends React.Component{
                                         </Container>
                                     </React.Fragment>
                                 </td>
+                                <td>
+                                    <div>
+                                        <button style={{
+                                            width:"20px",
+                                            height:"20px",
+                                            borderRadius:"50%",
+                                            border:"none",
+                                            background:"red"
+                                        }} onClick={this.decrementHandler}>-</button>
+                                        <input type="text" style={{width:"20px"}} value={this.state.quantity}>
+                                        </input>
+                                        <button style={{
+                                            width:"20px",
+                                            height:"20px",
+                                            borderRadius:"50%",
+                                            border:"none",
+                                            background:"red",
+                                            
+                                        }} onClick={this.incrementBtnHandler}>+</button>
+                                    </div>
+                                </td>
                             <td>{data1.price}</td>
-                                <td>john@example.com</td>
+                                <td>t</td>
                               </tr>
                             )
                         }
