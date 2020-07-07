@@ -16,10 +16,30 @@ export default class CartInCart extends React.Component{
         this.setState({quantity:1});
         
     }
-    incrementBtnHandler = ()=>{
-        let incVal= this.state.quantity;
-        incVal=incVal+1;
-        this.setState({quantity:incVal});
+    incrementBtnHandler = (data,id)=>{
+        // let incVal= this.state.quantity;
+        // incVal=incVal+1;
+        console.log("data in incHandler",data,id);
+        data=data+1;
+        console.log("leng==",localStorage.length);
+        const temData= JSON.parse(localStorage.getItem('cartProducts'));
+
+        temData.map(
+            (val,i)=>{
+                if(i>0){
+                    if(val[0].productDetail.id === id){
+                        val[0].quantity = data;
+                    }
+                }
+            }
+        )
+        localStorage.setItem("cartProducts", JSON.stringify(temData));
+        console.log("leng==",localStorage.length);
+        // const tempDataProductdetail = temData.quantity;
+        // console.log("in loc st q==",tempDataProductdetail);
+        // this.setState({quantity:incVal});
+        // const temData= JSON.parse(localStorage.getItem('cartProducts'));
+        // const tempDataProductdetail = tempdata
     }
     decrementHandler = () =>{
         let decVal= this.state.quantity;
@@ -111,7 +131,7 @@ export default class CartInCart extends React.Component{
                                             border:"none",
                                             background:"red"
                                         }} onClick={this.decrementHandler}>-</button>
-                                        <input type="text" style={{width:"20px"}} value={this.state.quantity}>
+                                        <input type="text" style={{width:"20px"}} value={val[0].quantity}>
                                         </input>
                                         <button style={{
                                             width:"20px",
@@ -120,7 +140,7 @@ export default class CartInCart extends React.Component{
                                             border:"none",
                                             background:"red",
                                             
-                                        }} onClick={this.incrementBtnHandler}>+</button>
+                                        }} onClick={()=>this.incrementBtnHandler(val[0].quantity,data1.id)}>+</button>
                                     </div>
                                 </td>
                             <td>{data1.price}</td>
