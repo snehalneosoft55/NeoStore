@@ -1,9 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import {Button} from 'react-bootstrap'
 import { Card } from "@material-ui/core";
 import TableInCart from "./TableIncart";
 import { BASE_URL } from "../constants/BaseURL";
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import '../assets/css/cartIncart.css'
 
 export default class CartInCart extends React.Component {
   constructor() {
@@ -242,7 +244,7 @@ export default class CartInCart extends React.Component {
                                   </div>
                                 </td>
                                 <td>{data1.price}</td>
-                                <td>{data1.price*val[0].quantity}</td>
+                                <td>{data1.price*val[0].quantity }</td>
                                 <td><button style={{border:"none"}} onClick={()=>this.deletehandler(i)}><DeleteOutlineIcon /></button></td>
                               </tr>
                             );
@@ -253,7 +255,20 @@ export default class CartInCart extends React.Component {
                 </div>
               </Card>
             </Col>
-            <Col xs={4}></Col>
+            <Col xs={4}>
+                <React.Fragment>
+                    <Card>
+                            <h3>Review Order</h3>
+                            <ul>
+                                <li className="revieworderItems"><span>Subtotal</span><span></span></li>
+                                <li className="revieworderItems"><span>GST(5%)</span><span></span></li>
+                                <li className="revieworderItems"><span>Order Total</span><span></span></li>
+
+                            </ul>
+                            <Button variant="primary">Proceed to buy</Button>
+                    </Card>
+                </React.Fragment>
+            </Col>
           </Row>
         </Container>
       </React.Fragment>

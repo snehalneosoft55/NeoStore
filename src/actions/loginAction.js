@@ -26,6 +26,10 @@ function loginUserInfo(userData1)
         ////console.log('status---------',data.message)
 
         // swal(data.message);
+        console.log("data==of log in",data.token);
+        const token = data.token;
+        localStorage.setItem('token',token);
+        
         alert(data.message);
         
 

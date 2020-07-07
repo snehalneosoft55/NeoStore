@@ -83,71 +83,7 @@ export default class AddToCart extends React.Component{
                 console.log("productDetails",productDetails);
 					 await localStorage.setItem('cartProducts', JSON.stringify(productDetails));
 			}
-    //     // const data1=[
-    //     //     {
-    //     //         productDetail:productDetail,
-    //     //         quantity:1
-    //     //     }
-    //     // ];
-    //     const myArray= localStorage.getItem('cartProducts');
-
-    //     let productsInLocalStorage;
-    //     let flag=false;
-    //     if(myArray !== null){
-    //         productsInLocalStorage=JSON.parse(myArray)
-    //         data1.map(val=>{
-    //             if(val.productDetail.id==productDetail.id){
-    //                 flag=true;
-    //                 console.log("");
-    //                 alert('Already in cart');
-    //             }
-    //             else{
-    //                 data1.push(productDetail);
-    //             }
-    //         }
-                
-    //         )
-            
-    //             localStorage.setItem('cartProducts', JSON.stringify(productsInLocalStorage));
-    //             console.log("localstorage length==",localStorage.length);
-    //     }
-    //     else{
-    //         const data1=[
-    //             {
-    //                 productDetail:productDetail,
-    //                 quantity:1
-    //             }
-    //         ];
-    //         localStorage.setItem('cartProducts', JSON.stringify(data1));
-    // }
-    // const c= JSON.parse(localStorage.getItem('cartProducts'));
-    // console.log("c==",c);
-    //     // localStorage.setItem('data1',JSON.stringify(data1));
-
-    //     // const p=JSON.parse(localStorage.getItem('data1'));
-    //     // console.log("JSON.stringify(data1)",JSON.stringify(data1))
-
-    //     // console.log("p",p);
-
-    //     // const data={
-    //     //     productDetail:productDetail,
-    //     //     quantity:1
-    //     // }
-    //     // // console.log("datadata",data);
-    //     // localStorage.setItem('data',JSON.stringify(data));
-    //     // const y=JSON.parse(localStorage.getItem("data"));
-    //     // const y=localStorage.getItem("data")
-    //     // console.log("y.quantity",y);
-    //     // const z=JSON.parse(y);
-    //     // console.log("z.quantity",z.quantity);
-
-    //     // const { cartProduct } = this.state;
-    //     // localStorage.setItem('cartProduct', cartProduct);
-    //     ////console.log("cartProduct:::",this.state.cartProduct,"----and the cartProduct=",cartProduct);
-    //     // this.state.cartProduct=cartProduct+1;
-    //     ////console.log("cartProduct=====",this.state.cartProduct);
-    //     // this.setState({cartProduct:this.cartProduct+1});
-        // ////console.log("cart value===",this.cartProduct);
+    
     }
     render(){
         return(

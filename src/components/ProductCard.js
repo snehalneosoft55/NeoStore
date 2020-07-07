@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import '../assets/css/ProductCard.css'
 import StarRatingComponent from 'react-star-rating-component';
 import AddTocart from './AddToCart'
+import { BASE_URL } from '../constants/BaseURL';
 
 export default class ProductCard extends React.Component{
    
@@ -14,7 +15,7 @@ export default class ProductCard extends React.Component{
             <Card className="ProductCardwrapperCard">
                 <Card.Img 
                     className="ProductCardwrapperImg" 
-                    src={'http://180.149.241.208:3022/' + this.props.image}
+                    src={BASE_URL + this.props.image}
                 /> 
                 <div className="ProductCardwrapperTitleWrapper">
                     <Link to={{
