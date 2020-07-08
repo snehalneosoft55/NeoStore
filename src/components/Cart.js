@@ -8,10 +8,11 @@ import CartInCart from './cartIncart'
 import {Link} from 'react-router-dom'
 import HomeNavbar from './navbar';
 import Footer from './footer';
+import { withRouter } from "react-router-dom";
 
 const steps = [{title: 'Cart'}, {title: 'Delivery Address'}, ]
 
-export default class App extends React.Component{
+class Cart extends React.Component{
     constructor(props) {
         super(props);
 
@@ -26,19 +27,19 @@ export default class App extends React.Component{
 
     render(){
         const token=localStorage.getItem('token');
+        console.log("token",token);
         let checkForLogin = '';
-        if( token !== '' || token !==null ){
-            checkForLogin=
-                (
-                    <div>address</div>
-                )
-            
-            
+        if( token === null ){
+            alert("Please Login First");
+            checkForLogin=(
+                this.props.history.push("/signIn")
+            )
         }
         else{
-            alert("Please Login First");
-            checkForLogin=(<Link to ="./signIn"></Link>)
-            
+            checkForLogin=
+            (
+                <div>address</div>
+            )
         }
         return(
             
@@ -62,3 +63,4 @@ export default class App extends React.Component{
         )
     }
 }
+export default withRouter(Cart)
