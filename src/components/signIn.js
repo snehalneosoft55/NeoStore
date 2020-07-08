@@ -1,5 +1,5 @@
 import React from 'react';
-// import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 import {Container,Row,Col, Card} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,8 @@ import {RegEx} from './RegEx';
 import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
+import { Redirect } from "react-router-dom";
+
 // import {status} from '../actions/loginAction'
 
 let valid = true;
@@ -111,6 +113,15 @@ class signIn extends React.Component
             ////console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
             ////console.log("before action call------------userData,in onsubmit",userData1);
             this.props.loginUserInfo(userData1);
+            const token = localStorage.getItem("token");
+            if(token){
+                // this.props.history.push('/');
+                this.props.history.push("/");
+                
+                
+            }
+            
+
             // ////console.log("for history check",this.props.history);
             // const { userData } = this.props;
             // ////console.log("valid form","forbutton:",forbutton, JSON.stringify(this.state.users));
@@ -158,6 +169,7 @@ class signIn extends React.Component
                                 <span className="errorShow">{errors.password}</span>
                                 <Row>
                                     <Col>
+                                    {/* <Link></Link> */}
                                         <Button 
                                             type="submit" 
                                             className="btn btn-primary btn-block submitButton" 
@@ -197,7 +209,7 @@ const mapStateToProps = state =>
   const mapDispatchToProps = {
     loginUserInfo
 };
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-  )(signIn);
+  )(signIn));

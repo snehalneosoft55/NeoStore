@@ -26,6 +26,7 @@ import Example from "./components/Example";
 import Cart from './components/Cart';
 import Profile from './components/Profile'
 import PageNotFound from './components/pageNotFound';
+import Logout from './components/Logout'
 
 const store = configureStore();
 //Router 
@@ -46,7 +47,9 @@ function App() {
         <Route path="/ProductDetails" component={ProductDetails}/>
         <Route path="/Cart" component={Cart} />
         <Route path="/Profile" component={Profile}></Route>
+        <Route path="/Logout" exact component={Logout}></Route>
         <Route path="/*" exact component={PageNotFound}></Route>
+        
         </Switch>
       </Router>
     </div>

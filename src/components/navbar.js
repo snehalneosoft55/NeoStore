@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import  '../assets/css/navbarstyle.css';
 import {Navbar, Nav} from 'react-bootstrap';
@@ -7,12 +7,14 @@ import {InputGroup,FormControl} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {Dropdown} from 'react-bootstrap';
 import Assets from '../constants/Image';
-import SearchIcon from '@material-ui/icons/Search'
+import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import LoginReg from './LoginReg'
+import LoginReg from './LoginReg';
+import LogProfile from './LogProfile'
 
 export default class HomeNavbar extends React.Component{
     render(){
+        
         return(
             <div >
                <Navbar bg="dark" className="homeNav" expand="lg" variant="dark">
