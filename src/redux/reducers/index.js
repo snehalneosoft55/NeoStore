@@ -8,7 +8,8 @@ import ProductDetailsReducer from "./ProductDetailsReducer";
 import getColorsReducer from "./getColorsReducer";
 import getCategoriesReducer from "./ListOfSideMenuReducer";
 import getProductByCatIdReducer from './getProductByCatIdReducer';
-import getProductByColorIdReducer from './getProductByColorIdReducer'
+import getProductByColorIdReducer from './getProductByColorIdReducer';
+import getcustData from './getcustData'
 const rootReducer = combineReducers({
     productData,
     userData,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     getColorsReducer,
     getCategoriesReducer,
     getProductByCatIdReducer,
-    getProductByColorIdReducer
+    getProductByColorIdReducer,
+    getcustData
 });
 
 export default rootReducer;

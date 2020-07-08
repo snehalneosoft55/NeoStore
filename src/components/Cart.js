@@ -9,8 +9,10 @@ import {Link} from 'react-router-dom'
 import HomeNavbar from './navbar';
 import Footer from './footer';
 import { withRouter } from "react-router-dom";
+import Address from './Address'
 
 const steps = [{title: 'Cart'}, {title: 'Delivery Address'}, ]
+let checkForLogin = '';
 
 class Cart extends React.Component{
     constructor(props) {
@@ -22,25 +24,28 @@ class Cart extends React.Component{
     }
 
     handleOnClickStepper = (step) => {
+        if(step === 2){
+            const token=localStorage.getItem('token');
+            console.log("token",token);
+            
+            if( token === null ){
+                alert("Please Login First");
+                checkForLogin=(
+                    this.props.history.push("/signIn")
+                )
+            }
+            else{
+                checkForLogin=
+                (
+                    <div><Address/></div>
+                )
+            }
+        }
         this.setState({activeStep: step});
     }
 
     render(){
-        const token=localStorage.getItem('token');
-        console.log("token",token);
-        let checkForLogin = '';
-        if( token === null ){
-            alert("Please Login First");
-            checkForLogin=(
-                this.props.history.push("/signIn")
-            )
-        }
-        else{
-            checkForLogin=
-            (
-                <div>address</div>
-            )
-        }
+        
         return(
             
             
@@ -63,4 +68,4 @@ class Cart extends React.Component{
         )
     }
 }
-export default withRouter(Cart)
+export default withRouter(Cart);

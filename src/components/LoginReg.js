@@ -105,7 +105,15 @@ export default function MenuListComposition() {
                     {(token)?(
                       <div>
                       <MenuItem onClick={handleClose}>
-                    <Link style={{ textDecoration: "none" }} to="/Profile">
+                    <Link style={{ textDecoration: "none" }} 
+                    to={{
+                      pathname:"/Order",
+                      state:{
+                        show:1
+                      }
+                    }}
+                    
+                    >
                     Profile
                     </Link>
                   </MenuItem>
