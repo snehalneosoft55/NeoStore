@@ -31,14 +31,21 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event) => {
-    localStorage.removeItem('token');
+    
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
 
     setOpen(false);
   };
+  const handleLogOut1 = (event) => {
+    localStorage.removeItem('token');
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
 
+    setOpen(false);
+  }
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -117,7 +124,7 @@ export default function MenuListComposition() {
                     Profile
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem onClick={handleLogOut1}>
                   <Link style={{ textDecoration: "none" }} to="/">
                     Log Out
                     </Link>

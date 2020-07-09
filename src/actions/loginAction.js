@@ -25,12 +25,12 @@ function loginUserInfo(userData1)
         //  status.code=data.status_code;
         ////console.log('status---------',data.message)
 
-        // swal(data.message);
+        swal(data.message);
         console.log("data==of log in",data.token);
         const token = data.token;
         localStorage.setItem('token',token);
         
-        alert(data.message);
+        // alert(data.message);
         
 
       dispatch(loginUser(data));

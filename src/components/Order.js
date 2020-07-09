@@ -47,7 +47,7 @@ class Order extends React.Component{
         )
       }
       if(this.state.show===1){
-        let custData = '';
+        var custData = '';
         const x= localStorage.getItem('token');
         axios.
         get(BASE_URL + 'getCustProfile',{

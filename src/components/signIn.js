@@ -52,6 +52,11 @@ class signIn extends React.Component
                         submitError:''
                     }
     }
+    
+    /**
+     * 
+     * @param {*} event 
+     */
     handleChange = (event) => 
     {
         event.preventDefault();
