@@ -19,8 +19,8 @@ import Posts from "./Posts";
 import Pagination from "./Paginations";
 import axios from "axios";
 import { BASE_URL } from "../constants/BaseURL";
-import Example from './Loader'
-import Loader from 'react-loader-spinner';
+import Example from "./Loader";
+import Loader from "react-loader-spinner";
 
 // const products1 = null;
 class Products extends React.Component {
@@ -45,21 +45,25 @@ class Products extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.location.state){
-      const datafromSlideImage =this.props.location.state.category_id_fromslide_images
+    if (this.props.location.state) {
+      const datafromSlideImage = this.props.location.state
+        .category_id_fromslide_images;
       axios
-      .get(BASE_URL + "commonProducts", {
-        params: {
-          category_id:datafromSlideImage ,
-        },
-      })
-      .then(({ data }) => {
-        let catProducts = data.product_details;
-        // console.log("in console---data----",data);
+        .get(BASE_URL + "commonProducts", {
+          params: {
+            category_id: datafromSlideImage,
+          },
+        })
+        .then(({ data }) => {
+          let catProducts = data.product_details;
+          // console.log("in console---data----",data);
 
-        this.setState({ posts: catProducts, category_id: datafromSlideImage, color_id: "" });
-      });
-     
+          this.setState({
+            posts: catProducts,
+            category_id: datafromSlideImage,
+            color_id: "",
+          });
+        });
     }
     this.props.getProducts().then(() => {
       const { productData } = this.props;
@@ -155,67 +159,75 @@ class Products extends React.Component {
   render() {
     // used 3 files (paginations.js, posts.js, productCard.js)
     //  in this product pageXOffset, issue with indexOfFirstPost and indexOfLastPost
-    console.log("currentPage==anddd,post per page==",this.state.currentPage,this.state.postsPerPage);
+    console.log("in render of product");
+    console.log(
+      "currentPage==anddd,post per page==",
+      this.state.currentPage,
+      this.state.postsPerPage
+    );
+
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
-    console.log("index of last post ==",indexOfLastPost);
+
+    console.log("index of last post ==", indexOfLastPost);
+
     const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
-    
+
     // console.log("indexOfFirstPost", this.state.posts);
     const temPosts = this.state.posts;
     console.log("both", indexOfFirstPost, indexOfLastPost);
+
     const currentPosts = temPosts.slice(indexOfFirstPost, indexOfLastPost);
     console.log("in return current p==", currentPosts);
 
     // Change page
+    const paginate = (pageNumber) => {
+      console.log("page no. in product page",pageNumber);
+      return this.setState({ currentPage: pageNumber });
+    };
+    console.log("consolebefore paginate,,,,pageNumber", this.state.currentPage);
 
-    const paginate = (pageNumber) => this.setState({ CurrentPage: pageNumber });
-    let x=''
-    if(currentPosts === undefined || currentPosts ==='')
-    {
-        x=(
-          
-            <Loader
-               type="Oval"
-               color="#00BFFF"
-               height={100}
-               width={100}
-              //  style={
-              //    {marginLeft:"1000px",marginTop:"100px"}
-              //  }
-               
-       
-            />
-        )
-    }
-    else{
-      x=(
+    let x = "";
+    if (currentPosts === undefined || currentPosts === "") {
+      x = (
+        <Loader
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          //  style={
+          //    {marginLeft:"1000px",marginTop:"100px"}
+          //  }
+        />
+      );
+    } else {
+      x = (
         <React.Fragment className="popularProduct">
-        <React.Fragment className="container mt-5">
-          {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
-          {console.log("in redner posts===", currentPosts)}
-          {currentPosts !== "No details" ? (
-            <React.Fragment>
-              <Posts posts={currentPosts} {...this.props} />
-              <Pagination
-                postsPerPage={this.state.postsPerPage}
-                totalPosts={this.state.posts.length}
-                paginate={paginate}
-              />
-            </React.Fragment>
-          ) : (
-            <h1 style={{ marginLeft: "230px" }}>
-              No products Available
-            </h1>
-          )}
+          <React.Fragment className="container mt-5">
+            {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
+            {console.log("in redner posts===", currentPosts)}
+            {currentPosts !== "No details" ? (
+              <React.Fragment>
+                <Posts posts={currentPosts} {...this.props} />
+                <Pagination
+                  postsPerPage={this.state.postsPerPage}
+                  totalPosts={this.state.posts.length}
+                  paginate={paginate}
+                />
+              </React.Fragment>
+            ) : (
+              <h1 style={{ marginLeft: "230px" }}>No products Available</h1>
+            )}
+          </React.Fragment>
         </React.Fragment>
-      </React.Fragment>
-      )
+      );
     }
     return (
       <React.Fragment>
         <HomeNavBar />
 
-        <hr style={{marginTop:"30px",width:"1300px",marginBottom:"16px"}}></hr>
+        <hr
+          style={{ marginTop: "30px", width: "1300px", marginBottom: "16px" }}
+        ></hr>
 
         <React.Fragment>
           <Container fluid={false}>
@@ -233,7 +245,7 @@ class Products extends React.Component {
                 />
               </Col>
 
-              <Col style={{ marginLeft: "78px" ,maxWidth:"74%" }}>
+              <Col style={{ marginLeft: "78px", maxWidth: "74%" }}>
                 <Row>
                   <div className="header1">
                     <span style={{ fontSize: "25px" }}>All Categories</span>
@@ -267,11 +279,7 @@ class Products extends React.Component {
                   <Col style={{ paddingLeft: "168px" }}></Col>
                 </Row>
 
-                <Row>
-                {x}
-                
-
-                </Row>
+                <Row>{x}</Row>
               </Col>
             </Row>
           </Container>
