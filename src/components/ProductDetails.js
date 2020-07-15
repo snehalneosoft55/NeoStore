@@ -108,7 +108,7 @@ class ProductDetails extends React.Component{
                                         </div></h5>
                                         
                                         <div className="productDetailInfoButtons">
-                                            <AddToCart color="blue" width="160px" height="40px"/>
+                                            <AddToCart color="blue" width="160px" height="40px" ProductData={this.props}/>
                                             {/* <button className="productDetailInfoButton1">ADD TO CART</button> */}
                                             <button className="productDetailInfoButton2">RATE PRODUCT</button>
                                         </div>

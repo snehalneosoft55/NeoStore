@@ -21,26 +21,15 @@ import axios from "axios";
 import { BASE_URL } from "../constants/BaseURL";
 import Example from "./Loader";
 import Loader from "react-loader-spinner";
+import Loading from "./Loading";
 
-// const products1 = null;
 class Products extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: "",
-
       currentPage: 1,
-
-      postsPerPage: 6,
-      // offset: 0,
-      // data: [],
-      // perPage: 6,
-      // currentPage: 0,
-      // products: "",
-      // callbackData: "",
-      // category_id: "",
-      // color_id: "",
-      // allProducts: "",
+      postsPerPage: 6
     };
   }
 
@@ -102,9 +91,6 @@ class Products extends React.Component {
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
-          // category_id: val.category_id,
-          // color_id: val.color_id,
-          // sortBy: val.sortBy,
           sortBy: "product_cost",
           sortIn: false,
         },
@@ -136,17 +122,14 @@ class Products extends React.Component {
         this.setState({ posts: catProducts });
       });
   };
+
   sortByRating(val) {
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
-          // category_id: val.category_id,
-          // color_id: val.color_id,
           sortBy: val.sortBy,
-          // sortIn: val.sortIn
         },
       })
-
       .then(({ data }) => {
         let catProducts = data.product_details;
         this.setState({ posts: catProducts });
@@ -157,54 +140,20 @@ class Products extends React.Component {
     this.setState({ posts: this.state.allProducts });
   };
   render() {
-    // used 3 files (paginations.js, posts.js, productCard.js)
-    //  in this product pageXOffset, issue with indexOfFirstPost and indexOfLastPost
-    console.log("in render of product");
-    console.log(
-      "currentPage==anddd,post per page==",
-      this.state.currentPage,
-      this.state.postsPerPage
-    );
-
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
-
-    console.log("index of last post ==", indexOfLastPost);
-
     const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
-
-    // console.log("indexOfFirstPost", this.state.posts);
     const temPosts = this.state.posts;
-    console.log("both", indexOfFirstPost, indexOfLastPost);
-
     const currentPosts = temPosts.slice(indexOfFirstPost, indexOfLastPost);
-    console.log("in return current p==", currentPosts);
-
-    // Change page
     const paginate = (pageNumber) => {
-      console.log("page no. in product page",pageNumber);
       return this.setState({ currentPage: pageNumber });
     };
-    console.log("consolebefore paginate,,,,pageNumber", this.state.currentPage);
-
     let x = "";
     if (currentPosts === undefined || currentPosts === "") {
-      x = (
-        <Loader
-          type="Oval"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          //  style={
-          //    {marginLeft:"1000px",marginTop:"100px"}
-          //  }
-        />
-      );
+      x = <Loading />;
     } else {
       x = (
         <React.Fragment className="popularProduct">
           <React.Fragment className="container mt-5">
-            {/* <h1 className='text-primary mb-3'>My Blog</h1> */}
-            {console.log("in redner posts===", currentPosts)}
             {currentPosts !== "No details" ? (
               <React.Fragment>
                 <Posts posts={currentPosts} {...this.props} />
@@ -224,32 +173,23 @@ class Products extends React.Component {
     return (
       <React.Fragment>
         <HomeNavBar />
-
         <hr
           style={{ marginTop: "30px", width: "1300px", marginBottom: "16px" }}
         ></hr>
-
         <React.Fragment>
           <Container fluid={false}>
             <Row>
               <Col xs={2}>
                 <SideMenu
-                  // //   callbackFromParentInProduct={products1 => {
-
-                  // //     this.myCallback(products1)
-
-                  //   }}
                   allProductsHandler={this.allProductsHandler}
                   categoryHandler={(val) => this.categoryHandler(val)}
                   colorHandler={(val) => this.colorHandler(val)}
                 />
               </Col>
-
               <Col style={{ marginLeft: "78px", maxWidth: "74%" }}>
                 <Row>
                   <div className="header1">
                     <span style={{ fontSize: "25px" }}>All Categories</span>
-
                     <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
                       Sort By:
                       <Button
@@ -286,19 +226,12 @@ class Products extends React.Component {
         </React.Fragment>
 
         <hr></hr>
-
         <Footer />
       </React.Fragment>
     );
   }
 }
-
 const mapStateToProps = (state) => {
-  if (state.getProductBYColorId != undefined) {
-    console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
-  }
-  console.log("%%%%%%%%%%  categories==", state.getProductBYColorId);
-
   return {
     productData: state.productData,
     categories: state.categories,
