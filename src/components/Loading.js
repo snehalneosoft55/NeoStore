@@ -1,17 +1,9 @@
-import React from 'react';
-
+import React from "react";
 
 function Loading() {
-
-  const style = {
-    width: "100%",
-    height: "500px",
-    backgroundColor: "rgba(0,0,0,0.1)"
-
-  }
   return (
-    <div style={style} className="loader center">
-      <i style={{ marginLeft: "45%", marginTop: "15%" }} className="fa4x fa fa-spinner fa-spin" />
+    <div style={{ width: "100%", height: "500px" ,opacity: "0.5"}}>
+      <div className="spinner-grow text-muted" style={{marginLeft: "45%", marginTop: "15%"}}></div>
     </div>
   );
 }

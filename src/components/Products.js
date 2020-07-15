@@ -20,7 +20,7 @@ import Pagination from "./Paginations";
 import axios from "axios";
 import { BASE_URL } from "../constants/BaseURL";
 import Example from "./Loader";
-import Loader from "react-loader-spinner";
+// import Loader from "react-loader-spinner";
 import Loading from "./Loading";
 
 class Products extends React.Component {
@@ -72,6 +72,7 @@ class Products extends React.Component {
       this.setState({ posts: catProducts, color_id: val, category_id: "" });
     });
   }
+  
   categoryHandler(val) {
     axios
       .get(BASE_URL + "commonProducts", {
@@ -86,6 +87,7 @@ class Products extends React.Component {
         this.setState({ posts: catProducts, category_id: val, color_id: "" });
       });
   }
+
   sortByAscending = () => {
     console.log("in sort by acs====");
     axios
@@ -103,6 +105,7 @@ class Products extends React.Component {
         this.setState({ posts: catProducts });
       });
   };
+
   sortByDesc = () => {
     axios
       .get(BASE_URL + "commonProducts", {
@@ -123,6 +126,10 @@ class Products extends React.Component {
       });
   };
 
+/**
+ * By sorting by rating
+ * @param {val} val 
+ */
   sortByRating(val) {
     axios
       .get(BASE_URL + "commonProducts", {
@@ -177,7 +184,7 @@ class Products extends React.Component {
           style={{ marginTop: "30px", width: "1300px", marginBottom: "16px" }}
         ></hr>
         <React.Fragment>
-          <Container fluid={false}>
+          {(currentPosts === undefined || currentPosts === "")?<Loading/>:(<Container fluid={false}>
             <Row>
               <Col xs={2}>
                 <SideMenu
@@ -222,8 +229,9 @@ class Products extends React.Component {
                 <Row>{x}</Row>
               </Col>
             </Row>
-          </Container>
+          </Container>)}
         </React.Fragment>
+          
 
         <hr></hr>
         <Footer />
