@@ -12,6 +12,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import AddToCart from "./AddToCart";
 import Loading from "./Loading";
+import swal from 'sweetalert';
+import { withRouter } from "react-router-dom";
+
 // import AddToCart from '/'
 
 class ProductDetails extends React.Component {
@@ -19,29 +22,49 @@ class ProductDetails extends React.Component {
     super();
     this.state = {
       showImg: "",
-      checkLoader:false
+      checkLoader: false,
+      showRateProductDiv:''
     };
   }
   changeImg(subimage) {
     this.setState({ showImg: subimage });
   }
   componentWillMount() {
-    this.setState({checkLoader:true});
-      
+    this.setState({ checkLoader: true });
+
     // ////console.log("in componentwill mount---1111",this.props.location.state.productId);
     let productId = this.props.location.state.productId;
     this.props.getProductDetail(productId).then(() => {
       const { productDetails } = this.props;
       let imgUrl = productDetails.product_image;
-      this.setState({ showImg: imgUrl ,checkLoader:false});
+      this.setState({ showImg: imgUrl, checkLoader: false });
 
       // ////console.log("in componentwill mount---",productDetails.product_name);
     });
   }
-  render() {
-      if(this.state.checkLoader===true){
-          return(<Loading></Loading>)
+  rateProduct=()=>{
+      const token=localStorage.getItem('token');
+    //   console.log("token");
+      if(token===null){
+        // swal("Please Login");
+        swal({
+            title: "Please Login",
+            text: "You have to login first before rate the product" ,
+            
+            button: "Ok",
+          });
+        this.props.history.push("/signIn")
       }
+      else{
+          let showDiv=this.state.showRateProductDiv;
+
+        this.setState({showRateProductDiv:!showDiv})
+      }
+  }
+  render() {
+    if (this.state.checkLoader === true) {
+      return <Loading></Loading>;
+    }
     const { productDetails } = this.props;
     let title;
     let cost;
@@ -127,11 +150,12 @@ class ProductDetails extends React.Component {
                       ProductData={this.props}
                     />
                     {/* <button className="productDetailInfoButton1">ADD TO CART</button> */}
-                    <button className="productDetailInfoButton2">
+                    <button className="productDetailInfoButton2" onClick={this.rateProduct}>
                       RATE PRODUCT
                     </button>
                   </div>
                 </div>
+                
               </Col>
             </Row>
             <Row>
@@ -168,4 +192,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getProductDetail,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductDetails));

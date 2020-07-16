@@ -26,11 +26,13 @@ import Loading from "./Loading";
 class Products extends React.Component {
   constructor(props) {
     super(props);
+    this.myRef = React.createRef()
     this.state = {
       posts: "",
       currentPage: 1,
       postsPerPage: 6,
       checkLoader: false,
+      heading:'All categories'
     };
   }
 
@@ -92,7 +94,10 @@ class Products extends React.Component {
       .then(({ data }) => {
         let catProducts = data.product_details;
 
-        console.log("in console");
+        console.log("in console of category",catProducts);
+        console.log("categ name====",catProducts[0].category_id.category_name);
+        let heading=catProducts[0].category_id.category_name;
+        this.setState({heading:heading});
         this.setState({
           posts: catProducts,
           category_id: val,
@@ -164,16 +169,19 @@ class Products extends React.Component {
   }
 
   allProductsHandler = () => {
-    this.setState({ posts: this.state.allProducts });
+    this.setState({ posts: this.state.allProducts,heading:"All Categories" });
   };
   paginate = (pageNumber) => {
     console.log("in paginate");
     setTimeout(() => {
       this.setState({ checkLoader: false });
+      
     }, 2000);
+    
     return this.setState({ currentPage: pageNumber, checkLoader: true });
   };
   render() {
+    
     let x = "";
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
     const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
@@ -231,7 +239,7 @@ class Products extends React.Component {
                 <Col style={{ marginLeft: "78px", maxWidth: "74%" }}>
                   <Row>
                     <div className="header1">
-                      <span style={{ fontSize: "25px" }}>All Categories</span>
+          <span style={{ fontSize: "25px" }}>{this.state.heading}</span>
                       <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
                         Sort By:
                         <Button
@@ -261,7 +269,9 @@ class Products extends React.Component {
                     <Col style={{ paddingLeft: "168px" }}></Col>
                   </Row>
 
-                  <Row>{x}</Row>
+                  <Row>
+                    <div ref={this.myRef}>{x}</div>
+                    </Row>
                 </Col>
               </Row>
             </Container>
