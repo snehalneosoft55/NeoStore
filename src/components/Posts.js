@@ -7,6 +7,7 @@ import ProductCard from "./ProductCard";
 export class Posts extends Component {
     
     render() {
+        
         // let displayProducts='';
         console.log("this.props.posts;;;====---",this.props.posts);
         const products = this.props.posts;

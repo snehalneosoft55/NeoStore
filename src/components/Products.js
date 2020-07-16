@@ -29,7 +29,8 @@ class Products extends React.Component {
     this.state = {
       posts: "",
       currentPage: 1,
-      postsPerPage: 6
+      postsPerPage: 6,
+      checkLoader: false,
     };
   }
 
@@ -62,6 +63,7 @@ class Products extends React.Component {
     });
   }
   colorHandler(val) {
+    this.setState({ checkLoader: true });
     this.props.getProductByColorId(val).then(() => {
       const { getProductBYColorId } = this.props;
       console.log(
@@ -69,11 +71,17 @@ class Products extends React.Component {
         getProductBYColorId.getProductBYColorId
       );
       let catProducts = getProductBYColorId.getProductBYColorId;
-      this.setState({ posts: catProducts, color_id: val, category_id: "" });
+      this.setState({
+        posts: catProducts,
+        color_id: val,
+        category_id: "",
+        checkLoader: false,
+      });
     });
   }
-  
+
   categoryHandler(val) {
+    this.setState({ checkLoader: true });
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
@@ -83,13 +91,21 @@ class Products extends React.Component {
       })
       .then(({ data }) => {
         let catProducts = data.product_details;
+
         console.log("in console");
-        this.setState({ posts: catProducts, category_id: val, color_id: "" });
+        this.setState({
+          posts: catProducts,
+          category_id: val,
+          color_id: "",
+          checkLoader: false,
+        });
       });
   }
 
   sortByAscending = () => {
-    console.log("in sort by acs====");
+    this.setState({checkLoader:true});
+
+    // console.log("in sort by acs====");
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
@@ -102,11 +118,13 @@ class Products extends React.Component {
         console.log("data", data);
         let catProducts = data.product_details;
         console.log("catPro---", catProducts);
-        this.setState({ posts: catProducts });
+        this.setState({ posts: catProducts,checkLoader:false });
       });
   };
 
   sortByDesc = () => {
+    this.setState({checkLoader:true});
+
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
@@ -122,15 +140,16 @@ class Products extends React.Component {
         console.log("data", data);
         let catProducts = data.product_details;
         console.log("catPro---", catProducts);
-        this.setState({ posts: catProducts });
+        this.setState({ posts: catProducts , checkLoader:false});
       });
   };
 
-/**
- * By sorting by rating
- * @param {val} val 
- */
+  /**
+   * By sorting by rating
+   * @param {val} val
+   */
   sortByRating(val) {
+    this.setState({checkLoader:true});
     axios
       .get(BASE_URL + "commonProducts", {
         params: {
@@ -139,35 +158,48 @@ class Products extends React.Component {
       })
       .then(({ data }) => {
         let catProducts = data.product_details;
-        this.setState({ posts: catProducts });
+        this.setState({ posts: catProducts,checkLoader:false});
       });
+      // this.setState({})
   }
 
   allProductsHandler = () => {
     this.setState({ posts: this.state.allProducts });
   };
+  paginate = (pageNumber) => {
+    console.log("in paginate");
+    setTimeout(() => {
+      this.setState({ checkLoader: false });
+    }, 2000);
+    return this.setState({ currentPage: pageNumber, checkLoader: true });
+  };
   render() {
+    let x = "";
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
     const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
     const temPosts = this.state.posts;
     const currentPosts = temPosts.slice(indexOfFirstPost, indexOfLastPost);
-    const paginate = (pageNumber) => {
-      return this.setState({ currentPage: pageNumber });
-    };
-    let x = "";
-    if (currentPosts === undefined || currentPosts === "") {
-      x = <Loading />;
+    if (
+      this.state.checkLoader === true ||
+      currentPosts === undefined ||
+      currentPosts === ""
+    ) {
+      x = <Loading></Loading>;
     } else {
       x = (
         <React.Fragment className="popularProduct">
           <React.Fragment className="container mt-5">
             {currentPosts !== "No details" ? (
               <React.Fragment>
-                <Posts posts={currentPosts} {...this.props} />
+                <Posts
+                  posts={currentPosts}
+                  loading={this.state.checkLoader}
+                  {...this.props}
+                />
                 <Pagination
                   postsPerPage={this.state.postsPerPage}
                   totalPosts={this.state.posts.length}
-                  paginate={paginate}
+                  paginate={this.paginate}
                 />
               </React.Fragment>
             ) : (
@@ -184,54 +216,57 @@ class Products extends React.Component {
           style={{ marginTop: "30px", width: "1300px", marginBottom: "16px" }}
         ></hr>
         <React.Fragment>
-          {(currentPosts === undefined || currentPosts === "")?<Loading/>:(<Container fluid={false}>
-            <Row>
-              <Col xs={2}>
-                <SideMenu
-                  allProductsHandler={this.allProductsHandler}
-                  categoryHandler={(val) => this.categoryHandler(val)}
-                  colorHandler={(val) => this.colorHandler(val)}
-                />
-              </Col>
-              <Col style={{ marginLeft: "78px", maxWidth: "74%" }}>
-                <Row>
-                  <div className="header1">
-                    <span style={{ fontSize: "25px" }}>All Categories</span>
-                    <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
-                      Sort By:
-                      <Button
-                        className="sort"
-                        onClick={() =>
-                          this.sortByRating({
-                            category_id: this.state.category_id,
-                            color_id: this.state.color_id,
-                            sortBy: "product_rating",
-                            sortIn: true,
-                          })
-                        }
-                      >
-                        <StarIcon />
-                      </Button>
-                      <Button className="sort" onClick={this.sortByAscending}>
-                        ₹<ArrowUpwardIcon></ArrowUpwardIcon>
-                      </Button>
-                      <Button className="sort" onClick={this.sortByDesc}>
-                        ₹<ArrowDownwardIcon />
-                      </Button>
-                    </span>
-                  </div>
+          {currentPosts === undefined || currentPosts === "" ? (
+            <Loading />
+          ) : (
+            <Container fluid={false}>
+              <Row>
+                <Col xs={2}>
+                  <SideMenu
+                    allProductsHandler={this.allProductsHandler}
+                    categoryHandler={(val) => this.categoryHandler(val)}
+                    colorHandler={(val) => this.colorHandler(val)}
+                  />
+                </Col>
+                <Col style={{ marginLeft: "78px", maxWidth: "74%" }}>
+                  <Row>
+                    <div className="header1">
+                      <span style={{ fontSize: "25px" }}>All Categories</span>
+                      <span style={{ paddingLeft: "370px", fontSize: "16px" }}>
+                        Sort By:
+                        <Button
+                          className="sort"
+                          onClick={() =>
+                            this.sortByRating({
+                              category_id: this.state.category_id,
+                              color_id: this.state.color_id,
+                              sortBy: "product_rating",
+                              sortIn: true,
+                            })
+                          }
+                        >
+                          <StarIcon />
+                        </Button>
+                        <Button className="sort" onClick={this.sortByAscending}>
+                          ₹<ArrowUpwardIcon></ArrowUpwardIcon>
+                        </Button>
+                        <Button className="sort" onClick={this.sortByDesc}>
+                          ₹<ArrowDownwardIcon />
+                        </Button>
+                      </span>
+                    </div>
 
-                  <Col></Col>
+                    <Col></Col>
 
-                  <Col style={{ paddingLeft: "168px" }}></Col>
-                </Row>
+                    <Col style={{ paddingLeft: "168px" }}></Col>
+                  </Row>
 
-                <Row>{x}</Row>
-              </Col>
-            </Row>
-          </Container>)}
+                  <Row>{x}</Row>
+                </Col>
+              </Row>
+            </Container>
+          )}
         </React.Fragment>
-          
 
         <hr></hr>
         <Footer />

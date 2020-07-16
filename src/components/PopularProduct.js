@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {getPopularProducts}  from '../actions/PopularProductAction';
 import {Link} from 'react-router-dom';
 import ProductCard from './ProductCard';
+import Loading from './Loading';
 
 class Popularproduct extends React.Component{
     constructor(){
@@ -17,9 +18,12 @@ class Popularproduct extends React.Component{
         this.props.getPopularProducts().then(() => 
         {
             const { popularProducts } = this.props;
+            
+            this.props.callbackFromParent(popularProducts)
       })
     }
     render(){
+        
         const { popularProducts } = this.props;
         const TopRatingProducts =popularProducts.popularProducts;
         // console.log("TopRatingProducts in render----",TopRatingProducts);
@@ -31,8 +35,10 @@ class Popularproduct extends React.Component{
                 <Link className="ViewAllLink" to='/Products' >View All</Link>
                 </div>
                 <div className="product_wrapper">
-                {
-                    (TopRatingProducts !== undefined)&&(TopRatingProducts.map((val,i)=>
+                {(TopRatingProducts ===undefined )?(
+                    <Loading></Loading>
+                ):
+                    (TopRatingProducts.map((val,i)=>
                     {
                         
                         dashbordProduct[i]=val.DashboardProducts;

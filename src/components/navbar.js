@@ -59,7 +59,8 @@ class HomeNavbar extends React.Component {
   onChangeHandle = (e, itemname) => {
     e.preventDefault();
     console.log("in on change handle");
-    let data=this.props.productData.productData
+    let data=this.props.productData.productData;
+    this.props.callbackFromParent(data);
        const index = data.findIndex((res) => {
         return res.product_name === itemname;
       });
