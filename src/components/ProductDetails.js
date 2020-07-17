@@ -78,7 +78,7 @@ class ProductDetails extends React.Component {
     if (productDetails !== undefined) {
       title = productDetails.product_name;
       cost = productDetails.product_cost;
-      productColor = productDetails.color_id.color_name;
+      productColor = productDetails.color_id.color_code;
       productDescription = productDetails.product_desc;
       imgUrl = productDetails.product_image;
       dimensions = productDetails.product_dimension;
@@ -142,7 +142,7 @@ class ProductDetails extends React.Component {
                     
                     <span
                       className="square"
-                      style={{backgroundColor:`red`}}
+                      style={{backgroundColor:`${productColor}`}}
                     ></span>
                   </h5>
 

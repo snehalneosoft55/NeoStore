@@ -11,6 +11,7 @@ export class Posts extends Component {
         // let displayProducts='';
         console.log("this.props.posts;;;====---",this.props.posts);
         const products = this.props.posts;
+        console.log("in posts=======",products);
         let x=''
         if(products!== undefined && products !==''){
             x =(
