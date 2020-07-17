@@ -177,7 +177,7 @@ class Products extends React.Component {
       this.setState({ checkLoader: false });
       
     }, 2000);
-    
+    document.documentElement.scrollTop = 0;
     return this.setState({ currentPage: pageNumber, checkLoader: true });
   };
   render() {

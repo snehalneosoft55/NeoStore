@@ -93,7 +93,10 @@ class ProductDetails extends React.Component {
         subimages[i] = productDetails.subImages_id.product_subImages[i];
       }
     }
-
+    var color={
+      backgroundColor:productColor
+    }
+    console.log("color in product detail page=",productColor);
     return (
       <div className="productDetail">
         <HomeNavBar />
@@ -136,10 +139,11 @@ class ProductDetails extends React.Component {
                   </h5>
                   <h5>
                     color:
-                    <div
-                      class="square"
-                      style={{ backgroundColor: `${productColor}` }}
-                    ></div>
+                    
+                    <span
+                      className="square"
+                      style={{backgroundColor:`red`}}
+                    ></span>
                   </h5>
 
                   <div className="productDetailInfoButtons">
