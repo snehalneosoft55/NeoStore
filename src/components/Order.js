@@ -19,8 +19,12 @@ class Order extends React.Component{
     }
   }
   componentWillMount(){
-    let x=this.props.location.state.show;
-    this.setState({show:x})
+    if(this.props.location.state.show!==undefined){
+      let x=this.props.location.state.show;
+
+      this.setState({show:x})
+    }
+    
   }
   handleProfile=()=>{
     ////console.log("in pro");
@@ -49,14 +53,26 @@ class Order extends React.Component{
       if(this.state.show===1){
         var custData = '';
         const x= localStorage.getItem('token');
-        axios.
-        get(BASE_URL + 'getCustProfile',{
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-           'Authorization': `Bearer ${x}`
-           }
+        axios({
+          mathod:'PUT',
+          url : `${BASE_URL}getCustProfile`,
+          headers : {'Authorization': `Bearer ${x}`}
         })
+      //   get(BASE_URL + 'getCustProfile',{
+      //     headers: {
+      //       // Accept: 'application/json',
+      //       // 'Content-Type': 'application/json',
+      //      'Authorization': `Bearer ${x}`
+      //      }
+      //   })
+      //   return axios ({
+      //     method : 'GET',
+      //     url : `${apiUrl}${allColor}`,
+      //     headers : endOfApi,
+      // }).then (response => {
+      //   const colorList = response.data.color_details
+      //   dispatch(fetchColorSuccess(colorList))
+      // })
         .then(({data})=>{
           console.log("getcustdata====",data.customer_proile);
           custData=data.customer_proile

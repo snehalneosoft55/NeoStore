@@ -10,6 +10,7 @@ import getCategoriesReducer from "./ListOfSideMenuReducer";
 import getProductByCatIdReducer from './getProductByCatIdReducer';
 import getProductByColorIdReducer from './getProductByColorIdReducer';
 import getcustData from './getcustData'
+import rateProductReducer from './rateProductreducer'
 const rootReducer = combineReducers({
     productData,
     userData,
@@ -20,7 +21,9 @@ const rootReducer = combineReducers({
     getCategoriesReducer,
     getProductByCatIdReducer,
     getProductByColorIdReducer,
-    getcustData
+    getcustData,
+    rateProductReducer
+
 });
 
 export default rootReducer;
