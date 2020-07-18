@@ -35,13 +35,6 @@ class HomeNavbar extends React.Component {
       this.setState({ Information: x });
     });
   }
-  // searchSpace = (event) => {
-  //   console.log("keyword==");
-  //   let keyword = event.target.value;
-  //   console.log("keyword==", keyword);
-  //   this.setState({ search: keyword });
-  // };
-
   checkForLogIn = () => {
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -58,14 +51,12 @@ class HomeNavbar extends React.Component {
   };
   onChangeHandle = (e, itemname) => {
     e.preventDefault();
-    console.log("in on change handle");
     let data=this.props.productData.productData;
     this.props.callbackFromParent(data);
        const index = data.findIndex((res) => {
         return res.product_name === itemname;
       });
     
-      console.log("index==",index);
     if (index >= 0) {
       this.props.history.push({
         pathname: "/ProductDetails",
@@ -78,6 +69,12 @@ class HomeNavbar extends React.Component {
     }
   };
   render() {
+    const {cartData} = this.props;
+    console.log("cartdata====]]]",cartData.length);
+    const productsInLocalStorage = JSON.parse(localStorage.getItem("cartProducts"));
+    console.log("length of localstorage===[[[[",productsInLocalStorage.length);
+    let lengthOfCart = productsInLocalStorage.length;
+    console.log("leng==[[",lengthOfCart);
     const l = this.props.productData;
     console.log("l==", l);
     const allProducts = l.productData;
@@ -165,7 +162,7 @@ class HomeNavbar extends React.Component {
                     className="x"
                     style={{ marginLeft: "-7px" }}
                   ></ShoppingCartIcon>
-                  <span className="circle">0</span>
+                  <span className="circle">{lengthOfCart}</span>
                   <span style={{ marginLeft: "14px" }}>Cart</span>
                 </Button>
               </Link>
@@ -180,6 +177,7 @@ class HomeNavbar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     productData: state.productData,
+    cartData: state.cartDtaReducer
   };
 };
 

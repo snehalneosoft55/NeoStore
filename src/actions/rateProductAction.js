@@ -22,6 +22,7 @@ export default function getProductRate(data) {
         console.log("res====",res.data.message);
         swal(`res.data.message`)
     })
+    
     // return axios ({
     //     method : 'PUT',
     //     url : `${BASE_URL}updateProductRatingByCustomer`,

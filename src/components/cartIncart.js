@@ -12,11 +12,13 @@ export default class CartInCart extends React.Component {
     super();
     this.state = {
       quantity: "",
+      countOfItems:0
     };
   }
   componentWillMount() {
     const x = JSON.parse(localStorage.getItem("cartProducts"));
-    this.setState({ quantity: 1 });
+    console.log("length of cart==",x.length);
+    this.setState({ quantity: 1 ,countOfItems:x.length});
   }
   incrementBtnHandler = (data, id) => {
     console.log("data in incHandler", data, id);

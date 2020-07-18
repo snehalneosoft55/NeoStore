@@ -10,7 +10,8 @@ import getCategoriesReducer from "./ListOfSideMenuReducer";
 import getProductByCatIdReducer from './getProductByCatIdReducer';
 import getProductByColorIdReducer from './getProductByColorIdReducer';
 import getcustData from './getcustData'
-import rateProductReducer from './rateProductreducer'
+import rateProductReducer from './rateProductreducer';
+import cartDtaReducer from './cartDtaReducer'
 const rootReducer = combineReducers({
     productData,
     userData,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     getProductByCatIdReducer,
     getProductByColorIdReducer,
     getcustData,
-    rateProductReducer
+    rateProductReducer,
+    cartDtaReducer
 
 });
 

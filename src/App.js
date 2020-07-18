@@ -14,6 +14,7 @@ import './App.css';
 import './assets/css/SignIn.css'
 import './assets/css/PopularProduct.css'
 import './assets/css/product.css'
+import SnackbarProvider from 'react-simple-snackbar'
 
 import Registration from './components/Registration'
 import SignIn from './components/signIn'
@@ -34,7 +35,7 @@ const store = configureStore();
 function App() {
   return (
     // <Provider store={store}>
-    
+    <SnackbarProvider>
     <Provider store={store}>
     <div className="App">
       <Router>
@@ -56,7 +57,7 @@ function App() {
       </Router>
     </div>
     </Provider>
-    
+    </SnackbarProvider>
   );
 }
 
