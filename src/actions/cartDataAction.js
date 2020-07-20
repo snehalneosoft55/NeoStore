@@ -14,13 +14,13 @@ const getcartdataSuccess = data => (
 export function getcartdata(productDetails) {
   return function(dispatch) {
     const myArray = localStorage.getItem("cartProducts");
-    // console.log("myArray: ",JSON.parse(myArray));
+    console.log("myArray: ",JSON.parse(myArray));
     let productsInLocalStorage,
       flag = false;
 
     if (myArray !== null) {
       productsInLocalStorage = JSON.parse(myArray);
-      console.log("productsInLocalStorage", productsInLocalStorage);
+      console.log("in cart data action===productsInLocalStorage", productsInLocalStorage);
 
       productsInLocalStorage.map((val, i) => {
         let x = val;
@@ -56,12 +56,13 @@ export function getcartdata(productDetails) {
         // openSnackbar('Added to cart')
         // console.log("Modified myArray productsInLocalStorage: ",productsInLocalStorage);
       } else {
-        alert("Already in cart");
+        swal("Already in cart");
       }
       localStorage.setItem(
         "cartProducts",
         JSON.stringify(productsInLocalStorage)
       );
+
     } else {
       console.log("productDetails", productDetails);
        localStorage.setItem(

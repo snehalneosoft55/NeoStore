@@ -68,6 +68,7 @@ class HomeNavbar extends React.Component {
       this.props.history.push("/ProductNotFound");
     }
   };
+  
   render() {
     const {cartData} = this.props;
     console.log("cartdata====]]]",cartData.length);

@@ -4,7 +4,7 @@ const initialState = {
   data:''
 };
 const cartDtaReducer = (state = initialState, action) => {
-////console.log("action.payload",action.payload);
+console.log("cart data reducer action.payload",action.payload);
   switch (action.type) {
     
     case actionTypes.GET_CART_DATA:

@@ -18,7 +18,7 @@ class AddToCart extends React.Component {
     const productDetail = productData.ProductData;
   }
   handleCart = async (e) => {
-      
+      console.log("handlecart in add to cart");
     const productData = this.props;
     const productDetail = productData.ProductData;
     const productDetails = [
@@ -92,7 +92,7 @@ class AddToCart extends React.Component {
   render() {
     const { openSnackbar, closeSnackbar } = this.props;
     const {cartData} = this.props
-
+    
     return (
       <button
         className="ProductCardwrapperButton"
