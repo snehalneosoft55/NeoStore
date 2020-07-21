@@ -4,31 +4,32 @@ import * as actionTypes from "../lib/constants/actionTypes";
 // import axios from 'axios'
 import swal from "sweetalert";
 
-const getcartdataSuccess = data => (
-  
-  {
+const getcartdataSuccess = (data) => ({
   type: actionTypes.GET_CART_DATA,
-  payload: data
+  payload: data,
 });
 
 export function getcartdata(productDetails) {
-  return function(dispatch) {
+  return function (dispatch) {
     const myArray = localStorage.getItem("cartProducts");
-    console.log("myArray: ",JSON.parse(myArray));
+    console.log("myArray: ", JSON.parse(myArray));
     let productsInLocalStorage,
       flag = false;
 
     if (myArray !== null) {
       productsInLocalStorage = JSON.parse(myArray);
-      console.log("in cart data action===productsInLocalStorage", productsInLocalStorage);
+      console.log(
+        "in cart data action===productsInLocalStorage",
+        productsInLocalStorage
+      );
 
       productsInLocalStorage.map((val, i) => {
         let x = val;
-        // console.log("x==",x.productDetail.id)
-
+        console.log("x==in cart data action", x);
+        console.log("x---", x);
         if (i === 0) {
           console.log("x");
-          console.log("x==", x[0].productDetail.id);
+          // console.log("x==", x[0].productDetail.id);
           let z = x[0].productDetail.id;
           console.log("productDetails", productDetails);
           if (z === productDetails[i].productDetail.id) flag = true;
@@ -62,15 +63,10 @@ export function getcartdata(productDetails) {
         "cartProducts",
         JSON.stringify(productsInLocalStorage)
       );
-
     } else {
       console.log("productDetails", productDetails);
-       localStorage.setItem(
-        "cartProducts",
-        JSON.stringify(productDetails)
-      );
+      localStorage.setItem("cartProducts", JSON.stringify(productDetails));
     }
     return dispatch(getcartdataSuccess(productsInLocalStorage));
-    };
   };
-
+}

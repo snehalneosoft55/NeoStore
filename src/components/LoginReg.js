@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { Link } from "react-router-dom";
-import Logout from './Logout'
+import Logout from "./Logout";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +31,6 @@ export default function MenuListComposition() {
   };
 
   const handleClose = (event) => {
-    
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -39,13 +38,14 @@ export default function MenuListComposition() {
     setOpen(false);
   };
   const handleLogOut1 = (event) => {
-    localStorage.removeItem('token');
+    
+    localStorage.removeItem("token");
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
 
     setOpen(false);
-  }
+  };
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
       event.preventDefault();
@@ -63,7 +63,7 @@ export default function MenuListComposition() {
     prevOpen.current = open;
   }, [open]);
   const token = localStorage.getItem("token");
-  console.log("token in login",token);
+  console.log("token in login", token);
   // let displayUserActivity = '';
 
   return (
@@ -109,45 +109,45 @@ export default function MenuListComposition() {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    {(token)?(
+                    {token ? (
                       <div>
-                      <MenuItem onClick={handleClose}>
-                    <Link style={{ textDecoration: "none" }} 
-                    to={{
-                      pathname:"/Order",
-                      state:{
-                        show:1
-                      }
-                    }}
-                    
-                    >
-                    Profile
-                    </Link>
-                  </MenuItem>
-                  <MenuItem onClick={handleLogOut1}>
-                  <Link style={{ textDecoration: "none" }} to="/">
-                    Log Out
-                    </Link>
-                  </MenuItem>
-                    </div>
-                    ):(
-                    <div>
                         <MenuItem onClick={handleClose}>
-                      <Link style={{ textDecoration: "none" }} to="/signIn">
-                        Log In
-                      </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      <Link
-                        style={{ textDecoration: "none" }}
-                        to="/Registration"
-                      >
-                        Register
-                      </Link>
-                    </MenuItem>
+                          <Link
+                            style={{ textDecoration: "none" }}
+                            to={{
+                              pathname: "/Order",
+                              state: {
+                                show: 1,
+                              },
+                            }}
+                          >
+                            Profile
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleLogOut1}>
+                          <Link style={{ textDecoration: "none" }} to="/" >
+                            Log Out
+                          </Link>
+                        </MenuItem>
+                      </div>
+                    ) : (
+                      <div>
+                        <MenuItem onClick={handleClose}>
+                          <Link style={{ textDecoration: "none" }} to="/signIn">
+                            Log In
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link
+                            style={{ textDecoration: "none" }}
+                            to="/Registration"
+                          >
+                            Register
+                          </Link>
+                        </MenuItem>
                       </div>
                     )}
-                    
+
                     {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                   </MenuList>
                 </ClickAwayListener>
@@ -159,3 +159,4 @@ export default function MenuListComposition() {
     </div>
   );
 }
+

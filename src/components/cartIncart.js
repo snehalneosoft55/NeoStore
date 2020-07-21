@@ -20,8 +20,10 @@ export default class CartInCart extends React.Component {
   }
   componentWillMount() {
     const x = JSON.parse(localStorage.getItem("cartProducts"));
-    console.log("length of cart==", x.length);
-    this.setState({ quantity: 1, countOfItems: x.length, productsInCart: x });
+    console.log("length of cart==");
+    if(x){
+      this.setState({ quantity: 1, countOfItems: x.length, productsInCart: x });
+    }
   }
   incrementBtnHandler = (data, id) => {
     console.log("data in incHandler", data, id);
@@ -126,9 +128,10 @@ export default class CartInCart extends React.Component {
                     </thead>
 
                     <tbody>
-                      {x !== undefined &&
-                        x.map((val, i) => {
+                      {(x !== undefined && x!==null && x!=='') &&
+                        (x.map((val, i) => {
                           if (i === 0) {
+                            console.log("val==",val);
                             let data = val[0].productDetail;
                             console.log("data of first row==", data);
                             return (
@@ -204,7 +207,7 @@ export default class CartInCart extends React.Component {
                                   </div>
                                 </td>
                                 <td>{data.price}</td>
-                                <td>{data.price * val.quantity}</td>
+                                <td>{data.price * val[0].quantity}</td>
                                 <td>
                                   <button
                                     style={{ border: "none" }}
@@ -303,7 +306,7 @@ export default class CartInCart extends React.Component {
                               </tr>
                             );
                           }
-                        })}
+                        }))}
                     </tbody>
                   </table>
                 </div>
