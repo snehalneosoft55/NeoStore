@@ -12,6 +12,10 @@ import Inputs from './inputs';
 import Footer from './footer';
 import HomeNavBar from './navbar';
 import { Redirect } from "react-router-dom";
+import {getCartDataFromApi} from '../actions/getCartDatafromAPIAction'
+import axios from 'axios';
+import {BASE_URL} from '../constants/BaseURL'
+import swal from 'sweetalert';
 
 // import {status} from '../actions/loginAction'
 
@@ -49,7 +53,8 @@ class signIn extends React.Component
                             email:"",
                             password:"",
                         },
-                        submitError:''
+                        submitError:'',
+                        productsInCart:''
                     }
     }
     
@@ -105,26 +110,54 @@ class signIn extends React.Component
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        
         if(validateForm(this.state.users)){
             forbutton=true;
             this.setState({submitError:''});
             const userData1 = {
-                
                 email:this.state.users.email,
                 pass:this.state.users.password,
-                
             };
-            ////console.log('in on submit----gender::',userData1.gender,this.state.users.gender);
-            ////console.log("before action call------------userData,in onsubmit",userData1);
             this.props.loginUserInfo(userData1);
             const token = localStorage.getItem("token");
             if(token){
                 // this.props.history.push('/');
+    //             const res=axios
+    //   .get(BASE_URL + "getCartData", {
+    //     headers: { Authorization: `Bearer ${token}` }
+    //   });
+    //   console.log("response***",res);
+    // //   .then(({res.data})=>{
+    // //       console.log("in response",res);
+    // //   })
+                
+                
+// .then(()=>{
+//                     const { cartDataFromApi } = this.props;
+//       console.log("cartDataFromApi", cartDataFromApi);
+// // console.log("res in sign in from getcart data from api",res);
+//                 });
+                console.log("in if");
+                axios
+      .get(BASE_URL + "getCartData", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then((res) => {
+        console.log("Cart API response ", res.data.product_details);
+        // dispatch(getCartDataFromApiSuccess(res.data.product_details));
+        // swal
+        this.setState({productsInCart:res.data.product_details});
+      })
+      .catch((error) => {
+        swal(`Error : ${error.message}`);
+      });
+
+                // this.props.getCartDataFromApi(token);
                 this.props.history.push("/");
                 
+            localStorage.setItem("cartProducts", JSON.stringify(this.state.productsInCart));
                 
             }
+            console.log("after fetch cartData:::",JSON.parse(localStorage.getItem('cartProducts')));
             
 
             // ////console.log("for history check",this.props.history);
@@ -205,14 +238,16 @@ const mapStateToProps = state =>
     ////console.log("IN MAP STATE TO PROPS::::::")
     return(
         {
-            userData: state.userData
+            userData: state.userData,
+            cartDataFromApi: state.cartDtaFromApiReducer
           }
     );
 }
 
 
   const mapDispatchToProps = {
-    loginUserInfo
+    loginUserInfo,
+    getCartDataFromApi
 };
 export default withRouter(connect(
     mapStateToProps,

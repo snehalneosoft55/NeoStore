@@ -132,7 +132,7 @@ export default class CartInCart extends React.Component {
                         (x.map((val, i) => {
                           if (i === 0) {
                             console.log("val==",val);
-                            let data = val[0].productDetail;
+                            let data = val.productDetail;
                             console.log("data of first row==", data);
                             return (
                               <tr>
@@ -185,7 +185,7 @@ export default class CartInCart extends React.Component {
                                     <input
                                       type="text"
                                       style={{ width: "20px" }}
-                                      value={val[0].quantity}
+                                      value={val.quantity}
                                     ></input>
                                     <button
                                       style={{
@@ -207,7 +207,7 @@ export default class CartInCart extends React.Component {
                                   </div>
                                 </td>
                                 <td>{data.price}</td>
-                                <td>{data.price * val[0].quantity}</td>
+                                <td>{data.price * val.quantity}</td>
                                 <td>
                                   <button
                                     style={{ border: "none" }}

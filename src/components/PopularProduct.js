@@ -26,7 +26,7 @@ class Popularproduct extends React.Component{
         
         const { popularProducts } = this.props;
         const TopRatingProducts =popularProducts.popularProducts;
-        // console.log("TopRatingProducts in render----",TopRatingProducts);
+        console.log("TopRatingProducts in render----",TopRatingProducts);
         let dashbordProduct=[];
         return(
             <div className="popularProduct">

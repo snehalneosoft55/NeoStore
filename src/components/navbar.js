@@ -73,8 +73,14 @@ class HomeNavbar extends React.Component {
     const {cartData} = this.props;
     console.log("cartdata====]]]",cartData.length);
     const productsInLocalStorage = JSON.parse(localStorage.getItem("cartProducts"));
-    console.log("length of localstorage===[[[[",productsInLocalStorage.length);
-    let lengthOfCart = productsInLocalStorage.length;
+    let lengthOfCart=''
+    if(productsInLocalStorage!==null){
+      console.log("length of localstorage===[[[[",productsInLocalStorage.length)
+       lengthOfCart = productsInLocalStorage.length;
+    }
+      
+    
+    
     console.log("leng==[[",lengthOfCart);
     const l = this.props.productData;
     console.log("l==", l);

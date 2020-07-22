@@ -16,7 +16,7 @@ export function getcartdata(productDetails) {
     let productsInLocalStorage,
       flag = false;
 
-    if (myArray !== null) {
+    if (myArray !== null&&myArray!=='') {
       productsInLocalStorage = JSON.parse(myArray);
       console.log(
         "in cart data action===productsInLocalStorage",
@@ -30,7 +30,7 @@ export function getcartdata(productDetails) {
         if (i === 0) {
           console.log("x");
           // console.log("x==", x[0].productDetail.id);
-          let z = x[0].productDetail.id;
+          let z = x.productDetail.id;
           console.log("productDetails", productDetails);
           if (z === productDetails[i].productDetail.id) flag = true;
         } else {
@@ -63,9 +63,11 @@ export function getcartdata(productDetails) {
         "cartProducts",
         JSON.stringify(productsInLocalStorage)
       );
+      console.log("cartdata in localstorage==]]",JSON.parse(localStorage.getItem('cartProducts')));
     } else {
       console.log("productDetails", productDetails);
       localStorage.setItem("cartProducts", JSON.stringify(productDetails));
+      console.log("cartProducts in action",JSON.parse(localStorage.getItem('cartProducts')));
     }
     return dispatch(getcartdataSuccess(productsInLocalStorage));
   };

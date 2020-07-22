@@ -11,7 +11,8 @@ import getProductByCatIdReducer from './getProductByCatIdReducer';
 import getProductByColorIdReducer from './getProductByColorIdReducer';
 import getcustData from './getcustData'
 import rateProductReducer from './rateProductreducer';
-import cartDtaReducer from './cartDtaReducer'
+import cartDtaReducer from './cartDtaReducer';
+import cartDtaFromApiReducer from './getCartDataFromApiReducer';
 const rootReducer = combineReducers({
     productData,
     userData,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     getProductByColorIdReducer,
     getcustData,
     rateProductReducer,
-    cartDtaReducer
+    cartDtaReducer,
+    cartDtaFromApiReducer
 
 });
 
