@@ -32,16 +32,11 @@ export default class CartInCart extends React.Component {
     // const temData = JSON.parse(localStorage.getItem("cartProducts"));
     const temData = this.state.productsInCart;
     temData.map((val, i) => {
-      if (i === 0) {
-        if (val[0].productDetail.id === id) {
-          val[0].quantity = data;
+      
+        if (val.productDetail.id === id) {
+          val.quantity = data;
         }
-      }
-      if (i > 0) {
-        if (val[0].productDetail.id === id) {
-          val[0].quantity = data;
-        }
-      }
+      
     });
     localStorage.setItem("cartProducts", JSON.stringify(temData));
     console.log("leng==", localStorage.length);
@@ -49,21 +44,19 @@ export default class CartInCart extends React.Component {
   };
   decrementHandler = (data, id) => {
     console.log("data in incHandler", data, id);
-    data = data - 1;
+    if(data>1){
+      data = data - 1;
+    }
+    
     console.log("leng==", localStorage.length);
     // const temData = JSON.parse(localStorage.getItem("cartProducts"));
     const temData = this.state.productsInCart;
     temData.map((val, i) => {
-      if (i === 0) {
-        if (val[0].productDetail.id === id) {
-          val[0].quantity = data;
+      
+        if (val.productDetail.id === id) {
+          val.quantity = data;
         }
-      }
-      if (i > 0) {
-        if (val[0].productDetail.id === id) {
-          val[0].quantity = data;
-        }
-      }
+      
     });
     localStorage.setItem("cartProducts", JSON.stringify(temData));
     console.log("leng==", localStorage.length);
@@ -130,7 +123,7 @@ export default class CartInCart extends React.Component {
                     <tbody>
                       {(x !== undefined && x!==null && x!=='') &&
                         (x.map((val, i) => {
-                          if (i === 0) {
+                          // if (i === 0) {
                             console.log("val==",val);
                             let data = val.productDetail;
                             console.log("data of first row==", data);
@@ -175,7 +168,7 @@ export default class CartInCart extends React.Component {
                                       }}
                                       onClick={() =>
                                         this.decrementHandler(
-                                          val[0].quantity,
+                                          val.quantity,
                                           data.id
                                         )
                                       }
@@ -183,9 +176,10 @@ export default class CartInCart extends React.Component {
                                       -
                                     </button>
                                     <input
-                                      type="text"
+                                      type="number"
                                       style={{ width: "20px" }}
                                       value={val.quantity}
+                                      // min="1"
                                     ></input>
                                     <button
                                       style={{
@@ -197,7 +191,7 @@ export default class CartInCart extends React.Component {
                                       }}
                                       onClick={() =>
                                         this.incrementBtnHandler(
-                                          val[0].quantity,
+                                          val.quantity,
                                           data.id
                                         )
                                       }
@@ -218,94 +212,94 @@ export default class CartInCart extends React.Component {
                                 </td>
                               </tr>
                             );
-                          } else {
-                            let data1 = val[0].productDetail;
-                            // console.log(`in ${i} row n data is==`,data1);
-                            return (
-                              <tr>
-                                <td>
-                                  <React.Fragment>
-                                    <Container>
-                                      <Row>
-                                        <Col xs={3}>
-                                          <img
-                                            style={{
-                                              height: "60px",
-                                              width: "60px",
-                                            }}
-                                            src={BASE_URL + data1.image}
-                                          ></img>
-                                        </Col>
-                                        <Col>
-                                          <p>{data1.title}</p>
-                                          <p>{data1.productProducer}</p>
-                                          <p>
-                                            status:
-                                            {data1.productStock > 0
-                                              ? "in stock"
-                                              : "out of stock"}
-                                          </p>
-                                        </Col>
-                                      </Row>
-                                    </Container>
-                                  </React.Fragment>
-                                </td>
-                                <td>
-                                  <div>
-                                    <button
-                                      style={{
-                                        width: "20px",
-                                        height: "20px",
-                                        borderRadius: "50%",
-                                        border: "none",
-                                        background: "red",
-                                      }}
-                                      onClick={() =>
-                                        this.decrementHandler(
-                                          val[0].quantity,
-                                          data1.id
-                                        )
-                                      }
-                                    >
-                                      -
-                                    </button>
-                                    <input
-                                      type="text"
-                                      style={{ width: "20px" }}
-                                      value={val[0].quantity}
-                                    ></input>
-                                    <button
-                                      style={{
-                                        width: "20px",
-                                        height: "20px",
-                                        borderRadius: "50%",
-                                        border: "none",
-                                        background: "red",
-                                      }}
-                                      onClick={() =>
-                                        this.incrementBtnHandler(
-                                          val[0].quantity,
-                                          data1.id
-                                        )
-                                      }
-                                    >
-                                      +
-                                    </button>
-                                  </div>
-                                </td>
-                                <td>{data1.price}</td>
-                                <td>{data1.price * val[0].quantity}</td>
-                                <td>
-                                  <button
-                                    style={{ border: "none" }}
-                                    onClick={() => this.deletehandler(i)}
-                                  >
-                                    <DeleteOutlineIcon />
-                                  </button>
-                                </td>
-                              </tr>
-                            );
-                          }
+                          // } else {
+                          //   let data1 = val[0].productDetail;
+                          //   // console.log(`in ${i} row n data is==`,data1);
+                          //   return (
+                          //     <tr>
+                          //       <td>
+                          //         <React.Fragment>
+                          //           <Container>
+                          //             <Row>
+                          //               <Col xs={3}>
+                          //                 <img
+                          //                   style={{
+                          //                     height: "60px",
+                          //                     width: "60px",
+                          //                   }}
+                          //                   src={BASE_URL + data1.image}
+                          //                 ></img>
+                          //               </Col>
+                          //               <Col>
+                          //                 <p>{data1.title}</p>
+                          //                 <p>{data1.productProducer}</p>
+                          //                 <p>
+                          //                   status:
+                          //                   {data1.productStock > 0
+                          //                     ? "in stock"
+                          //                     : "out of stock"}
+                          //                 </p>
+                          //               </Col>
+                          //             </Row>
+                          //           </Container>
+                          //         </React.Fragment>
+                          //       </td>
+                          //       <td>
+                          //         <div>
+                          //           <button
+                          //             style={{
+                          //               width: "20px",
+                          //               height: "20px",
+                          //               borderRadius: "50%",
+                          //               border: "none",
+                          //               background: "red",
+                          //             }}
+                          //             onClick={() =>
+                          //               this.decrementHandler(
+                          //                 val[0].quantity,
+                          //                 data1.id
+                          //               )
+                          //             }
+                          //           >
+                          //             -
+                          //           </button>
+                          //           <input
+                          //             type="text"
+                          //             style={{ width: "20px" }}
+                          //             value={val[0].quantity}
+                          //           ></input>
+                          //           <button
+                          //             style={{
+                          //               width: "20px",
+                          //               height: "20px",
+                          //               borderRadius: "50%",
+                          //               border: "none",
+                          //               background: "red",
+                          //             }}
+                          //             onClick={() =>
+                          //               this.incrementBtnHandler(
+                          //                 val[0].quantity,
+                          //                 data1.id
+                          //               )
+                          //             }
+                          //           >
+                          //             +
+                          //           </button>
+                          //         </div>
+                          //       </td>
+                          //       <td>{data1.price}</td>
+                          //       <td>{data1.price * val[0].quantity}</td>
+                          //       <td>
+                          //         <button
+                          //           style={{ border: "none" }}
+                          //           onClick={() => this.deletehandler(i)}
+                          //         >
+                          //           <DeleteOutlineIcon />
+                          //         </button>
+                          //       </td>
+                          //     </tr>
+                          //   );
+                          // }
                         }))}
                     </tbody>
                   </table>

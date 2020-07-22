@@ -10,9 +10,10 @@ const getcartdataSuccess = (data) => ({
 });
 
 export function getcartdata(productDetails) {
+  // console.log("productDetails to add in localstorage",productDetails);
   return function (dispatch) {
     const myArray = localStorage.getItem("cartProducts");
-    console.log("myArray: ", JSON.parse(myArray));
+    // console.log("myArray: ", JSON.parse(myArray));
     let productsInLocalStorage,
       flag = false;
 
@@ -25,25 +26,26 @@ export function getcartdata(productDetails) {
 
       productsInLocalStorage.map((val, i) => {
         let x = val;
-        console.log("x==in cart data action", x);
-        console.log("x---", x);
-        if (i === 0) {
-          console.log("x");
+        // console.log("x==in cart data action", x);
+        // console.log("x---", x);
+        
+          // console.log("x");
           // console.log("x==", x[0].productDetail.id);
           let z = x.productDetail.id;
-          console.log("productDetails", productDetails);
-          if (z === productDetails[i].productDetail.id) flag = true;
-        } else {
-          console.log("x in else==", x[0].productDetail.id);
-          let a = x[0].productDetail.id;
-          console.log(
-            "in else productDetails",
-            productDetails[0].productDetail.id
-          );
-          if (a === productDetails[0].productDetail.id) {
-            flag = true;
-          }
-        }
+          // console.log("productDetails", productDetails);
+          if (z === productDetails.productDetail.id) flag = true;
+        
+        // else {
+        //   console.log("x in else==", x.productDetail.id);
+        //   let a = x[0].productDetail.id;
+        //   console.log(
+        //     "in else productDetails",
+        //     productDetails[0].productDetail.id
+        //   );
+        //   if (a === productDetails[0].productDetail.id) {
+        //     flag = true;
+        //   }
+        // }
         // if(x === productDetails.productDetail.id){
         //         flag = true;
 
@@ -53,7 +55,7 @@ export function getcartdata(productDetails) {
       if (flag === false) {
         productsInLocalStorage.push(productDetails);
         swal("Added to cart");
-        console.log("productsInLocalStorage", productsInLocalStorage.length);
+        // console.log("productsInLocalStorage", productsInLocalStorage.length);
         // openSnackbar('Added to cart')
         // console.log("Modified myArray productsInLocalStorage: ",productsInLocalStorage);
       } else {
@@ -63,11 +65,11 @@ export function getcartdata(productDetails) {
         "cartProducts",
         JSON.stringify(productsInLocalStorage)
       );
-      console.log("cartdata in localstorage==]]",JSON.parse(localStorage.getItem('cartProducts')));
+      // console.log("cartdata in localstorage==]]",JSON.parse(localStorage.getItem('cartProducts')));
     } else {
-      console.log("productDetails", productDetails);
+      // console.log("productDetails", productDetails);
       localStorage.setItem("cartProducts", JSON.stringify(productDetails));
-      console.log("cartProducts in action",JSON.parse(localStorage.getItem('cartProducts')));
+      // console.log("cartProducts in action",JSON.parse(localStorage.getItem('cartProducts')));
     }
     return dispatch(getcartdataSuccess(productsInLocalStorage));
   };

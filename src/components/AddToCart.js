@@ -20,13 +20,15 @@ class AddToCart extends React.Component {
   handleCart = async (e) => {
       console.log("handlecart in add to cart");
     const productData = this.props;
-    const productDetail = productData.ProductData;
-    const productDetails = [
+    let productDetail = productData.ProductData;
+    const productDetails = 
       {
         productDetail: productDetail,
         quantity: 1,
-      },
-    ];
+      }
+    ;
+    // productDetail.quantity=1;
+    // console.log("productDetail--",productDetail);
     this.props.getcartdata(productDetails);
     // const { openSnackbar, closeSnackbar } = this.props;
 
